@@ -6,7 +6,7 @@ relative_permalinks: true
 
 # Setup
 title:               proxpero
-tagline:             
+tagline:             Meet the elements
 url:                 http://proxpero.com
 paginate:            1
 baseurl:             ""
