@@ -6,7 +6,7 @@ relative_permalinks: true
 
 # Setup
 title:               proxpero
-tagline:             Meet the elements
+tagline:             What strength I have's my own
 url:                 http://proxpero.com
 paginate:            1
 baseurl:             ""
