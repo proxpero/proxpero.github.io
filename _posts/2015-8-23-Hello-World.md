@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello World
+comments: True
 ---
 
 <div class="message">
