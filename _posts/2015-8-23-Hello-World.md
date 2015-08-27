@@ -2,6 +2,8 @@
 layout: post
 title: Hello World
 comments: True
+tags:
+- Swift
 ---
 
 <div class="message">
