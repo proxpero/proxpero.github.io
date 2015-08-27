@@ -23,16 +23,39 @@
 
   <!-- RSS -->
   <link rel="alternate" type="application/atom+xml" title="proxpero" href="/atom.xml">
+	
+		<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+	
+	
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66868018-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 </head>
 
 
   <body>
 
     <div class="container content">
+      
       <header class="masthead">
         <h3 class="masthead-title">
-          <a href="/" title="Home">proxpero</a>
-          <small>such as it is</small>
+          <a href="/" title="Home">proxpero</a>          
+          
+        	<small><a href="/archive">Archive</a></small>
+          
+        	<small><a href="/atom.xml">Feed</a></small>
+          
+          
         </h3>
       </header>
 
@@ -41,128 +64,63 @@
   <h1 class="post-title">Hello World</h1>
   <time datetime="2015-08-23T00:00:00-04:00" class="post-date">23 Aug 2015</time>
   <div class="message">
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
+  Nothing to see here! Move along!
 </div>
 
-<h3 id="code">Code</h3>
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\sqrt{37} & = \sqrt{\frac{73^2-1}{12^2}} \\
+ & = \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \\ 
+ & = \sqrt{\frac{73^2}{12^2}}\sqrt{\frac{73^2-1}{73^2}} \\
+ & = \frac{73}{12}\sqrt{1 - \frac{1}{73^2}} \\ 
+ & \approx \frac{73}{12}\left(1 - \frac{1}{2\cdot73^2}\right)
+\end{align} %]]></script>
 
-<p>Inline code is available with the <code>&lt;code&gt;</code> element. Snippets of multiple lines of code are supported through Pygments. Longer lines will automatically scroll horizontally when needed.</p>
+<h2 id="this-is-an-example-of-some-math">This is an example of some math</h2>
 
-<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="lineno"> 1</span> <span class="c1">// Create a function that takes two arguments and returns the sum of those arguments</span>
-<span class="lineno"> 2</span> <span class="k">var</span> <span class="n">adder</span> <span class="o">=</span> <span class="kt">new</span> <span class="n">Function</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;return a + b&quot;</span><span class="p">);</span>
-<span class="lineno"> 3</span> 
-<span class="lineno"> 4</span> <span class="n">public</span> <span class="k">protocol</span> <span class="n">Animal</span> <span class="p">{</span>
-<span class="lineno"> 5</span>     <span class="k">func</span> <span class="n">speak</span><span class="p">()</span>
-<span class="lineno"> 6</span> <span class="p">}</span>
-<span class="lineno"> 7</span> 
-<span class="lineno"> 8</span> <span class="k">extension</span> <span class="n">Animal</span> <span class="p">{</span>
-<span class="lineno"> 9</span>     <span class="n">public</span> <span class="k">func</span> <span class="n">speak</span><span class="p">()</span> <span class="p">{</span>
-<span class="lineno">10</span>         <span class="n">print</span><span class="p">(</span><span class="s">&quot;rawr?&quot;</span><span class="p">)</span>
-<span class="lineno">11</span>     <span class="p">}</span>
-<span class="lineno">12</span> <span class="p">}</span>
-<span class="lineno">13</span> 
-<span class="lineno">14</span> <span class="n">lazy</span> <span class="k">var</span> <span class="nl">someClosure</span><span class="p">:</span> <span class="n">Void</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="o">=</span> <span class="p">{</span>
-<span class="lineno">15</span>     <span class="p">[</span><span class="kr">unowned</span> <span class="nb">self</span><span class="p">,</span> <span class="k">weak</span> <span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="n">delegate</span><span class="o">!</span><span class="p">]</span> <span class="k">in</span>
-<span class="lineno">16</span>     <span class="c1">// closure body goes here</span>
-<span class="lineno">17</span> <span class="p">}</span></code></pre></div>
-
-<p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-
-<h3 id="gists-via-github-pages">Gists via GitHub Pages</h3>
-
-<p>Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui.</p>
-
-<noscript><pre>400: Invalid request
-</pre></noscript>
-<script src="https://gist.github.com/13f94b734a4ddb132735.js?file=gist.md"> </script>
-
-<p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper.</p>
-
-<h3 id="lists">Lists</h3>
-
-<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
-<ul>
-  <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-  <li>Donec id elit non mi porta gravida at eget metus.</li>
-  <li>Nulla vitae elit libero, a pharetra augue.</li>
-</ul>
-
-<p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-
-<ol>
-  <li>Vestibulum id ligula porta felis euismod semper.</li>
-  <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-  <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-</ol>
-
-<p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-
-<dl>
-  <dt>HyperText Markup Language (HTML)</dt>
-  <dd>The language used to describe and define the content of a Web page</dd>
-
-  <dt>Cascading Style Sheets (CSS)</dt>
-  <dd>Used to describe the appearance of Web content</dd>
-
-  <dt>JavaScript (JS)</dt>
-  <dd>The programming language used to build advanced Web sites and applications</dd>
-</dl>
-
-<p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-
-<h3 id="images">Images</h3>
-
-<p>Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.</p>
-
-<p><img src="http://placehold.it/800x400" alt="placeholder" title="Large example image" />
-<img src="http://placehold.it/400x200" alt="placeholder" title="Medium example image" />
-<img src="http://placehold.it/200x200" alt="placeholder" title="Small example image" /></p>
-
-<h3 id="tables">Tables</h3>
-
-<p>Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td>Totals</td>
-      <td>21</td>
-      <td>23</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Charlie</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-
-<hr />
-
+<script type="math/tex; mode=display">% <![CDATA[
+f(n) =
+\begin{cases}
+n/2,  & \text{if $n$ is even} \\
+3n+1, & \text{if $n$ is odd}
+\end{cases} %]]></script>
 
 </article>
+
+<aside class="related">
+  <h3>Related Posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <h4>
+          <a href="/2015/08/27/Test-Three/">
+            Test Three
+            <small><time datetime="2015-08-27T00:00:00-04:00">27 Aug 2015</time></small>
+          </a>
+        </h4>
+      </li>
+    
+      <li>
+        <h4>
+          <a href="/2015/08/26/Test-Two/">
+            Test Two
+            <small><time datetime="2015-08-26T00:00:00-04:00">26 Aug 2015</time></small>
+          </a>
+        </h4>
+      </li>
+    
+      <li>
+        <h4>
+          <a href="/2015/08/25/Test-One/">
+            Test One
+            <small><time datetime="2015-08-25T00:00:00-04:00">25 Aug 2015</time></small>
+          </a>
+        </h4>
+      </li>
+    
+  </ul>
+</aside>
+
 
 
 
@@ -170,8 +128,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2015-08-23T23:09:40-04:00">2015</time>. All rights reserved.
-        </small>
+        &copy; <time datetime="2015-08-27T12:09:16-04:00">2015</time> Todd Olsen. Made in NYC</small>
       </footer>
     </div>
 
