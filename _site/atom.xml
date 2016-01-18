@@ -4,13 +4,43 @@
  <title>proxpero</title>
  <link href="http://proxpero.com/atom.xml" rel="self"/>
  <link href="http://proxpero.com/"/>
- <updated>2015-08-27T16:51:34-04:00</updated>
+ <updated>2015-08-27T23:26:59-04:00</updated>
  <id>http://proxpero.com</id>
  <author>
    <name>Todd Olsen</name>
    <email>proxpero@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Visualizing Strings in the Swift Standard Library</title>
+   <link href="http://proxpero.com/2015/08/27/visualizing-strings-in-the-swift-standard-library/"/>
+   <updated>2015-08-27T00:00:00-04:00</updated>
+   <id>http://proxpero.com/2015/08/27/visualizing-strings-in-the-swift-standard-library</id>
+   <content type="html">&lt;h3 id=&quot;apple-sample-code&quot;&gt;Apple Sample Code&lt;/h3&gt;
+
+&lt;p&gt;I always get excited when Apple releases new &lt;a href=&quot;https://developer.apple.com/library/prerelease/mac/navigation/#section=Resource%20Types&amp;amp;topic=Sample%20Code&quot;&gt;sample&lt;/a&gt; &lt;a href=&quot;https://developer.apple.com/library/prerelease/ios/navigation/#section=Resource%20Types&amp;amp;topic=Sample%20Code&quot;&gt;code&lt;/a&gt;. And while I may not have the &lt;a href=&quot;https://developer.apple.com/library/prerelease/mac/samplecode/SignalProcessing/Introduction/Intro.html#//apple_ref/doc/uid/TP40016163&quot;&gt;inclination&lt;/a&gt; or the &lt;a href=&quot;https://developer.apple.com/library/prerelease/mac/samplecode/enetlognke/Introduction/Intro.html#//apple_ref/doc/uid/DTS10003579&quot;&gt;patience&lt;/a&gt; to work through every project that comes out, I have learned much and more (and haven’t yet touched the bottom), and not just the details of implementing new features. You can see the personalities of mothership engineers shining as much through their coding technique as through their comments. Of course, the products are often not more than one massive super-tricked-out control, ugly as sin. Who cares? Design may well entail a thousand &lt;em&gt;NO!&lt;/em&gt;s, but the purpose here is precisely to exhaust a feature’s capabilities. On the other hand, the code you see in there… How shall I say it? It is sometimes not beautiful. I get it. Let me not be counted among those who say that Apple engineers do not work hard. The &lt;em&gt;feature&lt;/em&gt; is the thing itself, the sample code deserves a burner further back. Yet when the code &lt;strong&gt;is&lt;/strong&gt; beautiful — as many times it is — there is an valuable lesson in that as well.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-swift-standard-library-playground&quot;&gt;The Swift Standard Library Playground&lt;/h3&gt;
+
+&lt;div class=&quot;message&quot;&gt;
+&lt;blockquote&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+And every phrase&lt;br /&gt;
+And sentence that is right (where every word is at home,&lt;br /&gt;
+Taking its place to support the others,&lt;br /&gt;
+The word neither diffident nor ostentatious,&lt;br /&gt;
+An easy commerce of the old and the new,&lt;br /&gt;
+The complete consort dancing together)&lt;br /&gt;
+Every phrase and every sentence is an end an a beginning,&lt;br /&gt;
+Every poem an epitaph.&lt;br /&gt;
+&lt;/blockquote&gt;
+T. S. Eliot, &lt;i&gt;from&lt;/i&gt; &lt;strong&gt;&lt;a href=&quot;http://www.coldbacon.com/poems/fq.html&quot;&gt;The Four Quartets&lt;/a&gt;&lt;/strong&gt; 
+&lt;/div&gt;
+
+&lt;p&gt;I like Swift. I think of Swift as the proper language for a slim block of glass and space-grey aluminium. Swift is chamfered. Apple has an interest in polishing its public Swift code.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Test Three</title>
