@@ -25,7 +25,13 @@ I start with a view that contains the subviews I need to reorder. Following Coco
         
         for subview in subviews {
             
-            addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[subview]|", options: [], metrics: nil, views: ["subview": subview]))
+            addConstraints(
+            	NSLayoutConstraint.constraintsWithVisualFormat("H:|[subview]|",
+					options: [], 
+            		metrics: nil,
+            		views: ["subview": subview]
+				)
+			)
             addConstraint(
                 NSLayoutConstraint(
                     item:       subview,
@@ -39,7 +45,15 @@ I start with a view that contains the subviews I need to reorder. Following Coco
             prev = subview
         }
         
-        addConstraint(NSLayoutConstraint(item: prev!, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(
+        	item: prev!, 
+        	attribute: .Bottom, 
+        	relatedBy: .Equal, 
+        	toItem: self, 
+        	attribute: .Bottom, 
+        	multiplier: 1, 
+        	constant: 0)
+		)
         
     }
     
