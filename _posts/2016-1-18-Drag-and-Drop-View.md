@@ -79,7 +79,7 @@ Before looking at the second method the Target view is required to implement, I'
 
 {% endhighlight %}
 
-The superview, what I'm calling the Target, now knows to do several things. Here's the full method, I'll explain the steps afterward.
+The superview, what I'm calling the Target, now knows to do several things. Here's the full method, then I'll explain the steps.
 
 {% highlight swift %}
 
@@ -163,3 +163,14 @@ The superview, what I'm calling the Target, now knows to do several things. Here
 
 {% endhighlight %}
 
+1. First, the methods extracts the vertical distance from the top of the superview to the top of the dragged subview and saves it in `position` and it gets the `y` coordinate of the mouse-down location from `theEvent` and saves it in `initial`.
+
+2. Then, it gets an image of the subview being dragged and adds it to the superview. `draggingConstants` are set up so that the copy is superimposed directly over the original subview. This copy will *appear* to the user as the original subview being dragged. But in fact, that subview has its `hidden` property set to `true` during the drag operation. Hiding the subview allows it to still provide the user feedback as a placeholder of the subview's new position. 
+
+3. The method calls the window's `trackEventsMatchingMask` method, and supplies it the block of code that makes up the remainder of the method. The user either drags the mouse or releases the button.
+
+	* If the user releases the mouse, the `NSEventType.LeftMouseUp` tells the block to stop and the window stops tracking mouse events for the method. The copy of the subview is removed and the subview becomes unhidden.
+
+	* Otherwise, as the user continues to drag the mouse, the vertical distance between the current mouse position and the previous one is subtracted from the dragging view's layout constraint constant anchoring it to the top of the superview. So the dragging view moves up and down as the mouse goes up and down.
+	
+4. If the mouse drags far enough that it needs to switch position with another view, the nested function `moveSubview(direction: DragDirection)` is called and the subviews are first reordered and then `layoutSubviews` is called, updating the UI to match the new order.
