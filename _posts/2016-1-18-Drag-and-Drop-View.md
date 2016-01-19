@@ -174,3 +174,5 @@ The superview, what I'm calling the Target, now knows to do several things. Here
 	* Otherwise, as the user continues to drag the mouse, the vertical distance between the current mouse position and the previous one is subtracted from the dragging view's layout constraint constant anchoring it to the top of the superview. So the dragging view moves up and down as the mouse goes up and down.
 	
 4. If the mouse drags far enough that it needs to switch position with another view, the nested function `moveSubview(direction: DragDirection)` is called and the subviews are first reordered and then `layoutSubviews` is called, updating the UI to match the new order.
+
+Finally, let me say that much of this technique was inspired by [this project](https://github.com/monyschuk/LITabControl) (Objc) by Mark Onyschuk, in which he builds a tab view control much like the one seen in Numbers.app. Thanks Mark!
