@@ -1,30 +1,9 @@
 ---
 layout: default
 ---
+<h1>{{ page.title }}</h1>
+<p class="meta">{{ page.date | date_to_string }}</p>
 
-<article class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
-  <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
+<div class="post">
   {{ content }}
-</article>
-{% if site.related_posts != empty %}
-<aside class="related">
-  <h3>Related Posts</h3>
-  <ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
-      <li>
-        <h4>
-          <a href="{{ site.baseurl }}{{ post.url }}">
-            {{ post.title }}
-            <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
-          </a>
-        </h4>
-      </li>
-    {% endfor %}
-  </ul>
-</aside>
-{% endif %}
-{% if page.comments %}
-	{% include comments.html %}
-{% endif %}
-
+</div>
