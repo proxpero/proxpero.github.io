@@ -27,3 +27,5 @@ version:             0.1.0
 # This is the list of pages to incldue in the header of the website.
 # pages_list:       {'Archive':'/archive','Feed':'/atom.xml'}
 # has_math: 1
+
+theme: jekyll-theme-dinky
