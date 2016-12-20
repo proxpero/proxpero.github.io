@@ -1,36 +1,31 @@
-# Dependencies
-markdown: kramdown
-highlighter: pygments
-
-highlighter: true
-
 # Permalinks
-permalink: /blog/:year/:month/:day/:title
+permalink:           pretty
 
 # Setup
-title:               proxpero
-tagline:             such as it is
+title:               Proxpero
+tagline:             Such as it is.
 url:                 http://proxpero.com
-# paginate:            3
+paginate:            1
 baseurl:             ""
 
 # Assets
 #
 # We specify the directory for Jekyll so we can use @imports.
 sass:
-sass_dir:          _sass
-style:            :compressed
+  sass_dir:          _sass
+  style:            :compressed
 
 # About/contact
 author:
-    name:              Todd Olsen
-    url:               https://twitter.com/proxpero
-    email:             proxpero@gmail.com
+  name:              Todd Olsen
+  url:               https://twitter.com/proxpero
+  email:             proxpero@gmail.com
 
 # Custom vars
-version:             0.1.0
+version:             2.0.0
 github:
   repo:              https://github.com/proxpero
+
 
 # This is the list of pages to include in the header of the website.
 pages_list:

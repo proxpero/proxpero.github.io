@@ -81,7 +81,7 @@ Before looking at the second method the Target view is required to implement, I'
 
 The superview, what I'm calling the Target, now knows to do several things. Here's the full method, then I'll explain the steps.
 
-{% highlight ruby %}
+{% highlight swift %}
 
 	// In the superview, an NSView subclass
 

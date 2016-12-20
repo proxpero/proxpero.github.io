@@ -11,11 +11,9 @@
     
   </title>
 
-
   <!-- CSS -->
   <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/public/css/poole.css">
-  <link rel="stylesheet" href="/public/css/syntax.css">
+  
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
   <link rel="shortcut icon" href="/public/favicon.ico">
   <link rel="alternate" type="application/atom+xml" title="proxpero" href="/atom.xml">
@@ -54,7 +52,7 @@
 
 <p>I start with a view that contains the subviews I need to reorder. Following Cocoa’s drag-and-drop API, I call this container view the Target. There are two important methods to implement. The first is <code>layoutSubviews(subviews: [NSView])</code>.</p>
 
-<figure class="highlight"><pre><code class="language-swift" data-lang="swift">func layoutSubviews(subviews: [NSView]) {
+<figure class="highlight"><pre><code class="language-js" data-lang="js">func layoutSubviews(subviews: [NSView]) {
 
         removeConstraints(constraints)
         if subviews.isEmpty { return }
@@ -113,7 +111,7 @@
 
 <p>The superview, what I’m calling the Target, now knows to do several things. Here’s the full method, then I’ll explain the steps.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">// In the superview, an NSView subclass
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift">// In the superview, an NSView subclass
 
     func reorderSubview(subview: Source, withEvent event: NSEvent) {
 
@@ -239,7 +237,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-12-19T22:31:00-05:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-12-20T00:47:04-05:00">2016</time>. All rights reserved.
         </small>
       </footer>
     </div>
