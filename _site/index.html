@@ -7,7 +7,7 @@
 
   <title>
     
-      Proxpero &middot; Such as it is.
+      proxpero &middot; 
     
   </title>
 
@@ -16,7 +16,7 @@
   
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
   <link rel="shortcut icon" href="/public/favicon.ico">
-  <link rel="alternate" type="application/atom+xml" title="Proxpero" href="/atom.xml">
+  <link rel="alternate" type="application/atom+xml" title="proxpero" href="/atom.xml">
 </head>
 
 
@@ -25,8 +25,8 @@
     <div class="container content">
       <header class="masthead">
         <h3 class="masthead-title">
-          <a href="/" title="Home">Proxpero</a>
-          <small>Such as it is.</small>
+          <a href="/" title="Home">proxpero</a>
+          <small></small>
           
           &nbsp;&nbsp;&nbsp;
             <small><a href="/about/">About</a></small>
@@ -43,22 +43,204 @@
       <main>
         <div class="posts">
   
+  <article class="post">
+    <h1 class="post-title">
+      <a href="/2016/12/19/Advent-of-Code-2016/">
+        AoC 2016 Day 13
+      </a>
+    </h1>
+
+    <time datetime="2016-12-19T00:00:00-05:00" class="post-date">19 Dec 2016</time>
+
+    <h2 id="the-problem">The Problem</h2>
+
+<p>I had a view with a simple vertical stack of subviews and I wanted to give the user the ability to reorder the subviews using drag-and-drop. Instead of implementing AppKit’s drag-and-drop API, I wrote my own mechanism by hooking into <code class="highlighter-rouge">NSResponder</code>’s <code class="highlighter-rouge">mouseDragged(...)</code> method and <code class="highlighter-rouge">NSWindow</code>’s <code class="highlighter-rouge">trackEventsMatchingMask(...) -&gt; Void</code>. That way I could control the logic at the relevant steps during the user’s action, without relying on AppKit’s unseen magic. Finally, I refactored the logic into protocol extensions.</p>
+
+<h2 id="the-setup">The Setup</h2>
+
+<p>I start with a view that contains the subviews I need to reorder. Following Cocoa’s drag-and-drop API, I call this container view the Target. There are two important methods to implement. The first is <code class="highlighter-rouge">layoutSubviews(subviews: [NSView])</code>.</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift">    <span class="kd">func</span> <span class="nf">layoutSubviews</span><span class="p">(</span><span class="nv">subviews</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSView</span><span class="p">])</span> <span class="p">{</span>
+
+        <span class="nf">removeConstraints</span><span class="p">(</span><span class="n">constraints</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">subviews</span><span class="o">.</span><span class="n">isEmpty</span> <span class="p">{</span> <span class="k">return</span> <span class="p">}</span>
+
+        <span class="k">var</span> <span class="nv">prev</span><span class="p">:</span> <span class="kt">NSView</span><span class="p">?</span>
+
+        <span class="k">for</span> <span class="n">subview</span> <span class="k">in</span> <span class="n">subviews</span> <span class="p">{</span>
+
+            <span class="nf">addConstraints</span><span class="p">(</span>
+            	<span class="kt">NSLayoutConstraint</span><span class="o">.</span><span class="nf">constraintsWithVisualFormat</span><span class="p">(</span><span class="s">"H:|[subview]|"</span><span class="p">,</span>
+					<span class="nv">options</span><span class="p">:</span> <span class="p">[],</span>
+            		<span class="nv">metrics</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span>
+            		<span class="nv">views</span><span class="p">:</span> <span class="p">[</span><span class="s">"subview"</span><span class="p">:</span> <span class="n">subview</span><span class="p">]</span>
+				<span class="p">)</span>
+			<span class="p">)</span>
+            <span class="nf">addConstraint</span><span class="p">(</span>
+                <span class="kt">NSLayoutConstraint</span><span class="p">(</span>
+                    <span class="nv">item</span><span class="p">:</span>       <span class="n">subview</span><span class="p">,</span>
+                    <span class="nv">attribute</span><span class="p">:</span>  <span class="o">.</span><span class="kt">Top</span><span class="p">,</span>
+                    <span class="nv">relatedBy</span><span class="p">:</span>  <span class="o">.</span><span class="kt">Equal</span><span class="p">,</span>
+                    <span class="nv">toItem</span><span class="p">:</span>     <span class="n">prev</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">?</span> <span class="n">prev</span><span class="o">!</span>     <span class="p">:</span> <span class="k">self</span><span class="p">,</span>
+                    <span class="nv">attribute</span><span class="p">:</span>  <span class="n">prev</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">?</span> <span class="o">.</span><span class="kt">Bottom</span>   <span class="p">:</span> <span class="o">.</span><span class="kt">Top</span><span class="p">,</span>
+                    <span class="nv">multiplier</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nv">constant</span><span class="p">:</span>   <span class="n">prev</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">?</span> <span class="mi">1</span>         <span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">subview</span>
+        <span class="p">}</span>
+
+        <span class="nf">addConstraint</span><span class="p">(</span><span class="kt">NSLayoutConstraint</span><span class="p">(</span>
+        	<span class="nv">item</span><span class="p">:</span> <span class="n">prev</span><span class="o">!</span><span class="p">,</span>
+        	<span class="nv">attribute</span><span class="p">:</span> <span class="o">.</span><span class="kt">Bottom</span><span class="p">,</span>
+        	<span class="nv">relatedBy</span><span class="p">:</span> <span class="o">.</span><span class="kt">Equal</span><span class="p">,</span>
+        	<span class="nv">toItem</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span>
+        	<span class="nv">attribute</span><span class="p">:</span> <span class="o">.</span><span class="kt">Bottom</span><span class="p">,</span>
+        	<span class="nv">multiplier</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        	<span class="nv">constant</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="p">)</span>
+
+    <span class="p">}</span></code></pre></figure>
+
+<p>You pass into this method an array of subviews and it will use autolayout to arrange the subviews from top to botton to match the order of the array. It assumes these subviews have already been added to the view: the superview never adds or removes any of these subviews during the drag operation.</p>
+
+<h2 id="the-method">The Method</h2>
+
+<p>Before looking at the second method the Target view is required to implement, I’ll explain the basic theory behind the solution. When the user tries to drag a view (I call it the “Source View”, following Cocoa’s drag and drop documentation), the <code class="highlighter-rouge">mouseDragged(theEvent: NSEvent)</code> method is called on the view (because it inherits from <code class="highlighter-rouge">NSResponder</code>). My Source view subclass overrides this method in order to tell its superview that a drag is beginning. It does this by calling that second method on the superview I referred to earlier.</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift">	<span class="c1">// In the subview, an NSView subclass</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">mouseDragged</span><span class="p">(</span><span class="nv">theEvent</span><span class="p">:</span> <span class="kt">NSEvent</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">target</span> <span class="o">=</span> <span class="n">superview</span> <span class="k">as?</span> <span class="kt">MyTargetView</span> <span class="p">{</span>
+            <span class="n">target</span><span class="o">.</span><span class="nf">reorderSubview</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">withEvent</span><span class="p">:</span> <span class="n">theEvent</span><span class="p">)</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span></code></pre></figure>
+
+<p>The superview, what I’m calling the Target, now knows to do several things. Here’s the full method, then I’ll explain the steps.</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift">	<span class="c1">// In the superview, an NSView subclass</span>
+
+    <span class="kd">func</span> <span class="nf">reorderSubview</span><span class="p">(</span><span class="nv">subview</span><span class="p">:</span> <span class="kt">Source</span><span class="p">,</span> <span class="n">withEvent</span> <span class="nv">event</span><span class="p">:</span> <span class="kt">NSEvent</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">let</span> <span class="nv">position</span>        <span class="o">=</span> <span class="kt">NSMaxY</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span> <span class="o">-</span> <span class="kt">NSMaxY</span><span class="p">(</span><span class="n">subview</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="k">let</span> <span class="nv">initial</span>         <span class="o">=</span> <span class="nf">convertPoint</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">locationInWindow</span><span class="p">,</span> <span class="nv">fromView</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span><span class="o">.</span><span class="n">y</span>
+
+        <span class="k">let</span> <span class="nv">draggingView</span>    <span class="o">=</span> <span class="n">subview</span><span class="o">.</span><span class="n">draggingView</span>
+
+        <span class="k">let</span> <span class="nv">draggingConstraints</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="kt">NSLayoutConstraint</span><span class="p">(</span><span class="nv">item</span><span class="p">:</span> <span class="n">draggingView</span><span class="p">,</span> <span class="nv">attribute</span><span class="p">:</span> <span class="o">.</span><span class="kt">Top</span><span class="p">,</span>      <span class="nv">relatedBy</span><span class="p">:</span> <span class="o">.</span><span class="kt">Equal</span><span class="p">,</span> <span class="nv">toItem</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">attribute</span><span class="p">:</span> <span class="o">.</span><span class="kt">Top</span><span class="p">,</span>       <span class="nv">multiplier</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="n">position</span><span class="p">),</span>
+            <span class="kt">NSLayoutConstraint</span><span class="p">(</span><span class="nv">item</span><span class="p">:</span> <span class="n">draggingView</span><span class="p">,</span> <span class="nv">attribute</span><span class="p">:</span> <span class="o">.</span><span class="kt">Leading</span><span class="p">,</span>  <span class="nv">relatedBy</span><span class="p">:</span> <span class="o">.</span><span class="kt">Equal</span><span class="p">,</span> <span class="nv">toItem</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">attribute</span><span class="p">:</span> <span class="o">.</span><span class="kt">Leading</span><span class="p">,</span>   <span class="nv">multiplier</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="kt">NSLayoutConstraint</span><span class="p">(</span><span class="nv">item</span><span class="p">:</span> <span class="n">draggingView</span><span class="p">,</span> <span class="nv">attribute</span><span class="p">:</span> <span class="o">.</span><span class="kt">Trailing</span><span class="p">,</span> <span class="nv">relatedBy</span><span class="p">:</span> <span class="o">.</span><span class="kt">Equal</span><span class="p">,</span> <span class="nv">toItem</span><span class="p">:</span> <span class="k">self</span><span class="p">,</span> <span class="nv">attribute</span><span class="p">:</span> <span class="o">.</span><span class="kt">Trailing</span><span class="p">,</span>  <span class="nv">multiplier</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">constant</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="nf">addSubview</span><span class="p">(</span><span class="n">draggingView</span><span class="p">)</span>
+        <span class="nf">addConstraints</span><span class="p">(</span><span class="n">draggingConstraints</span><span class="p">)</span>
+        <span class="n">subview</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">true</span>
+
+        <span class="k">var</span> <span class="nv">previous</span> <span class="o">=</span> <span class="n">initial</span>
+
+        <span class="n">window</span><span class="p">?</span><span class="o">.</span><span class="nf">trackEventsMatchingMask</span><span class="p">([</span><span class="o">.</span><span class="kt">LeftMouseUpMask</span><span class="p">,</span> <span class="o">.</span><span class="kt">LeftMouseDraggedMask</span><span class="p">],</span> <span class="nv">timeout</span><span class="p">:</span> <span class="kt">NSDate</span><span class="o">.</span><span class="nf">distantFuture</span><span class="p">()</span><span class="o">.</span><span class="n">timeIntervalSinceNow</span><span class="p">,</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt">NSEventTrackingRunLoopMode</span><span class="p">)</span> <span class="p">{</span> <span class="p">[</span><span class="k">unowned</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="n">dragEvent</span><span class="p">,</span> <span class="n">stop</span><span class="p">)</span> <span class="k">in</span>
+
+            <span class="k">guard</span> <span class="n">dragEvent</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="kt">NSEventType</span><span class="o">.</span><span class="kt">LeftMouseUp</span> <span class="k">else</span> <span class="p">{</span>
+
+                <span class="n">draggingView</span><span class="o">.</span><span class="nf">removeFromSuperview</span><span class="p">()</span>
+                <span class="k">self</span><span class="o">.</span><span class="nf">removeConstraints</span><span class="p">(</span><span class="n">draggingConstraints</span><span class="p">)</span>
+                <span class="n">subview</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">false</span>
+                <span class="n">stop</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="kc">true</span>
+                <span class="k">return</span>
+
+            <span class="p">}</span>
+
+            <span class="k">let</span> <span class="nv">next</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="nf">convertPoint</span><span class="p">(</span><span class="n">dragEvent</span><span class="o">.</span><span class="n">locationInWindow</span><span class="p">,</span> <span class="nv">fromView</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span><span class="o">.</span><span class="n">y</span>
+
+            <span class="n">draggingConstraints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">constant</span> <span class="o">=</span> <span class="n">position</span> <span class="o">+</span> <span class="n">initial</span> <span class="o">-</span> <span class="n">next</span>
+
+            <span class="k">let</span> <span class="nv">middle</span>      <span class="o">=</span> <span class="kt">NSMidY</span><span class="p">(</span><span class="n">draggingView</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+            <span class="k">let</span> <span class="nv">top</span>         <span class="o">=</span> <span class="kt">NSMaxY</span><span class="p">(</span><span class="n">subview</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+            <span class="k">let</span> <span class="nv">bottom</span>      <span class="o">=</span> <span class="kt">NSMinY</span><span class="p">(</span><span class="n">subview</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+
+            <span class="k">let</span> <span class="nv">movingUp</span>    <span class="o">=</span> <span class="n">next</span> <span class="o">&gt;</span> <span class="n">previous</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">middle</span> <span class="o">&gt;</span> <span class="n">top</span><span class="p">)</span>
+            <span class="k">let</span> <span class="nv">movingDown</span>  <span class="o">=</span> <span class="n">next</span> <span class="o">&lt;</span> <span class="n">previous</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">middle</span> <span class="o">&lt;</span> <span class="n">bottom</span><span class="p">)</span>
+
+            <span class="kd">func</span> <span class="nf">moveSubview</span><span class="p">(</span><span class="nv">direction</span><span class="p">:</span> <span class="kt">DragDirection</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="k">let</span> <span class="nv">index</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">subviews</span><span class="o">.</span><span class="nf">indexOf</span><span class="p">(</span><span class="n">subview</span><span class="p">)</span><span class="o">!</span>
+                <span class="k">let</span> <span class="nv">removeIndex</span><span class="p">:</span> <span class="kt">Int</span>
+                <span class="k">let</span> <span class="nv">insertIndex</span><span class="p">:</span> <span class="kt">Int</span>
+
+                <span class="k">switch</span> <span class="n">direction</span> <span class="p">{</span>
+                    <span class="k">case</span> <span class="o">.</span><span class="kt">Up</span><span class="p">:</span>
+                        <span class="n">removeIndex</span> <span class="o">=</span> <span class="n">index</span>
+                        <span class="n">insertIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
+                    <span class="k">case</span> <span class="o">.</span><span class="kt">Down</span><span class="p">:</span>
+                        <span class="n">removeIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+                        <span class="n">insertIndex</span> <span class="o">=</span> <span class="n">index</span>
+                <span class="p">}</span>
+
+                <span class="k">let</span> <span class="nv">temp</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">subviews</span><span class="o">.</span><span class="nf">removeAtIndex</span><span class="p">(</span><span class="n">removeIndex</span><span class="p">)</span>
+                <span class="k">self</span><span class="o">.</span><span class="n">subviews</span><span class="o">.</span><span class="nf">insert</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="nv">atIndex</span><span class="p">:</span> <span class="n">insertIndex</span><span class="p">)</span>
+                <span class="k">self</span><span class="o">.</span><span class="nf">layoutSubviews</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">subviews</span><span class="o">.</span><span class="n">filter</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">!=</span> <span class="n">draggingView</span> <span class="p">})</span>
+                <span class="k">self</span><span class="o">.</span><span class="nf">addConstraints</span><span class="p">(</span><span class="n">draggingConstraints</span><span class="p">)</span>
+
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="n">movingUp</span> <span class="o">&amp;&amp;</span> <span class="n">subview</span> <span class="o">!=</span> <span class="k">self</span><span class="o">.</span><span class="n">subviews</span><span class="o">.</span><span class="n">first</span><span class="o">!</span> <span class="p">{</span>
+                <span class="nf">moveSubview</span><span class="p">(</span><span class="o">.</span><span class="kt">Up</span><span class="p">)</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="n">movingDown</span> <span class="o">&amp;&amp;</span> <span class="n">subview</span> <span class="o">!=</span> <span class="k">self</span><span class="o">.</span><span class="n">subviews</span><span class="o">.</span><span class="n">last</span><span class="o">!</span> <span class="p">{</span>
+                <span class="nf">moveSubview</span><span class="p">(</span><span class="o">.</span><span class="kt">Down</span><span class="p">)</span>
+            <span class="p">}</span>
+
+            <span class="n">previous</span> <span class="o">=</span> <span class="n">next</span>
+
+        <span class="p">}</span></code></pre></figure>
+
+<ol>
+  <li>
+    <p>First, the methods extracts the vertical distance from the top of the superview to the top of the dragged subview and saves it in <code class="highlighter-rouge">position</code> and it gets the <code class="highlighter-rouge">y</code> coordinate of the mouse-down location from <code class="highlighter-rouge">theEvent</code> and saves it in <code class="highlighter-rouge">initial</code>.</p>
+  </li>
+  <li>
+    <p>Then, it gets an image of the subview being dragged and adds it to the superview. <code class="highlighter-rouge">draggingConstants</code> are set up so that the copy is superimposed directly over the original subview. This copy will <em>appear</em> to the user as the original subview being dragged. But in fact, that subview has its <code class="highlighter-rouge">hidden</code> property set to <code class="highlighter-rouge">true</code> during the drag operation. Hiding the subview allows it to still provide the user feedback as a placeholder of the subview’s new position.</p>
+  </li>
+  <li>
+    <p>The method calls the window’s <code class="highlighter-rouge">trackEventsMatchingMask</code> method, and supplies it the block of code that makes up the remainder of the method. The user either drags the mouse or releases the button.</p>
+
+    <ul>
+      <li>
+        <p>If the user releases the mouse, the <code class="highlighter-rouge">NSEventType.LeftMouseUp</code> tells the block to stop and the window stops tracking mouse events for the method. The copy of the subview is removed and the subview becomes unhidden.</p>
+      </li>
+      <li>
+        <p>Otherwise, as the user continues to drag the mouse, the vertical distance between the current mouse position and the previous one is subtracted from the dragging view’s layout constraint constant anchoring it to the top of the superview. So the dragging view moves up and down as the mouse goes up and down.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>If the mouse drags far enough that it needs to switch position with another view, the nested function <code class="highlighter-rouge">moveSubview(direction: DragDirection)</code> is called and the subviews are first reordered and then <code class="highlighter-rouge">layoutSubviews</code> is called, updating the UI to match the new order.</p>
+  </li>
+</ol>
+
+<p>Finally, let me say that much of this technique was inspired by <a href="https://github.com/monyschuk/LITabControl">this project</a> (Objc) by Mark Onyschuk, in which he builds a tab view control much like the one seen in Numbers.app. Thanks Mark!</p>
+
+  </article>
+  
 </div>
 
-<div class="pagination">
+<!-- <div class="pagination">
   
-    <span class="pagination-item older">Older</span>
+    <a class="pagination-item older" href="/page2">Older</a>
   
   
     <span class="pagination-item newer">Newer</span>
   
-</div>
+</div> -->
 
       </main>
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="2016-12-20T00:59:25-05:00">2016</time>. All rights reserved.
+          &copy; <time datetime="2016-12-20T09:14:20-05:00">2016</time>. Share and share alike.
         </small>
       </footer>
     </div>

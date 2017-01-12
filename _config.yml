@@ -2,8 +2,8 @@
 permalink:           pretty
 
 # Setup
-title:               Proxpero
-tagline:             Such as it is.
+title:               proxpero
+# tagline:             such as it is.
 url:                 http://proxpero.com
 paginate:            1
 baseurl:             ""
@@ -29,8 +29,11 @@ github:
 
 # This is the list of pages to include in the header of the website.
 pages_list:
+  Projects: '/projects/'
   About: '/about/'
   Archive: '/archive/'
   Feed: '/atom.xml'
 
-theme: jekyll-theme-dinky
+# Gems
+gems:
+  - jekyll-paginate
