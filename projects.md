@@ -8,4 +8,28 @@ title: Projects
 - Winchester ([Github](https://github.com/proxpero/Winchester)) An iMessage chess app.
 - [Tap Tac Toe](https://itunes.apple.com/us/app/tap-tac-toe/id1186370089?ls=1&mt=8) ([Github](https://github.com/proxpero/TapTacToe)) A nice (unbeatable) tic tac toe game for iOS.
 - [Pseudoku](https://github.com/proxpero/Pseudoku/tree/master/Engine) A sudoku solving engine. (App in progress)
-- [Aurelius](https://github.com/proxpero/Aurelius) An iOS and macOS text editor that can also preview both markdown and latex math.
+- [Aurelius/Telescope](https://github.com/proxpero/Aurelius) Aurelius is a Swift framework that wraps both [cmark](https://github.com/jgm/cmark), the C library for processing and rendering CommonMark, and [MathJax](https://www.mathjax.org), a JavaScript display engine for rendering latex math in browsers. Telescope is an iOS and macOS text editor that leverages Aurelius.
+- [Arbor](https://github.com/proxpero/Arbor) A simple framework and iOS app that consumes data from the [Perseus Project treebank](https://perseusdl.github.io/treebank_data/) and displays it in a UIKit view.
+
+<!-- ## Other Fun
+
+- [Advent of Code](http://adventofcode.com)
+  - [2016]()
+  - [2015]()
+- [Matasano Crypto Challenges](http://cryptopals.com)
+  - [Set 1]()
+  - [Set 2]()
+  - [Set 3]()
+  - [Set 4]()
+  - [Set 5]()
+  - [Set 6]()
+  - [Set 7]()
+  - [Set 8]()
+- [SICP](http://sarabander.github.io/sicp/html/Chapter-1.xhtml#Chapter-1)
+  - [Chapter 1]()
+  - [Chapter 2]()
+  - [Chapter 3]()
+  - [Chapter 4]()
+  - [Chapter 5]()
+- [Project Euler](https://projecteuler.net)
+  - Solutions to selected problems. -->
