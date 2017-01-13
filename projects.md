@@ -7,7 +7,7 @@ title: Projects
 - [Endgame](https://github.com/proxpero/Winchester/tree/master/Endgame) A chess framework.
 - Winchester ([Github](https://github.com/proxpero/Winchester)) An iMessage chess app.
 - [Tap Tac Toe](https://itunes.apple.com/us/app/tap-tac-toe/id1186370089?ls=1&mt=8) ([Github](https://github.com/proxpero/TapTacToe)) A nice (unbeatable) tic tac toe game for iOS.
-- [Pseudoku](https://github.com/proxpero/Pseudoku/tree/master/Engine) A sudoku solving engine. (App in progress)
+- [Pseudoku](https://github.com/proxpero/Pseudoku/tree/master/Engine) A sudoku solving engine. (The accompanying app in still in progress.)
 - [Aurelius/Telescope](https://github.com/proxpero/Aurelius) Aurelius is a Swift framework that wraps both [cmark](https://github.com/jgm/cmark), the C library for processing and rendering CommonMark, and [MathJax](https://www.mathjax.org), a JavaScript display engine for rendering latex math in browsers. Telescope is an iOS and macOS text editor that leverages Aurelius.
 - [Arbor](https://github.com/proxpero/Arbor) A simple framework and iOS app that consumes data from the [Perseus Project treebank](https://perseusdl.github.io/treebank_data/) and displays it in a UIKit view.
 
