@@ -36,7 +36,7 @@ In this series, I will go into detail about how I wrote it, partly as an explana
 
 Before I start in to the nitty-gritties, let me give a brief architectural overview. Think of this framework as having four layers:
 
-  1. A `Bitboard` wraps a `UInt64` maps each square on the chessboard to a simple bit.
+  1. A `Bitboard` wraps a `UInt64`, mapping each square on the chessboard to a simple bit.
   2. A `Board` is a collection of `Bitboard`s, where each bitboard models a particular piece: one bitboard for the white bishops, one for black pawns, etc. In this any setup of pieces can be represented.
   3. A `Position` stores a `Board` as well as turn information, castling rights, the en passant square, and other things. A `Position` can serialize itself into an [FEN]() and back.
   4. It's not totally correct to say that a `Game` is a collection of `Position`s, but it's not far off either, one position for each move in the game. A `Game` also stores player data, the date, the outcome, etc. The `Game` provides the public interface for all the logic in the framework.
