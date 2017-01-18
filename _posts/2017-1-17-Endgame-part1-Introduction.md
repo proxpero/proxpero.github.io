@@ -6,8 +6,7 @@ mathjax: false
 ganalytics: true
 ---
 
-Endgame
-=======
+### Endgame
 
 I've been working on a chess framework in Swift called [Endgame](https://github.com/proxpero/Winchester/tree/master/Endgame). Among other things, it validates moves, stores move history, encodes games into and out of [pgn](http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm). Basically all the things you would expect a chess program to do, except for AI, which I'm going to leave off to one side for now.
 
@@ -16,6 +15,8 @@ I've been working on a chess framework in Swift called [Endgame](https://github.
 I hear you say, "Who the hell needs another chess framework? There are many good ones already (e.g. [python](https://github.com/niklasf/python-chess), [javascript](https://github.com/jhlywa/chess.js)), even ones [written in Swift](https://github.com/nvzqz/Sage). There's certainly no shortage of [websites](https://en.lichess.org) or [apps](https://itunes.apple.com/us/app/chess-play-learn/id329218549?mt=8&ign-mpt=uo%3D4). Isn't it a colossal waste to devote time and energy in such a vain pursuit? I mean, you might as well go write a [Lisp interpreter]() while you're at it."
 
 Fair enough. [Ben Laurie](http://en.wikipedia.org/wiki/Ben_Laurie) once described the game sudoku as a "denial of service attack on human intellect" ([source](http://www.norvig.com/sudoku.html)). I hope this was for me more intellectually edifying than playing sudoku. And even if it hadn't been, I like to solve puzzles and making things. And that's what I like so much about programming.
+
+[python]:
 
 ### Prospectus
 
