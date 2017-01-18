@@ -41,6 +41,6 @@ Before I start in to the nitty-gritties, let me give a brief architectural overv
   3. A `Position` stores a `Board` as well as turn information, castling rights, the en passant square, and other things. A `Position` can serialize itself into an [FEN]() and back.
   4. It's not totally correct to say that a `Game` is a collection of `Position`s, but it's not far off either, one position for each move in the game. A `Game` also stores player data, the date, the outcome, etc. The `Game` provides the public interface for all the logic in the framework.
 
-There are several other objects, but these form the backbone. One of the design principles is that computations happen at the lowest level possible. For example, the `board` can say whether a king is being attacked, because it has all the necessary information, whereas a `bitboard` doesn't have enough information. But a `board` can't say whether a move is valid or not because it doesn't have turn information, so that responsibility goes to the `position`.
+There are several other objects, but these form the backbone. One of the design principles is that computations happen at the lowest level possible. For example, the `board` can know whether a king is being attacked, because it has all the necessary information, whereas a `bitboard` couldn't tell any two pieces apart. But a `board` can't say whether a move is valid or not because it doesn't have `turn` information, so that responsibility goes to the `position`. And so on.
 
 Next time, let's take a closer look at the `Bitboard` struct.

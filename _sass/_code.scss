@@ -13,9 +13,10 @@ code {
   font-size: 85%;
   color: $code-color;
   background-color: #E0E3E2;
+  border: 1px solid $code-color
   border-radius: 3px;
-  border-color: $code-color;
-  border-width: thin;
+  // border-color: $code-color;
+  // border-width: thin;
 }
 
 pre {
