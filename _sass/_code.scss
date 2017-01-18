@@ -9,12 +9,14 @@ pre {
 }
 
 code {
-  padding: .25em .5em;
+  letter-spacing: -0.2em;
+  // padding: .25em .5em;
   font-size: 85%;
   color: $code-color;
   background-color: #EDF0EF;
   border: 1px solid $code-color;
   border-radius: 3px;
+
   // border-color: $code-color;
   // border-width: thin;
 }
