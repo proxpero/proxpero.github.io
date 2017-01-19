@@ -3,7 +3,6 @@ permalink:           pretty
 
 # Setup
 title:               proxpero
-# tagline:             such as it is.
 url:                 http://proxpero.com
 paginate:            10
 baseurl:             ""
@@ -17,15 +16,10 @@ sass:
 
 # About/contact
 author:
-  name:              Todd Olsen
-  url:               https://twitter.com/proxpero
-  email:             proxpero@gmail.com
-
-# Custom vars
-version:             2.0.0
-github:
-  repo:              https://github.com/proxpero
-
+  name: Todd Olsen
+  twitter: https://twitter.com/proxpero
+  github: https://github.com/proxpero
+  email: proxpero@gmail.com
 
 # This is the list of pages to include in the header of the website.
 pages_list:
