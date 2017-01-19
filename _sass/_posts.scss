@@ -3,9 +3,27 @@
 // Each post is wrapped in `.post` and is used on default and post layouts. Each
 // page is wrapped in `.page` and is only used on the page layout.
 
+.post-list {
+  margin-top: 15px;
+  margin-left: 0;
+  list-style: none; }
+
+.post-list > li > h2 {
+  padding-top: calc(30px / 2);
+  margin-bottom: 0;
+  margin-top: 0; }
+
+.post-list > li {
+  margin-bottom: 15px; }
+
+article.post header {
+  border-bottom: 5px solid $body-color;
+  margin-bottom: 1.5rem;
+}
+
 .page,
 .post {
-  margin-bottom: 4em;
+  margin-bottom: 1.5em;
 
   li + li {
     margin-top: .25rem;
@@ -16,6 +34,7 @@
 .page-title,
 .post-title,
 .post-title a {
+  // font-size: 110%;
   color: #303030;
 }
 .page-title,
@@ -24,11 +43,22 @@
 }
 
 // Meta data line below post title
-.post-date {
-  display: block;
-  margin-top: -.5rem;
-  margin-bottom: 1rem;
+
+.post-meta {
   color: #9a9a9a;
+  display: block;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  font-size: 90%
+}
+
+.post-author {
+  // color: #9a9a9a;
+}
+
+.post-date {
+  // display: inline;
+  // color: #9a9a9a;
 }
 
 

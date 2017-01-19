@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Beginning of the End
+title: The Beginning of the Endgame
 comments: false
 mathjax: false
 ganalytics: true
@@ -43,4 +43,6 @@ Before I start in to the nitty-gritties, let me give a brief architectural overv
 
 There are several other objects, but these form the backbone. One of the design principles is that computations happen at the lowest level possible. For example, the `board` can know whether a king is being attacked, because it has all the necessary information, whereas a `bitboard` couldn't tell any two pieces apart. But a `board` can't say whether a move is valid or not because it doesn't have `turn` information, so that responsibility goes to the `position`. And so on.
 
-Next time, let's take a closer look at the `Bitboard` struct.
+[Next time], let's take a closer look at the `Bitboard` struct.
+
+[Next time]: http://proxpero.com/2017/01/17/Endgame-part2-Bitboard/

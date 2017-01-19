@@ -3,13 +3,41 @@
 // Styles for managing the structural hierarchy of the site.
 
 .container {
-  max-width: 38rem;
+  max-width: 39rem;
   padding-left:  1.5rem;
   padding-right: 1.5rem;
   margin-left:  auto;
   margin-right: auto;
 }
 
-footer {
-  margin-bottom: 2rem;
+.content p {
+  font-family: $root-font-family;
+  // font: 300 17px/1.7 "Georgia", serif;
+  // font-size: $root-font-size;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.site-footer {
+  background-color: $dark-background-color;
+  color: $light-text-color;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.site-footer, .site-footer p {
+  font-size: 14px;
+  font-weight: 100;
+  text-rendering: optimizeLegibility;
+}
+
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.site-footer ul > li {
+  // font-size: 16px;
+  // font-weight: 100;
+  // text-rendering: optimizeLegibility;
 }
