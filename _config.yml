@@ -5,7 +5,7 @@ permalink:           pretty
 title:               proxpero
 # tagline:             such as it is.
 url:                 http://proxpero.com
-paginate:            1
+paginate:            10
 baseurl:             ""
 
 # Assets
