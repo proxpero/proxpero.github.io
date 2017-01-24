@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +15,14 @@
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
   <link rel="shortcut icon" href="/public/favicon.ico">
   <link rel="alternate" type="application/atom+xml" title="proxpero" href="/atom.xml">
-</head>
 
+  <!-- Mathjax -->
+  
+</head>
 
   <body>
     <header class="masthead">
-      <div class="container">
+      <div class="wrapper">
         <h3 class="masthead-title">
           <a href="/" title="Home">proxpero</a>
           
@@ -37,43 +38,21 @@
         </h3>
       </div>
     </header>
-
     <main>
-      <div class="container">
+      <div class="wrapper content">
   <ul class="post-list">
     
     <li>
-      <h2><a href="/2017/01/18/Some-UIStoryboard-extensions/">Easy UI Storyboard Extensions</a></h2>
+      <h3><a href="/2017/01/18/Some-UIStoryboard-extensions/">Easy UI Storyboard Extensions</a></h3>
       <p class="post-meta"><time datetime="2017-01-18T00:00:00-05:00" class="post-date">18 Jan 2017</time></p>
-      <div class="content">I keep the default storyboard provided by Xcode when a new application project is generated.</div>
+      <div class="content">I create an extension on <code>UIStoryboard</code> to easily access Main.storyboard and instantiate custom <code>UIViewController</code> subclasses by type without littering the codebase with hardcoded strings.</div>
       <div class="read-more"><a href="/2017/01/18/Some-UIStoryboard-extensions/" rel="full-article">read more…</a></div>
     </li>
     
     <li>
-      <h2><a href="/2017/01/18/Endgame-part3-Board/">The Board</a></h2>
-      <p class="post-meta"><time datetime="2017-01-18T00:00:00-05:00" class="post-date">18 Jan 2017</time></p>
-      <div class="content"></div>
-      <div class="read-more"><a href="/2017/01/18/Endgame-part3-Board/" rel="full-article">read more…</a></div>
-    </li>
-    
-    <li>
-      <h2><a href="/2017/01/17/Endgame-part2-Bitboard/">The Beginning of the Endgame</a></h2>
-      <p class="post-meta"><time datetime="2017-01-17T00:00:00-05:00" class="post-date">17 Jan 2017</time></p>
-      <div class="content"></div>
-      <div class="read-more"><a href="/2017/01/17/Endgame-part2-Bitboard/" rel="full-article">read more…</a></div>
-    </li>
-    
-    <li>
-      <h2><a href="/2017/01/17/Endgame-part1-Introduction/">The Beginning of the Endgame</a></h2>
-      <p class="post-meta"><time datetime="2017-01-17T00:00:00-05:00" class="post-date">17 Jan 2017</time></p>
-      <div class="content"></div>
-      <div class="read-more"><a href="/2017/01/17/Endgame-part1-Introduction/" rel="full-article">read more…</a></div>
-    </li>
-    
-    <li>
-      <h2><a href="/2016/01/18/Drag-and-Drop-View/">A Simple Drag-and-Drop View in Swift</a></h2>
+      <h3><a href="/2016/01/18/Drag-and-Drop-View/">A Simple Drag-and-Drop View in Swift</a></h3>
       <p class="post-meta"><time datetime="2016-01-18T00:00:00-05:00" class="post-date">18 Jan 2016</time></p>
-      <div class="content"></div>
+      <div class="content">A discussion on how to implement drag-and-drop functionality on an `NSView` without having to hook into AppKit's drag-and-drop API.</div>
       <div class="read-more"><a href="/2016/01/18/Drag-and-Drop-View/" rel="full-article">read more…</a></div>
     </li>
     
@@ -90,16 +69,25 @@
 </div>
 
     </main>
-
     <footer class="site-footer">
-      <div class="container">
+      <div class="wrapper">
         <ul class="footer-list">
           <li>Subscribe: <a href="/atom.xml">Atom</a></li>
           <li>Twitter: <a href="https://twitter.com/proxpero">@proxpero</a></li>
           <li>Github: <a href="https://github.com/proxpero">proxpero</a></li>
         </ul>
-        <ul>&copy; <time datetime="2017-01-19T01:42:41-05:00">2017</time> by Todd Olsen. Some rights reserved.</p>
+        <ul>&copy; <time datetime="2017-01-24T12:34:34-05:00">2017</time> by Todd Olsen. Some rights reserved.</p>
       </div>
     </footer>
+    
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+       ga('create', 'UA-66868018-1', 'auto');
+       ga('send', 'pageview');
+     </script>
+    
   </body>
 </html>

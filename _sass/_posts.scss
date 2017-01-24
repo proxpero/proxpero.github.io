@@ -17,7 +17,7 @@
   margin-bottom: 15px; }
 
 article.post header {
-  border-bottom: 5px solid $body-color;
+  // border-bottom: 5px solid $body-color;
   margin-bottom: 1.5rem;
 }
 
@@ -49,6 +49,7 @@ article.post header {
   display: block;
   margin-top: 0rem;
   margin-bottom: 1rem;
+  font-family: $root-sanserif;
   font-size: 90%
 }
 
@@ -60,6 +61,55 @@ article.post header {
   // display: inline;
   // color: #9a9a9a;
 }
+
+/**
+ * Page index
+ */
+.pagination {
+  margin: 30px 0;
+  display: table;
+  width: 100%;
+  font: 500 15px/1.7 "Avenir", "Avenir Next", sans-serif; }
+
+.paginator-prev, .paginator-next, .paginator-curr, .paginator-index {
+  display: table-cell;
+  width: 4%;
+  text-align: center; }
+
+.paginator-prev, .paginator-next {
+  width: 15%; }
+
+.paginator-curr {
+  border: 1px solid #c8c8c8;
+  border-radius: 16px;
+  background-color: #eef; }
+
+.paginator-prev {
+  text-align: right;
+  padding-right: 8px; }
+
+.paginator-next {
+  text-align: left;
+  padding-left: 8px; }
+
+.page-prev {
+  float: left;
+  width: 50%; }
+  @media screen and (max-width: 570px) {
+    .page-prev {
+      float: none;
+      width: 100%; } }
+
+.page-next {
+  float: right;
+  width: 50%;
+  text-align: right; }
+  @media screen and (max-width: 570px) {
+    .page-next {
+      float: none;
+      width: 100%;
+      text-align: left;
+      margin-top: 15px; } }
 
 
 // Related posts

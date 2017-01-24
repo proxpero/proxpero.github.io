@@ -1,0 +1,35 @@
+- name: Winchester
+  blog-post:
+  app-store: proxpero.com
+  github: https://github.com/proxpero/Winchester
+  summary: An iMessage chess app.
+
+- name: Endgame
+  blog-post:
+  app-store:
+  github: https://github.com/proxpero/Winchester/tree/master/Endgame
+  summary: A chess framework
+
+- name: Tap Tac Toe
+  blog-post:
+  app-store:
+  github: https://github.com/proxpero/TapTacToe
+  summary:
+
+- name: Pseudoku
+  blog-post:
+  app-store:
+  github: https://github.com/proxpero/Pseudoku/tree/master/Engine
+  summary: A sudoku solver.
+
+- name: Aurelius/Telescope
+  blog-post:
+  app-store:
+  github: https://github.com/proxpero/Aurelius
+  summary: A cross-platform CommonMark+MathJax editor
+
+- name: Arbor
+  blog-post:
+  app-store:
+  github: https://github.com/proxpero/Arbor
+  summary:

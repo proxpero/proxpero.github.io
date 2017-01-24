@@ -3,11 +3,11 @@ layout: default
 title: Home
 ---
 
-<div class="container">
+<div class="wrapper content">
   <ul class="post-list">
     {% for post in paginator.posts %}
     <li>
-      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+      <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
       <p class="post-meta"><time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time></p>
       <div class="content">{{ post.summary }}</div>
       <div class="read-more"><a href="{{ site.baseurl }}{{ post.url }}" rel="full-article">read more…</a></div>

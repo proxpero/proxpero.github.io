@@ -27,6 +27,8 @@ pages_list:
   Archive: '/archive/'
   About: '/about/'
 
+analytics_id: UA-66868018-1
+
 # Gems
 gems:
   - jekyll-paginate

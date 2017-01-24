@@ -30,13 +30,11 @@ h4, h5, h6 {
 }
 
 p {
-  font: 300 17px/1.7 "Georgia", serif;
+  // font: 300 17px/1.7 "Georgia", serif;
   // font-size: $root-font-size;
   margin-top: 0;
   margin-bottom: 1rem;
 }
-
-
 
 strong {
   color: #303030;
@@ -44,6 +42,8 @@ strong {
 
 ul, ol, dl {
   margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 1rem;
 }
 

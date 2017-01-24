@@ -1,10 +1,8 @@
 ---
 layout: post
 title: Easy UI Storyboard Extensions
-summary: I keep the default storyboard provided by Xcode when a new application project is generated.
-comments: false
+summary: I create an extension on <code>UIStoryboard</code> to easily access Main.storyboard and instantiate custom <code>UIViewController</code> subclasses by type without littering the codebase with hardcoded strings.
 mathjax: false
-ganalytics: true
 ---
 
 I keep the default storyboard provided by Xcode when a new application project is generated. I can access it by name.
