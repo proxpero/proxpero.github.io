@@ -3,18 +3,11 @@
 // Each post is wrapped in `.post` and is used on default and post layouts. Each
 // page is wrapped in `.page` and is only used on the page layout.
 
-.post-list {
-  margin-top: 15px;
-  margin-left: 0;
-  list-style: none; }
+// Post Header
 
-.post-list > li > h2 {
-  padding-top: calc(30px / 2);
-  margin-bottom: 0;
-  margin-top: 0; }
 
-.post-list > li {
-  margin-bottom: 15px; }
+
+
 
 article.post header {
   // border-bottom: 5px solid $body-color;
@@ -30,17 +23,17 @@ article.post header {
   }
 }
 
-// Blog post or page title
-.page-title,
-.post-title,
-.post-title a {
-  // font-size: 110%;
-  color: #303030;
-}
-.page-title,
-.post-title {
-  margin-top: 0;
-}
+// // Blog post or page title
+// .page-title,
+// .post-title,
+// .post-title a {
+//   // font-size: 110%;
+//   color: #303030;
+// }
+// .page-title,
+// .post-title {
+//   margin-top: 0;
+// }
 
 // Meta data line below post title
 
@@ -65,32 +58,32 @@ article.post header {
 /**
  * Page index
  */
-.pagination {
-  margin: 30px 0;
-  display: table;
-  width: 100%;
-  font: 500 15px/1.7 "Avenir", "Avenir Next", sans-serif; }
-
-.paginator-prev, .paginator-next, .paginator-curr, .paginator-index {
-  display: table-cell;
-  width: 4%;
-  text-align: center; }
-
-.paginator-prev, .paginator-next {
-  width: 15%; }
-
-.paginator-curr {
-  border: 1px solid #c8c8c8;
-  border-radius: 16px;
-  background-color: #eef; }
-
-.paginator-prev {
-  text-align: right;
-  padding-right: 8px; }
-
-.paginator-next {
-  text-align: left;
-  padding-left: 8px; }
+// .pagination {
+//   // margin: 30px 0;
+//   display: table;
+//   width: 100%;
+//   // font: 500 15px/1.7 "Avenir", "Avenir Next", sans-serif; }
+//
+// .paginator-prev, .paginator-next, .paginator-curr, .paginator-index {
+//   display: table-cell;
+//   width: 4%;
+//   text-align: center; }
+//
+// .paginator-prev, .paginator-next {
+//   width: 15%; }
+//
+// .paginator-curr {
+//   border: 1px solid #c8c8c8;
+//   border-radius: 16px;
+//   background-color: #eef; }
+//
+// .paginator-prev {
+//   text-align: right;
+//   padding-right: 8px; }
+//
+// .paginator-next {
+//   text-align: left;
+//   padding-left: 8px; }
 
 .page-prev {
   float: left;

@@ -1,0 +1,8 @@
+{% if page.series %}
+  <p class="series">Other articles in this series:</p>
+  <ol class="series-list">
+    {% for series-item in page.series %}
+      <li><a href="{{ series-item.link }}">{{ series-item.title }}</a></li>
+    {% endfor %}
+  </ol>
+{% endif %}

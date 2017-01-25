@@ -1,0 +1,12 @@
+{% if page.updates %}
+  <p class="post-update">Updates:</p>
+  <ul class="post-update">
+  {% for update in page.updates %}
+    <li>
+      <div class="post-update">
+        <div class="post-update-time"><time datetime="{{ update.date }}" class="post-date">{{ update.date | date_to_string }}</time></div>
+        <div class="post-update-description">{{ update.summary }}</div>
+      </div>
+    </li>
+  {% endfor %}
+{% endif %}

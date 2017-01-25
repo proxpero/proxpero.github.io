@@ -19,9 +19,9 @@ $root-line-height: 1.7;
 $root-sanserif: Helvetica, sanserif;
 
 $body-color: #0f2c3f;
-// $body-color: #191928;
 $body-bg: #fefefe;
-$link-color: #2a7aae;
+$link-color: #C3741C;
+$light-highlight-color: #FFFDF1;
 
 $light-text-color: $body-bg;
 $dark-background-color: $body-color;
@@ -33,4 +33,4 @@ $large-font-size: 17px;
 
 $code-font-family: Menlo, monospace;
 $code-color: #444;
-$background-code-color: #FFFDF1;
+$background-code-color: $light-highlight-color;

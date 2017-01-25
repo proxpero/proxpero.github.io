@@ -1,12 +1,12 @@
 // Masthead
 
 .masthead {
-  padding-top:    0.5rem;
+  padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin-top: 0.2rem;
   margin-bottom: 1.5rem;
   color: #FFFDF1;
-  background-color: #0f2c3f;
+  background-color: $body-color;
   font-family: $root-sanserif;
 }
 

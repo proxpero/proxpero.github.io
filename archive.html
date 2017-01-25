@@ -3,10 +3,10 @@ layout: page
 title: Archive
 ---
 
-<ul class="archive-list">
+<ul class="post-list">
 {% for post in site.posts %}
   <li>
-    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+    <h3 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
     <p class="post-meta"><time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time></p>
     <div class="content">{{ post.summary }}</div>
     <div class="read-more"><a href="{{ site.baseurl }}{{ post.url }}" rel="full-article">read more…</a></div>

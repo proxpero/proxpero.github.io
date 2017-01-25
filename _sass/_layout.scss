@@ -10,18 +10,76 @@
   margin-right: auto;
 }
 
+.divider {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  height: 4px;
+  background-color: $dark-background-color;
+}
+
+.content p {
+  font: 300 17px/1.7 $root-font-family;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.site-footer {
+  background-color: $dark-background-color;
+  color: $light-text-color;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-family: $root-sanserif;
+  font-size: 80%;
+  font-weight: 100;
+  text-rendering: optimizeLegibility;
+}
+
+.post-list {
+  margin-top: 15px;
+  margin-left: 0;
+  list-style: none;
+}
+
+.post-list > li > h2 {
+  padding-top: calc(30px / 2);
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.post-list > li {
+  margin-bottom: 15px;
+}
+
+.post-title a {
+  color: #4C7A99;
+}
+
 ul.history {
   margin-left: 2rem;
   list-style: disc;
 }
 
-.content p {
-  // font-family: $root-font-family;
-  font: 300 17px/1.7 "Georgia", serif;
-  // font-size: $root-font-size;
-
+ul.post-update {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
+  width: 100%;
+  display: table;
+  clear: both;
+}
+
+p.post-update {
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.post-update-time {
+  font-weight: 600;
+  width: 6rem;
+  float: left;
+}
+
+.post-update-description {
+  margin-left: 6rem;
 }
 
 .post-list ul {
@@ -30,7 +88,6 @@ ul.history {
 }
 
 .post-list h3 {
-  // font-size: 20px;
   margin-bottom: 0;
 }
 
@@ -43,17 +100,6 @@ ul.history {
 ul.project-list p.project-title {
   font-size: 20px;
   margin-bottom: 0;
-
-}
-
-ul.archive-list h3 {
-  margin-bottom: 0;
-}
-
-ul.archive-list li .post-meta {
-  font-family: $root-sanserif;
-  font-size: 16px;
-  margin: 0;
 }
 
 ul.project-list li {
@@ -67,36 +113,4 @@ ul.project-list li p.project-title {
 .project-list small {
   font-family: $root-sanserif;
   font-size: 16px;
-}
-
-.divider {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  height: 5px;
-  background-color: $dark-background-color;
-}
-
-.site-footer {
-  background-color: $dark-background-color;
-  color: $light-text-color;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.site-footer, .site-footer p {
-  font-family: $root-sanserif;
-  font-size: 14px;
-  font-weight: 100;
-  text-rendering: optimizeLegibility;
-}
-
-.site-footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-.site-footer ul > li {
-  // font-size: 16px;
-  // font-weight: 100;
-  // text-rendering: optimizeLegibility;
 }

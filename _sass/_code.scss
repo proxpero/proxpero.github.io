@@ -6,20 +6,15 @@
 code,
 pre {
   font: 300 17px/1.7 $code-font-family
-  // font-family: $code-font-family;
 }
 
 code {
-  // letter-spacing: -0.1em;
   padding: .1em .25em;
   font-size: 90%;
   color: $code-color;
   background-color: $background-code-color;
   border: 1px solid $code-color;
   border-radius: 3px;
-
-  // border-color: $code-color;
-  // border-width: thin;
 }
 
 pre {
@@ -29,7 +24,6 @@ pre {
 
 pre code {
   padding: 0;
-  // font-size: 100%;
   color: inherit;
   background-color: transparent;
 }
@@ -64,26 +58,3 @@ pre code {
             user-select: none;
   }
 }
-
-
-// Gist via GitHub Pages
-// .gist .gist-file {
-//   font-family: Menlo, Monaco, "Courier New", monospace !important;
-// }
-// .gist .markdown-body {
-//   padding: 15px;
-// }
-// .gist pre {
-//   padding: 0;
-//   background-color: transparent;
-// }
-// .gist .gist-file .gist-data {
-//   font-size: .8rem !important;
-//   line-height: 1.4;
-// }
-// .gist code {
-//   padding: 0;
-//   color: inherit;
-//   background-color: transparent;
-//   border-radius: 0;
-// }

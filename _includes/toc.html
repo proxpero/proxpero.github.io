@@ -1,0 +1,12 @@
+{% if page.toc %}
+<nav id="toc">
+  <span class="toc-heading">Contents</span>
+  <ol class="toc-list">
+  {% for item in page.toc %}
+    <li>
+      <a href="{{ site.baseurl }}{{ page.url }}{{ item.link }}">{{ item.title }}</a>
+    </li>
+  {% endfor %}
+  </ol>
+</nav>
+{% endif %}

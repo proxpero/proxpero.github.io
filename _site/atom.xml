@@ -4,7 +4,7 @@
  <title>proxpero</title>
  <link href="http://proxpero.com/atom.xml" rel="self"/>
  <link href="http://proxpero.com/"/>
- <updated>2017-01-24T13:26:36-05:00</updated>
+ <updated>2017-01-25T09:12:08-05:00</updated>
  <id>http://proxpero.com</id>
  <author>
    <name>Todd Olsen</name>
@@ -25,6 +25,23 @@
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIStoryboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
+&lt;nav id=&quot;toc&quot;&gt;
+  &lt;span class=&quot;toc-heading&quot;&gt;Contents&lt;/span&gt;
+  &lt;ol class=&quot;toc-list&quot;&gt;
+  
+    &lt;li&gt;
+      &lt;a href=&quot;/2017/01/18/Some-UIStoryboard-extensions/\#code-completion&quot;&gt;Code Completion&lt;/a&gt;
+    &lt;/li&gt;
+  
+    &lt;li&gt;
+      &lt;a href=&quot;/2017/01/18/Some-UIStoryboard-extensions/\#the-other-thing&quot;&gt;The Other Thing&lt;/a&gt;
+    &lt;/li&gt;
+  
+  &lt;/ol&gt;
+&lt;/nav&gt;
+
+&lt;h2 id=&quot;code-completion&quot;&gt;Code Completion&lt;/h2&gt;
+
 &lt;p&gt;Then I can take advantage of code completion. The “Main” storyboard is common enough that it might as well be incorporated into an extension on &lt;code class=&quot;highlighter-rouge&quot;&gt;UIStoryboard&lt;/code&gt;.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIStoryboard&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -36,6 +53,8 @@
 &lt;p&gt;It’s a rare case however that I’ll need to create the main storyboard. More often I’ll want to instantiate a view controller from a storyboard using its identifier, and force cast it to the corresponding subclass.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;vc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;storyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;instantiateViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;withIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MyViewController&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as!&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;MyViewController&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;the-other-thing&quot;&gt;The Other Thing&lt;/h2&gt;
 
 &lt;p&gt;When I follow the pattern in this example and use the name of the subclass as the identifier, I can use this extension:&lt;/p&gt;
 
