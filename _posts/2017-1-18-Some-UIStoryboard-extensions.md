@@ -2,21 +2,12 @@
 layout: post
 title: Easy UI Storyboard Extensions
 summary: I create an extension on <code>UIStoryboard</code> to easily access Main.storyboard and instantiate custom <code>UIViewController</code> subclasses by type without littering the codebase with hardcoded strings.
-
-pagination:
-  previous:
-    include: true
-    url: /2016/01/18/Drag-and-Drop-View/
-    title: A Simple Drag-and-Drop View in Swift
-  next:
-    include: false
-    url:
-    title:
-
-mathjax: false
+updates:
+- date: 2017-1-23
+  summary: I added some new stuff.
 ---
 
-If you use storyboards, chances are that sooner or later you'll to access it in code, for example to instantiate a view controller. In that case you can use the UIStoryboard initializer to create the storyboard you by providing its name.
+If you use storyboards, chances are that sooner or later you'll need to access them in code, for example to instantiate a view controller. In that case you can use the UIStoryboard initializer to create the storyboard you by providing its name.
 
 {% highlight swift %}
 let main = UIStoryboard(name: "Main", bundle: nil)

@@ -1,10 +1,7 @@
 ---
-layout: post
 title: A Simple Drag-and-Drop View in Swift
 summary: A discussion on how to implement drag-and-drop functionality on an <code>NSView</code> without having to hook into AppKit's drag-and-drop API.
-toc:
-  -
-mathjax: false
+tags: [Swift, AppKit]
 ---
 
 ## The Problem
