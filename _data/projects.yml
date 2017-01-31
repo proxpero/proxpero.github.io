@@ -1,6 +1,6 @@
 - name: Winchester
   blog-post:
-  app-store: proxpero.com
+  app-store: https://itunes.apple.com/us/app/winchester/id1183395501?ls=1&mt=8
   github: https://github.com/proxpero/Winchester
   summary: An iMessage chess app.
 
@@ -12,7 +12,7 @@
 
 - name: Tap Tac Toe
   blog-post:
-  app-store:
+  app-store: https://itunes.apple.com/us/app/tap-tac-toe/id1186370089?ls=1&mt=8
   github: https://github.com/proxpero/TapTacToe
   summary:
 

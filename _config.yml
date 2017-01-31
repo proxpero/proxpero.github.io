@@ -1,3 +1,17 @@
+# Defaults
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      mathjax: false
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
 # Permalinks
 permalink:           pretty
 
@@ -27,6 +41,7 @@ pages_list:
   Archive: '/archive/'
   About: '/about/'
 
+# Google Analytics ID
 analytics_id: UA-66868018-1
 
 # Gems

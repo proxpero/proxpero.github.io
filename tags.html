@@ -1,0 +1,27 @@
+---
+layout: default
+title: Tags
+---
+<div class="content">
+  {% capture tagString %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
+  {% assign tags = tagString | split: '|' | sort: 'downcase' %}
+    <ul>
+      {% for tag in tags %}
+      {% assign slug = tag | downcase | replace: ' ', '-' %}
+      <li class="tag">
+        <h3 id="{{ tag }}">{{ tag }}</h3>
+        <ul class="post-list">
+          {% for post in site.tags[tag] %}
+            <li>
+              <h3 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+              <p class="post-meta"><time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time></p>
+              <div class="content">{{ post.summary }}</div>
+              <div class="read-more"><a href="{{ site.baseurl }}{{ post.url }}" rel="full-article">read more…</a></div>
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="divider" />
+      </li>
+    {% endfor %}
+  </ul>
+</div>

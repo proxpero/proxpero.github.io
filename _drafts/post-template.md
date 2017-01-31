@@ -1,20 +1,16 @@
 ---
-layout: post
-title: Easy UI Storyboard Extensions
-summary: I create an extension on <code>UIStoryboard</code> to easily access Main.storyboard and instantiate custom <code>UIViewController</code> subclasses by type without littering the codebase with hardcoded strings.
-
+title:
+summary:
 updates:
-  - date: 2017-1-23
+  - date:
     summary:
 series:
-  - link: proxpero.com
-    date: 2017-1-10
-    title: Easy UIStoryboard Extensions
+  - link:
+    date:
+    title:
 toc:
-  - title: Code Completion
-    link: #code-completion
-  - title: Other Thing
-    link: #other-thing
-
-mathjax: false
+  - title:
+    link:
+  - title:
+    link:
 ---

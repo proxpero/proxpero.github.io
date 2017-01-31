@@ -4,7 +4,7 @@
  <title>proxpero</title>
  <link href="http://proxpero.com/atom.xml" rel="self"/>
  <link href="http://proxpero.com/"/>
- <updated>2017-01-25T09:18:21-05:00</updated>
+ <updated>2017-01-31T08:16:13-05:00</updated>
  <id>http://proxpero.com</id>
  <author>
    <name>Todd Olsen</name>
@@ -13,34 +13,49 @@
 
  
  <entry>
+   <title>Generating Text with Markoff Chains</title>
+   <link href="http://proxpero.com/2017/01/28/generating-text-with-markoff-chains/"/>
+   <updated>2017-01-28T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/28/generating-text-with-markoff-chains</id>
+   <content type="html">&lt;p&gt;In this post I’m going to show how you can create &lt;a href=&quot;https://en.wikipedia.org/wiki/Natural_language_generation&quot;&gt;superficially real-looking text&lt;/a&gt; using a &lt;a href=&quot;https://en.wikipedia.org/wiki/Markov_chain&quot;&gt;Markoff chain&lt;/a&gt;. The idea is that as you read through some body of text, or &lt;em&gt;corpus&lt;/em&gt;, you record a chain of words called a prefix and the word following the chain called the suffix. The length of the prefix is some arbitrary number, say two or three. If your corpus is large enough, you’ll have several one-word suffixes associated with every multiple-word suffix.&lt;/p&gt;
+
+&lt;p&gt;For example, in the course of reading the corpus, you might have come across the the following prefix two times: “he died in”. The first time it occurred, it was followed by the word “battle”, the second time by the word “vain”. The implementation must record the prefix and the two associated suffixes, perhaps in a dictionary where the key is the prefix and the value an array of suffixes.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-chain-struct&quot;&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Chain&lt;/code&gt; struct&lt;/h2&gt;
+
+&lt;p&gt;Let’s start with a struct that will model our chain.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that we need to import the &lt;code class=&quot;highlighter-rouge&quot;&gt;Foundation&lt;/code&gt; since we are using &lt;code class=&quot;highlighter-rouge&quot;&gt;CharacterSet&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is more text.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Chain&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[:]&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefixLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+
+
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Chain&lt;/code&gt; struct is initialized with some text and prefix length and builds the chain by going through the text word by word, and the result is stored in the private &lt;code class=&quot;highlighter-rouge&quot;&gt;store&lt;/code&gt; dictionary.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Easy UI Storyboard Extensions</title>
    <link href="http://proxpero.com/2017/01/18/Some-UIStoryboard-extensions/"/>
    <updated>2017-01-18T00:00:00-05:00</updated>
    <id>http://proxpero.com/2017/01/18/Some-UIStoryboard-extensions</id>
-   <content type="html">&lt;p&gt;I keep the default storyboard provided by Xcode when a new application project is generated. I can access it by name.&lt;/p&gt;
+   <content type="html">&lt;p&gt;If you use storyboards, chances are that sooner or later you’ll need to access them in code, for example to instantiate a view controller. In that case you can use the UIStoryboard initializer to create the storyboard you by providing its name.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIStoryboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Main&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;bundle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Xcode will look for a storyboard with that name in the main bundle. But its smells to hardcode strings. I’d rather use a static property.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIStoryboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;nav id=&quot;toc&quot;&gt;
-  &lt;span class=&quot;toc-heading&quot;&gt;Contents&lt;/span&gt;
-  &lt;ol class=&quot;toc-list&quot;&gt;
-  
-    &lt;li&gt;
-      &lt;a href=&quot;/2017/01/18/Some-UIStoryboard-extensions/\#code-completion&quot;&gt;Code Completion&lt;/a&gt;
-    &lt;/li&gt;
-  
-    &lt;li&gt;
-      &lt;a href=&quot;/2017/01/18/Some-UIStoryboard-extensions/\#the-other-thing&quot;&gt;The Other Thing&lt;/a&gt;
-    &lt;/li&gt;
-  
-  &lt;/ol&gt;
-&lt;/nav&gt;
-
-&lt;h2 id=&quot;code-completion&quot;&gt;Code Completion&lt;/h2&gt;
 
 &lt;p&gt;Then I can take advantage of code completion. The “Main” storyboard is common enough that it might as well be incorporated into an extension on &lt;code class=&quot;highlighter-rouge&quot;&gt;UIStoryboard&lt;/code&gt;.&lt;/p&gt;
 
@@ -53,8 +68,6 @@
 &lt;p&gt;It’s a rare case however that I’ll need to create the main storyboard. More often I’ll want to instantiate a view controller from a storyboard using its identifier, and force cast it to the corresponding subclass.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;vc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;storyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;instantiateViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;withIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MyViewController&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as!&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;MyViewController&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;the-other-thing&quot;&gt;The Other Thing&lt;/h2&gt;
 
 &lt;p&gt;When I follow the pattern in this example and use the name of the subclass as the identifier, I can use this extension:&lt;/p&gt;
 

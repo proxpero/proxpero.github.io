@@ -5,9 +5,29 @@ layout: default
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-meta">
     <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time> by <span class='post-author'>{{ site.author.name }}</span><br />
-    {% include updates.html %}
+    {% if page.tags %}
+    <div class="post-tags">
+      Tags:
+      {% for tag in page.tags %}
+        <span class="post-tag"> <a href="/tags#{{ tag }}">{{ tag }}</a>{% if forloop.rindex0 != 0 %}, {% endif %}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if page.updates %}
+    <div class="post-updates">
+      Updates:
+      <ul class="post-update">
+      {% for update in page.updates %}
+        <li>
+          <div class="post-update">
+            <div class="post-update-time"><time datetime="{{ update.date }}" class="post-date">{{ update.date | date_to_string }}</time></div>
+            <div class="post-update-description">{{ update.summary }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
-  <div class="post-tags"></div>
 </header>
 <div class="divider"></div>
 <main role="main">
@@ -17,4 +37,18 @@ layout: default
     </div>
   </article>
 </main>
-{% if page.pagination %}{% include post-pagination.html %}{% endif %}
+<div class="divider"></div>
+<div class="pagination">
+  <div class="page-previous">
+    {% if page.previous %}
+    Previous article:<br>
+    <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
+    {% endif %}
+  </div>
+  <div class="page-next">
+    {% if page.next %}
+    Next article:<br>
+    <a href="{{ page.next.url }}">{{ page.next.title }}</a>
+    {% endif %}
+  </div>
+</div>

@@ -1,21 +1,12 @@
 // Posts and pages
 //
-// Each post is wrapped in `.post` and is used on default and post layouts. Each
-// page is wrapped in `.page` and is only used on the page layout.
-
-// Post Header
-
-
-
-
 
 article.post header {
   // border-bottom: 5px solid $body-color;
   margin-bottom: 1.5rem;
 }
 
-.page,
-.post {
+.page, .post {
   margin-bottom: 1.5em;
 
   li + li {
@@ -23,67 +14,14 @@ article.post header {
   }
 }
 
-// // Blog post or page title
-// .page-title,
-// .post-title,
-// .post-title a {
-//   // font-size: 110%;
-//   color: #303030;
-// }
-// .page-title,
-// .post-title {
-//   margin-top: 0;
-// }
-
-// Meta data line below post title
-
-.post-meta {
+.post-meta, .post-tags {
   color: #9a9a9a;
   display: block;
-  margin-top: 0rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   font-family: $root-sanserif;
   font-size: 90%
 }
-
-.post-author {
-  // color: #9a9a9a;
-}
-
-.post-date {
-  // display: inline;
-  // color: #9a9a9a;
-}
-
-/**
- * Page index
- */
-// .pagination {
-//   // margin: 30px 0;
-//   display: table;
-//   width: 100%;
-//   // font: 500 15px/1.7 "Avenir", "Avenir Next", sans-serif; }
-//
-// .paginator-prev, .paginator-next, .paginator-curr, .paginator-index {
-//   display: table-cell;
-//   width: 4%;
-//   text-align: center; }
-//
-// .paginator-prev, .paginator-next {
-//   width: 15%; }
-//
-// .paginator-curr {
-//   border: 1px solid #c8c8c8;
-//   border-radius: 16px;
-//   background-color: #eef; }
-//
-// .paginator-prev {
-//   text-align: right;
-//   padding-right: 8px; }
-//
-// .paginator-next {
-//   text-align: left;
-//   padding-left: 8px; }
 
 .page-prev {
   float: left;

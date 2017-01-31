@@ -25,7 +25,6 @@ $light-highlight-color: #FFFDF1;
 
 $light-text-color: $body-bg;
 $dark-background-color: $body-color;
-
 $border-color: #e5e5e5;
 
 $large-breakpoint: 38em;
@@ -33,4 +32,5 @@ $large-font-size: 17px;
 
 $code-font-family: Menlo, monospace;
 $code-color: #444;
-$background-code-color: $light-highlight-color;
+$code-background-color: $light-highlight-color;
+$code-border-color: #646485;
