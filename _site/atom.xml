@@ -4,7 +4,7 @@
  <title>proxpero</title>
  <link href="http://proxpero.com/atom.xml" rel="self"/>
  <link href="http://proxpero.com/"/>
- <updated>2017-01-31T08:16:13-05:00</updated>
+ <updated>2017-01-31T19:34:36-05:00</updated>
  <id>http://proxpero.com</id>
  <author>
    <name>Todd Olsen</name>
@@ -13,34 +13,56 @@
 
  
  <entry>
-   <title>Generating Text with Markoff Chains</title>
-   <link href="http://proxpero.com/2017/01/28/generating-text-with-markoff-chains/"/>
-   <updated>2017-01-28T00:00:00-05:00</updated>
-   <id>http://proxpero.com/2017/01/28/generating-text-with-markoff-chains</id>
-   <content type="html">&lt;p&gt;In this post I’m going to show how you can create &lt;a href=&quot;https://en.wikipedia.org/wiki/Natural_language_generation&quot;&gt;superficially real-looking text&lt;/a&gt; using a &lt;a href=&quot;https://en.wikipedia.org/wiki/Markov_chain&quot;&gt;Markoff chain&lt;/a&gt;. The idea is that as you read through some body of text, or &lt;em&gt;corpus&lt;/em&gt;, you record a chain of words called a prefix and the word following the chain called the suffix. The length of the prefix is some arbitrary number, say two or three. If your corpus is large enough, you’ll have several one-word suffixes associated with every multiple-word suffix.&lt;/p&gt;
+   <title>The Wretched Strangers</title>
+   <link href="http://proxpero.com/2017/01/31/the-wretched-strangers/"/>
+   <updated>2017-01-31T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/31/the-wretched-strangers</id>
+   <content type="html">&lt;pre class=&quot;poetry&quot;&gt;
+Grant them removed, and grant that this your noise
+Hath chid down all the majesty of England;
+Imagine that you see the wretched strangers,
+Their babies at their backs and their poor luggage,
+Plodding to th’ ports and coasts for transportation,
+And that you sit as kings in your desires,
+Authority quite silent by your brawl,
+And you in ruff of your opinions clothed;
+What had you got? I’ll tell you. You had taught
+How insolence and strong hand should prevail,
+How order should be quelled; and by this pattern
+Not one of you should live an aged man,
+For other ruffians, as their fancies wrought,
+With self same hand, self reasons, and self right,
+Would shark on you, and men like ravenous fishes
+Would feed on one another.
 
-&lt;p&gt;For example, in the course of reading the corpus, you might have come across the the following prefix two times: “he died in”. The first time it occurred, it was followed by the word “battle”, the second time by the word “vain”. The implementation must record the prefix and the two associated suffixes, perhaps in a dictionary where the key is the prefix and the value an array of suffixes.&lt;/p&gt;
+                                      O, desperate as you are,
+Wash your foul minds with tears, and those same hands,
+That you like rebels lift against the peace,
+Lift up for peace, and your unreverent knees,
+Make them your feet to kneel to be forgiven!
 
-&lt;h2 id=&quot;the-chain-struct&quot;&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Chain&lt;/code&gt; struct&lt;/h2&gt;
-
-&lt;p&gt;Let’s start with a struct that will model our chain.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note that we need to import the &lt;code class=&quot;highlighter-rouge&quot;&gt;Foundation&lt;/code&gt; since we are using &lt;code class=&quot;highlighter-rouge&quot;&gt;CharacterSet&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This is more text.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Chain&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[:]&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefixLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-
-
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Chain&lt;/code&gt; struct is initialized with some text and prefix length and builds the chain by going through the text word by word, and the result is stored in the private &lt;code class=&quot;highlighter-rouge&quot;&gt;store&lt;/code&gt; dictionary.&lt;/p&gt;
+                                      You’ll put down strangers,
+Kill them, cut their throats, possess their houses,
+And lead the majesty of law in line,
+To slip him like a hound. Say now the king
+(As he is clement, if th’ offender mourn)
+Should so much come to short of your great trespass
+As but to banish you, whether would you go?
+What country, by the nature of your error,
+Should give you harbor? Go you to France or Flanders,
+To any German province, to Spain or Portugal,
+Nay, any where that not adheres to England,—
+Why, you must needs be strangers. Would you be pleased
+To find a nation of such barbarous temper,
+That, breaking out in hideous violence,
+Would not afford you an abode on earth,
+Whet their detested knives against your throats,
+Spurn you like dogs, and like as if that God
+Owed not nor made not you, nor that the claimants
+Were not all appropriate to your comforts,
+But chartered unto them, what would you think
+To be thus used? This is the strangers’ case;
+And this your mountanish inhumanity.&lt;/pre&gt;
 </content>
  </entry>
  

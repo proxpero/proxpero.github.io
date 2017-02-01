@@ -2,6 +2,7 @@
 title: Generating Text with Markoff Chains
 summary: I show how to produce superficially real-looking text.
 tags: [Swift, Markoff Chains, Sequence protocol]
+published: false
 ---
 In this post I'm going to show how you can create [superficially real-looking text] using a [Markoff chain]. The idea is that as you read through some body of text, or *corpus*, you record a chain of words called a prefix and the word following the chain called the suffix. The length of the prefix is some arbitrary number, say two or three. If your corpus is large enough, you'll have several one-word suffixes associated with every multiple-word suffix.
 
