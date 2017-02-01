@@ -1,9 +1,6 @@
 ---
-layout: post
 title: The Board
-comments: false
-mathjax: false
-ganalytics: true
+summary:
 ---
 
 ### Board

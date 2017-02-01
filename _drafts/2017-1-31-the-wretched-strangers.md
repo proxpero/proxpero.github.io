@@ -1,6 +1,6 @@
 ---
 title: The Wretched Strangers
-summary:
+summary: "A look at the European Wars of Religion of the 16th and 17th century, William Shakespeare, and the relevance of past to current injustices."
 published: false
 ---
 <pre class="poetry">
