@@ -78,13 +78,19 @@ article.post header {
 }
 
 #toc {
-  width: 60%;
-  padding: 1em 2em;
-  font-size: 90%;
+  max-width: 450px;
+  padding: 1em 3em;
+  font-weight: lighter;
+  font-family: $root-sanserif;
+  font-size: 80%;
   color: $code-color;
   background-color: $code-background-color;
   border: 1px solid $code-border-color;
   border-radius: 3px;
+
+  .toc-heading {
+    font-weight: normal;
+  }
 
   ol {
     list-style-type: decimal;
