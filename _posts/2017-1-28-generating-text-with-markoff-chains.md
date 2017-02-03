@@ -1,6 +1,6 @@
 ---
 title: Generating Text with Markoff Chains
-summary: "In this post, I’m going to create superficially real-looking text using a Markoff chain. Markoff chains are really interesting and can be used in many different ways. I’m going to use them to transform normal, human-written text into computer-generated text that is different from the original, but sometimes indistinguishable from text produced by humans. Often, it’s completely silly."
+summary: "In this post, I’m going to create superficially real-looking text using a Markoff chain. I'll do it in Swift, and explain in particular various ways of using <code>Sequence</code> and <code>IteratorProtocol</code> to solve the problem."
 toc:
   - title: How Does It Work
     link: /#how-does-it-work
@@ -72,9 +72,7 @@ The initializer needs to take some text and a prefix length. But it doesn't stor
 
 As this constructor builds the prefix, is also determines the suffix of that prefix. Think of a second window adjacent to the prefix window, sliding along with it on the right, exposing only one word.
 
-The new prefix will be built by taking the previously constructed prefix, appending the newly encountered word, and dropping the oldest word.
-
- The suffix is appended to the array of suffixes already found for that prefix, or to an empty array if it's the first one.
+The new prefix will be built by taking the previously constructed prefix, appending the newly encountered word, and dropping the oldest word. The suffix is appended to the array of suffixes already found for that prefix, or to an empty array if it's the first one.
 
 {% highlight swift %}
 public init(text: String, prefixLength: Int) {
