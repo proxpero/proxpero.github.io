@@ -4,7 +4,7 @@
  <title>proxpero</title>
  <link href="http://proxpero.com/atom.xml" rel="self"/>
  <link href="http://proxpero.com/"/>
- <updated>2017-01-31T19:35:17-05:00</updated>
+ <updated>2017-02-03T09:54:37-05:00</updated>
  <id>http://proxpero.com</id>
  <author>
    <name>Todd Olsen</name>
@@ -13,10 +13,301 @@
 
  
  <entry>
+   <title>How I Set Up My Jekyll Blog</title>
+   <link href="http://proxpero.com/2017/01/31/how-i-set-up-my-jekyll-blog/"/>
+   <updated>2017-01-31T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/31/how-i-set-up-my-jekyll-blog</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>A Simple Lisp Interpreter in Swift</title>
+   <link href="http://proxpero.com/2017/01/30/a-simple-lisp-interpreter/"/>
+   <updated>2017-01-30T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/30/a-simple-lisp-interpreter</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Generating Text with Markoff Chains</title>
+   <link href="http://proxpero.com/2017/01/28/generating-text-with-markoff-chains/"/>
+   <updated>2017-01-28T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/28/generating-text-with-markoff-chains</id>
+   <content type="html">&lt;p&gt;In this post, I’m going to create &lt;a href=&quot;https://en.wikipedia.org/wiki/Natural_language_generation&quot;&gt;superficially real-looking text&lt;/a&gt; using a &lt;a href=&quot;https://en.wikipedia.org/wiki/Markov_chain&quot;&gt;Markoff chain&lt;/a&gt;. Markoff chains are really interesting and can be used in many different ways. I’m going to use them to transform normal, human-written text into computer-generated text that is different from the original, but sometimes indistinguishable from text produced by humans. Often, it’s completely silly. Here’s what I got when I fed in a &lt;a href=&quot;https://www.nytimes.com/2017/02/02/us/politics/trump-johnson-amendment-political-activity-churches.html?ribbon-ad-idx=3&amp;amp;rref=homepage&amp;amp;module=Ribbon&amp;amp;version=origin&amp;amp;region=Header&amp;amp;action=click&amp;amp;contentCollection=Home%20Page&amp;amp;pgtype=article&quot;&gt;recent article&lt;/a&gt; from the New York Times.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;They say the law on “Pulpit Freedom Sunday,” organized by the Alliance Defending Freedom. Many participating pastors send their sermons to the power of faith. But the proceedings took a show-business turn when Mark Burnett, the Hollywood producer, stepped to the family Bible, which was slow to warm to his announcement with delight.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In a freewheeling speech at the risk of losing their tax-exempt status, Mr. Trump talked tough on immigration at the National Prayer Breakfast and veered off message, blasting the ratings of “The Apprentice.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;nav id=&quot;toc&quot;&gt;
+    &lt;span class=&quot;toc-heading&quot;&gt;Contents&lt;/span&gt;
+    &lt;ol class=&quot;toc-list&quot;&gt;
+    
+      &lt;li&gt;
+        &lt;a href=&quot;/2017/01/28/generating-text-with-markoff-chains//#how-does-it-work&quot;&gt;How Does It Work&lt;/a&gt;
+      &lt;/li&gt;
+    
+      &lt;li&gt;
+        &lt;a href=&quot;/2017/01/28/generating-text-with-markoff-chains//#initializing-the-struct&quot;&gt;Initializing the Struct&lt;/a&gt;
+      &lt;/li&gt;
+    
+      &lt;li&gt;
+        &lt;a href=&quot;/2017/01/28/generating-text-with-markoff-chains//#generating-fake-text&quot;&gt;Generating Fake Text&lt;/a&gt;
+      &lt;/li&gt;
+    
+      &lt;li&gt;
+        &lt;a href=&quot;/2017/01/28/generating-text-with-markoff-chains//#sample-results&quot;&gt;Sample Results&lt;/a&gt;
+      &lt;/li&gt;
+    
+    &lt;/ol&gt;
+  &lt;/nav&gt;
+
+&lt;h2 id=&quot;how-does-it-work&quot;&gt;How Does It Work&lt;/h2&gt;
+
+&lt;p&gt;The idea is that as you read through some body of text, or a &lt;em&gt;corpus&lt;/em&gt;, you record a chain of words called a &lt;em&gt;prefix&lt;/em&gt; and the word following the chain called the &lt;em&gt;suffix&lt;/em&gt;. The length of the prefix is some arbitrary number of words, say two or three. As you increment word-by-word through the text, you register the one word suffix with its associated multi-word prefix. Here’s an example taking the first several words of &lt;em&gt;Alice’s Adventures in Wonderland&lt;/em&gt;.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;&lt;/th&gt;&lt;th&gt;prefix (length=3)&lt;/th&gt;&lt;th&gt;suffix&lt;/th&gt;&lt;th&gt;&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;/td&gt;&lt;td&gt;Alice was beginning&lt;/td&gt;&lt;td&gt;to&lt;/td&gt;&lt;td&gt;get very tired...&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alice&lt;/td&gt;&lt;td&gt;was beginning to&lt;/td&gt;&lt;td&gt;get&lt;/td&gt;&lt;td&gt; very tired of...&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alice was&lt;/td&gt;&lt;td&gt; beginning to get&lt;/td&gt;&lt;td&gt;very&lt;/td&gt;&lt;td&gt;  tired of sitting...&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alice was beginning&lt;/td&gt;&lt;td&gt;to get very&lt;/td&gt;&lt;td&gt;tired&lt;/td&gt;&lt;td&gt;of sitting by...&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;...was beginning to&lt;/td&gt;&lt;td&gt; get very tired&lt;/td&gt;&lt;td&gt;of&lt;/td&gt;&lt;td&gt; sitting by her...&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;This could go on and on. If your corpus is large enough, you should eventually encounter a prefix that has already been registered. When that happens, you don’t make a whole new record, but rather you add the new suffix to the suffix you found for that prefix the first time around, making a list of one-word suffixes for each prefix.&lt;/p&gt;
+
+&lt;p&gt;Then you can generate text similar to your corpus by picking a random prefix and appending to it a random prefix. Then you make a new prefix from the old prefix plus the new word. As you build up more suffixes, the result begins to take on a life of its own.&lt;/p&gt;
+
+&lt;h2 id=&quot;initializing-the-struct&quot;&gt;Initializing the Struct&lt;/h2&gt;
+
+&lt;p&gt;We’ll model the Markoff chain with a struct called &lt;code class=&quot;highlighter-rouge&quot;&gt;Chain&lt;/code&gt;. It only need a single stored property, a private &lt;code class=&quot;highlighter-rouge&quot;&gt;Dictionary&lt;/code&gt;, called &lt;code class=&quot;highlighter-rouge&quot;&gt;store&lt;/code&gt;. The keys will be prefixes and the value for each key will be all suffixes associated for that prefix.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Chain&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[:]&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// TODO: a public initializer goes here.&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The initializer needs to take some text and a prefix length. But it doesn’t store the text: it builds the dictionary by scanning through the text, word by word. Think of a window sliding along a line of text. As the left most word disappears from view, a new word enters the frame on the right, and that line of visible words forms the new prefix. The number of words exposed by the window is determined by the &lt;code class=&quot;highlighter-rouge&quot;&gt;prefixLength&lt;/code&gt; parameter.&lt;/p&gt;
+
+&lt;p&gt;As this constructor builds the prefix, is also determines the suffix of that prefix. Think of a second window adjacent to the prefix window, sliding along with it on the right, exposing only one word.&lt;/p&gt;
+
+&lt;p&gt;The new prefix will be built by taking the previously constructed prefix, appending the newly encountered word, and dropping the oldest word.&lt;/p&gt;
+
+&lt;p&gt;The suffix is appended to the array of suffixes already found for that prefix, or to an empty array if it’s the first one.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefixLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[:]&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// TODO: Nest the implementation of `prefixIterator` here.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AnySequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prefixIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;suffixes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;suffixes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffixes&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;There’s our implementation. We loop through a sequence of tuples consisting of prefix/suffix pairs and steadily build up our chain with new links. But where does the sequence come from?&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AnySequence&lt;/code&gt; is &lt;a href=&quot;https://developer.apple.com/reference/swift/anysequence&quot;&gt;a type-erased sequence&lt;/a&gt;, a struct that conforms to the &lt;code class=&quot;highlighter-rouge&quot;&gt;Sequence&lt;/code&gt; protocol. One of its initializers takes a function that returns an iterator. &lt;code class=&quot;highlighter-rouge&quot;&gt;prefixIterator&lt;/code&gt; in our implementation above &lt;em&gt;is that function&lt;/em&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;See &lt;a href=&quot;https://www.uraimo.com/2015/11/12/experimenting-with-swift-2-sequencetype-generatortype/&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;http://codereview.stackexchange.com/a/136101&quot;&gt;here&lt;/a&gt;, and &lt;a href=&quot;https://www.objc.io/books/advanced-swift/&quot;&gt;here&lt;/a&gt; for more information about making custom Sequences and Iterators in Swift. See &lt;a href=&quot;http://www.russbishop.net/inception&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;https://realm.io/news/tryswift-gwendolyn-weston-type-erasure/&quot;&gt;here&lt;/a&gt;, &lt;a href=&quot;https://krakendev.io/blog/generic-protocols-and-their-shortcomings&quot;&gt;here&lt;/a&gt;, and &lt;a href=&quot;http://robnapier.net/erasure&quot;&gt;here&lt;/a&gt; for more on type erasure. These aren’t simple topics to understand, especially if you’re coming from Objective-C.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Here’s our implementation.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;prefixIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AnyIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;words&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AnyIterator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;defer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prefixLength&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefixLength&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dropFirst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;joined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;separator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dropFirst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Our function returns an &lt;code class=&quot;highlighter-rouge&quot;&gt;AnyIterator&lt;/code&gt;, a &lt;a href=&quot;https://developer.apple.com/reference/swift/anyiterator&quot;&gt;type-erased iterator&lt;/a&gt;, that is generic over a tuple of type &lt;code class=&quot;highlighter-rouge&quot;&gt;(String, String)&lt;/code&gt;, which indicates to the complier the type of the elements of our iterator. As you may have guessed, these two strings will be the prefix/suffix pairs we were using to build our chain earlier. Just as &lt;code class=&quot;highlighter-rouge&quot;&gt;AnySequence&lt;/code&gt; is a struct conforming to the &lt;code class=&quot;highlighter-rouge&quot;&gt;Sequence&lt;/code&gt; protocol, &lt;code class=&quot;highlighter-rouge&quot;&gt;AnyIterator&lt;/code&gt; is a struct that conforms to &lt;code class=&quot;highlighter-rouge&quot;&gt;IteratorProtocol&lt;/code&gt;, and its initializer also takes a function. This function basically provides the &lt;code class=&quot;highlighter-rouge&quot;&gt;IteratorProtocol&lt;/code&gt;’s one required method: &lt;code class=&quot;highlighter-rouge&quot;&gt;next() -&amp;gt; Element?&lt;/code&gt;, returning the next element in the sequence, or else &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt; if the sequence has no more elements.&lt;/p&gt;
+
+&lt;p&gt;To repeat, we return an &lt;code class=&quot;highlighter-rouge&quot;&gt;AnyIterator&lt;/code&gt;, which is initialized with a function with the signature &lt;code class=&quot;highlighter-rouge&quot;&gt;() -&amp;gt; (String, String)?&lt;/code&gt;. And this function is invoked every time the sequence needs the next element. Since the parameter of &lt;code class=&quot;highlighter-rouge&quot;&gt;AnyIterator.init&lt;/code&gt; is itself a function, I can use &lt;a href=&quot;https://www.youtube.com/watch?v=PcwrOmygzgY&quot;&gt;trailing closure syntax&lt;/a&gt; and dispense with the parentheses. Note that the mutating state variable &lt;code class=&quot;highlighter-rouge&quot;&gt;index&lt;/code&gt;, the only thing that ever changes while the sequence is looping, is declared outside the scope of the closure but is captured inside the closure, so it’s memory will be preserved across invocations and each invocation of the closure can read and mutate the changing values of &lt;code class=&quot;highlighter-rouge&quot;&gt;index&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As for the logic inside, &lt;code class=&quot;highlighter-rouge&quot;&gt;index&lt;/code&gt; keeps track of the current location in the array of words. Then, starting at that location, we take however many words we need, based on the length of the prefix. We join these words together with spaces to make a single string, that’s our prefix. The next word after that is our suffix. Return the pair as a tuple, but before closure is completely finished, it increments &lt;code class=&quot;highlighter-rouge&quot;&gt;index&lt;/code&gt; by one.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;words&lt;/code&gt; is our corpus text split on newlines and whitespaces. It would have been more space efficient to implement this function by finding the ranges of the word boundaries in the &lt;code class=&quot;highlighter-rouge&quot;&gt;text&lt;/code&gt; string itself and returning substrings, instead of creating a superfluous array. I’ll revisit this issue &lt;a href=&quot;https://github.com/apple/swift/blob/master/docs/StringManifesto.md&quot;&gt;when Strings are fixed in Swift 4&lt;/a&gt;. 😉&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Chain&lt;/code&gt; struct so far looks like this.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;c1&quot;&gt;///&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Chain&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[:]&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;///&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefixLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[:]&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;prefixIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AnyIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;words&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AnyIterator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;defer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prefixLength&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefixLength&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dropFirst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;joined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;separator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dropFirst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;nf&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AnySequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prefixIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]()&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;generating-fake-text&quot;&gt;Generating Fake Text&lt;/h2&gt;
+
+&lt;p&gt;Now that we have a &lt;code class=&quot;highlighter-rouge&quot;&gt;Chain&lt;/code&gt;, we can use to start producing our “superficially real-looking text”. Let’s start with a public method.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generateText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;maxWordCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// TODO: Turn `result` into something interesting.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;There’s not much going on with this method yet. It takes an integer which basically limits the amount of text produced. And, predictably, it has a return type &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;. I start with an empty string called &lt;code class=&quot;highlighter-rouge&quot;&gt;result&lt;/code&gt;, which will get mutated somehow during the course of the function by appending to it one word at a time until we’ve reached the limit. But, in order to know what words should be added, we need to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;store&lt;/code&gt; dictionary we created in the initializer.&lt;/p&gt;
+
+&lt;p&gt;We need to start with a random prefix. All the subsequent text will grow from this seed. And since we want our text to sound like complete sentences, let’s make sure we get a prefix that’s suitable for opening a sentence. We’ll say it’s good enough for now to choose only a prefix that begins with an uppercase letter.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;seed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hasInitialCapital&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randomKey&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I’m using some custom extensions here. The computed property &lt;code class=&quot;highlighter-rouge&quot;&gt;hasInitialCapital&lt;/code&gt; is an extension on the &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt; type that returns true if the first character of the string is is an uppercase letter. &lt;code class=&quot;highlighter-rouge&quot;&gt;randomKey&lt;/code&gt; comes from an extension on &lt;code class=&quot;highlighter-rouge&quot;&gt;Dictionary&lt;/code&gt; where a key chosen at random and returned.&lt;/p&gt;
+
+&lt;p&gt;Now that we have a starting point, we can set the sequence going. Here’s what we’re going to do. We’ll take our prefix and look it up in our &lt;code class=&quot;highlighter-rouge&quot;&gt;store&lt;/code&gt; dictionary. That will give us the possible suffixes. We’ll chose one at random and append it to result. Having chosen a suffix we need also to use it to create the next prefix in the sequence. We’ll create it by dropping the first word of the current prefix and appending the chosen suffix to the end, making a new string. This new prefix will be the new prefix key that we look up in &lt;code class=&quot;highlighter-rouge&quot;&gt;store&lt;/code&gt; to find the next suffix.&lt;/p&gt;
+
+&lt;p&gt;We’ll use a &lt;code class=&quot;highlighter-rouge&quot;&gt;Sequence&lt;/code&gt; type again, but this time we’ll use the free function &lt;code class=&quot;highlighter-rouge&quot;&gt;sequence(state:next:)&lt;/code&gt;. We’ll only have to provide the “state”, which in our case is the seed we created earlier, and also a function which returns the next element, which in our case is the new suffix. Along the way we’ll mutate &lt;code class=&quot;highlighter-rouge&quot;&gt;state&lt;/code&gt; to become the new prefix.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;suffixes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UnfoldSequence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;inout&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;candidates&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;nextSuffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;candidates&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;droppingFirst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextSuffix&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextSuffix&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This could potentially go on forever, so we’ll limit the output by only taking the first &lt;code class=&quot;highlighter-rouge&quot;&gt;maxWordCount&lt;/code&gt; number of words. Then we’ll reduce all these words into a single string joined by a space.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxWordCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;joined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;separator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The result will then be our &lt;code class=&quot;highlighter-rouge&quot;&gt;key&lt;/code&gt; joined to all the words that grew out of it.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffixes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxWordCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;joined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;separator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Just like we didn’t want to start the text in the middle of a sentence, we don’t want it to end in the middle either. I’ll truncate the string to that it doesn’t extend past the last complete sentence using a custom extension on &lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffixes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prefix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxWordCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;joined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;separator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;truncatingToCompleteSentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Alright. That should get us off the ground. Now we can test it out.&lt;/p&gt;
+
+&lt;h2 id=&quot;sample-results&quot;&gt;Sample Results&lt;/h2&gt;
+
+&lt;p&gt;First off, we need some text. And what better source text for fake text than &lt;a href=&quot;(https://github.com/proxpero/trump-talk)&quot;&gt;a repository of transcripts&lt;/a&gt; of speeches made by Donald Trump. If you’re following along in a playground you can copy the text files to the “resources” directory and they will be accessible to your code.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Foundation&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;files&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;comments-about-women-oct-2016&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;trump-inauguration-speech-jan-2017&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;cia-jan-2017&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;black-history-month-2017&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;prayer-breakfast-feb-2017&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;forResource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;withExtension&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try!&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;contentsOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;joined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;separator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;chain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Chain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prefixLength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;generateText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;maxWordCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I get results like this.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Well this is Black History Month, so this is too bad, but we’ll go right through it. But the fact is, should have kept the oil. But okay. Maybe you’ll have another chance. But the fact is, should have kept the oil. I wasn’t a fan of Iraq.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Trump an intellectual? Trust me, I’m like a magnet. Just kiss. I don’t know, that’s tough competition. Which way? Oh, you’re finished?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;During the campaign, I’d go around with Ben to a lot better wages. We’re gonna work together. This is your country. What truly matters is not a bad thing. He’s respected all over the seven. But I met Mike Pompeo, and it was very interesting that Donald  Jr., whose incredible example is unique in American history.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;General Flynn is right over here. Put up your hand. What a good guy. And Reince and his whole group is going to straighten it out. Believe me. When you hear about the numbers. We did a fantastic job. And we’re going to bring those dreams back.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I travel the country are five words that never, ever stop asking God for the wonderful introduction. So true, so true. I said it yesterday it has to know him anyway. But you’re going to be getting a total allegiance to all Americans.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I had a feud with the understanding that is the right of all nations to put their own notions first. At the center of this movement is a great honor. I also happen to like Churchill, Winston Churchill.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;God will always be protected. Most importantly, we will always give us so much backing. But you’re going to say, please don’t give us such incredible heroes and patriots. They are very, very beautiful. His family was there, incredible family, loved him so much, so devastated, but the ceremony was amazing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Not too bad. We could improve it, but I’m going to leave it there for now. Thanks for reading!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The ABCs of Cryptography</title>
+   <link href="http://proxpero.com/2017/01/23/The-ABCs-of-Cryptography/"/>
+   <updated>2017-01-23T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/23/The-ABCs-of-Cryptography</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
    <title>Easy UI Storyboard Extensions</title>
-   <link href="http://proxpero.com/2017/01/18/Some-UIStoryboard-extensions/"/>
+   <link href="http://proxpero.com/2017/01/18/easy-uistoryboard-extensions/"/>
    <updated>2017-01-18T00:00:00-05:00</updated>
-   <id>http://proxpero.com/2017/01/18/Some-UIStoryboard-extensions</id>
+   <id>http://proxpero.com/2017/01/18/easy-uistoryboard-extensions</id>
    <content type="html">&lt;p&gt;If you use storyboards, chances are that sooner or later you’ll need to access them in code, for example to instantiate a view controller. In that case you can use the UIStoryboard initializer to create the storyboard you by providing its name.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIStoryboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Main&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;bundle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -75,10 +366,158 @@
  </entry>
  
  <entry>
-   <title>A Simple Drag-and-Drop View in Swift</title>
-   <link href="http://proxpero.com/2016/01/18/Drag-and-Drop-View/"/>
+   <title>The Board</title>
+   <link href="http://proxpero.com/2017/01/18/Endgame-part3-Board/"/>
+   <updated>2017-01-18T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/18/Endgame-part3-Board</id>
+   <content type="html">&lt;h3 id=&quot;board&quot;&gt;Board&lt;/h3&gt;
+
+&lt;p&gt;Whereas &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitboard&lt;/code&gt; stored a single, simple &lt;code class=&quot;highlighter-rouge&quot;&gt;UInt64&lt;/code&gt;, a &lt;code class=&quot;highlighter-rouge&quot;&gt;Board&lt;/code&gt; struct stores an array of 12 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitboard&lt;/code&gt;s, one for each piece in chess (6 types from pawn to king and two colors, black and white).&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The Beginning of the Endgame</title>
+   <link href="http://proxpero.com/2017/01/17/Endgame-part2-Bitboard/"/>
+   <updated>2017-01-17T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/17/Endgame-part2-Bitboard</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;https://proxpero.com/2017-1-17-Endgame-part1-Introduction&quot;&gt;Last time&lt;/a&gt;, I introduced my chess framework &lt;a href=&quot;https://github.com/proxpero/Winchester/tree/master/Endgame&quot;&gt;Endgame&lt;/a&gt; and gave a brief overview of its structure. Now, I’m going to explain more about the lowest of the four main components, the bitboard.&lt;/p&gt;
+
+&lt;h3 id=&quot;bitboard&quot;&gt;Bitboard&lt;/h3&gt;
+
+&lt;p&gt;A &lt;code class=&quot;highlighter-rouge&quot;&gt;bitboard&lt;/code&gt; is just a wrapper around a &lt;code class=&quot;highlighter-rouge&quot;&gt;UInt64&lt;/code&gt;, a dandy type for us since it stores exactly 64 bits and there just happen to be exactly 64 squares on a chessboard. This means that many computed properties necessary for our purposes can be provided merely by clever and inexpensive bitwise arithmetic.&lt;/p&gt;
+
+&lt;p&gt;```Swift
+public struct Bitboard: RawRepresentable {&lt;/p&gt;
+
+&lt;p&gt;public var rawValue: UInt64&lt;/p&gt;
+
+&lt;p&gt;public init(rawValue: UInt64) {
+    self.rawValue = rawValue
+  }&lt;/p&gt;
+
+&lt;p&gt;}
+```&lt;/p&gt;
+
+&lt;p&gt;More specifically, a large class of queries about the state of the board can be answered by a simple number.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q: What are all the squares on the board?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Easy. It’s 18446744073709551615. That’s the number whose binary representation (in an 8x8 grid) is
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q: Which squares are in the 6th rank?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Simple. 280375465082880.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Swift
+00000000
+00000000
+11111111
+00000000
+00000000
+00000000
+00000000
+00000000
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q: What are the starting positions of the white knights?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;66.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+01000010
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q: Square &lt;code class=&quot;highlighter-rouge&quot;&gt;c3&lt;/code&gt;?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;262144.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
+00000000
+00000000
+00000000
+00000000
+00000000
+00000100
+00000000
+00000000
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Q: Wait that looks like the &lt;code class=&quot;highlighter-rouge&quot;&gt;f3&lt;/code&gt; square. What’s up?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That’s because I’m writing the binary numbers with the least significant bit on the right, with padded zeros to the left. For example, the square &lt;code class=&quot;highlighter-rouge&quot;&gt;a1&lt;/code&gt; has a bitboard value of &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; and it occupies the lower lefthand side of the board. But in the grid of binary numbers above the number one would be placed in the lower righthand corner. The point is not to show that numbers make a good human-readable UI, but that real chess situations can be modeled with simple numbers.&lt;/p&gt;
+
+&lt;p&gt;Later, I’ll show you how to make more complex queries like “What are the possible destinations of a bishop on the &lt;code class=&quot;highlighter-rouge&quot;&gt;e4&lt;/code&gt;?” by conforming &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitboard&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;BitwiseOperations&lt;/code&gt; protocol.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The Beginning of the Endgame</title>
+   <link href="http://proxpero.com/2017/01/17/Endgame-part1-Introduction/"/>
+   <updated>2017-01-17T00:00:00-05:00</updated>
+   <id>http://proxpero.com/2017/01/17/Endgame-part1-Introduction</id>
+   <content type="html">&lt;h3 id=&quot;endgame&quot;&gt;Endgame&lt;/h3&gt;
+
+&lt;p&gt;I’ve been working on a chess framework in Swift called &lt;a href=&quot;https://github.com/proxpero/Winchester/tree/master/Endgame&quot;&gt;Endgame&lt;/a&gt;. Among other things, it validates moves, stores move history, encodes games into and out of &lt;a href=&quot;http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm&quot;&gt;pgn&lt;/a&gt;. Basically all the things you would expect a chess program to do, except for AI, which I’m going to leave off to one side for now.&lt;/p&gt;
+
+&lt;h3 id=&quot;raison-detre&quot;&gt;Raison d’Etre&lt;/h3&gt;
+
+&lt;p&gt;I hear you say, “Who the hell needs another chess framework? There are many good ones already (e.g. &lt;a href=&quot;https://github.com/niklasf/python-chess&quot;&gt;Python&lt;/a&gt;, &lt;a href=&quot;https://github.com/jhlywa/chess.js&quot;&gt;Javascript&lt;/a&gt;), even ones written in &lt;a href=&quot;https://github.com/nvzqz/Sage&quot;&gt;Swift&lt;/a&gt;. There’s certainly no shortage of &lt;a href=&quot;https://en.lichess.org&quot;&gt;websites&lt;/a&gt; or &lt;a href=&quot;https://itunes.apple.com/us/app/chess-play-learn/id329218549?mt=8&amp;amp;ign-mpt=uo%3D4&quot;&gt;apps&lt;/a&gt;. Isn’t it a colossal waste to devote time and energy in such a vain pursuit? I mean, you might as well go write a &lt;a href=&quot;&quot;&gt;Lisp interpreter&lt;/a&gt; while you’re at it.”&lt;/p&gt;
+
+&lt;p&gt;Fair enough. &lt;a href=&quot;http://en.wikipedia.org/wiki/Ben_Laurie&quot;&gt;Ben Laurie&lt;/a&gt; once described the game sudoku as a “denial of service attack on human intellect” (&lt;a href=&quot;http://www.norvig.com/sudoku.html&quot;&gt;source&lt;/a&gt;). I hope this was for me more intellectually edifying than playing &lt;a href=&quot;https://github.com/proxpero/Pseudoku&quot;&gt;sudoku&lt;/a&gt;. And even if it hadn’t been, I like to solve puzzles and making things. And that’s what I like so much about programming.&lt;/p&gt;
+
+&lt;h3 id=&quot;prospectus&quot;&gt;Prospectus&lt;/h3&gt;
+
+&lt;p&gt;In this series, I will go into detail about how I wrote it, partly as an explanation to anyone who might be curious, but also to help me clarify for myself the good and the bad. I have a habit of coding madly away halfcocked ideas because I can’t always comprehend their true value if they’re not set down in type. I therefore hope that forcing myself to explain in dirt simple posts the justification behind the components of the framework will help me understand what code to gut. And who doesn’t &lt;a href=&quot;http://inessential.com/2006/03/03/negative_5750&quot;&gt;love to gut code&lt;/a&gt;?&lt;/p&gt;
+
+&lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;
+
+&lt;p&gt;Before I start in to the nitty-gritties, let me give a brief architectural overview. Think of this framework as having four layers:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;A &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitboard&lt;/code&gt; wraps a &lt;code class=&quot;highlighter-rouge&quot;&gt;UInt64&lt;/code&gt;, mapping each square on the chessboard to a simple bit.&lt;/li&gt;
+  &lt;li&gt;A &lt;code class=&quot;highlighter-rouge&quot;&gt;Board&lt;/code&gt; is a collection of &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitboard&lt;/code&gt;s, where each bitboard models a particular piece: one bitboard for the white bishops, one for black pawns, etc. In this any setup of pieces can be represented.&lt;/li&gt;
+  &lt;li&gt;A &lt;code class=&quot;highlighter-rouge&quot;&gt;Position&lt;/code&gt; stores a &lt;code class=&quot;highlighter-rouge&quot;&gt;Board&lt;/code&gt; as well as turn information, castling rights, the en passant square, and other things. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Position&lt;/code&gt; can serialize itself into an &lt;a href=&quot;&quot;&gt;FEN&lt;/a&gt; and back.&lt;/li&gt;
+  &lt;li&gt;It’s not totally correct to say that a &lt;code class=&quot;highlighter-rouge&quot;&gt;Game&lt;/code&gt; is a collection of &lt;code class=&quot;highlighter-rouge&quot;&gt;Position&lt;/code&gt;s, but it’s not far off either, one position for each move in the game. A &lt;code class=&quot;highlighter-rouge&quot;&gt;Game&lt;/code&gt; also stores player data, the date, the outcome, etc. The &lt;code class=&quot;highlighter-rouge&quot;&gt;Game&lt;/code&gt; provides the public interface for all the logic in the framework.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are several other objects, but these form the backbone. One of the design principles is that computations happen at the lowest level possible. For example, the &lt;code class=&quot;highlighter-rouge&quot;&gt;board&lt;/code&gt; can know whether a king is being attacked, because it has all the necessary information, whereas a &lt;code class=&quot;highlighter-rouge&quot;&gt;bitboard&lt;/code&gt; couldn’t tell any two pieces apart. But a &lt;code class=&quot;highlighter-rouge&quot;&gt;board&lt;/code&gt; can’t say whether a move is valid or not because it doesn’t have &lt;code class=&quot;highlighter-rouge&quot;&gt;turn&lt;/code&gt; information, so that responsibility goes to the &lt;code class=&quot;highlighter-rouge&quot;&gt;position&lt;/code&gt;. And so on.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://proxpero.com/2017/01/17/Endgame-part2-Bitboard/&quot;&gt;Next time&lt;/a&gt;, let’s take a closer look at the &lt;code class=&quot;highlighter-rouge&quot;&gt;Bitboard&lt;/code&gt; struct.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>A Simple Drag-and-Drop NSView in Swift</title>
+   <link href="http://proxpero.com/2016/01/18/drag-and-drop-nsview/"/>
    <updated>2016-01-18T00:00:00-05:00</updated>
-   <id>http://proxpero.com/2016/01/18/Drag-and-Drop-View</id>
+   <id>http://proxpero.com/2016/01/18/drag-and-drop-nsview</id>
    <content type="html">&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
 
 &lt;p&gt;I had a view with a simple vertical stack of subviews and I wanted to give the user the ability to reorder the subviews using drag-and-drop. Instead of implementing AppKit’s drag-and-drop API, I wrote my own mechanism by hooking into &lt;code class=&quot;highlighter-rouge&quot;&gt;NSResponder&lt;/code&gt;’s &lt;code class=&quot;highlighter-rouge&quot;&gt;mouseDragged(...)&lt;/code&gt; method and &lt;code class=&quot;highlighter-rouge&quot;&gt;NSWindow&lt;/code&gt;’s &lt;code class=&quot;highlighter-rouge&quot;&gt;trackEventsMatchingMask(...) -&amp;gt; Void&lt;/code&gt;. That way I could control the logic at the relevant steps during the user’s action, without relying on AppKit’s unseen magic. Finally, I refactored the logic into protocol extensions.&lt;/p&gt;

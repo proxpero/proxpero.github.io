@@ -1,18 +1,64 @@
 ---
 title: Generating Text with Markoff Chains
-summary: I show how to produce superficially real-looking text using a Markoff chain.
+summary: "In this post, I’m going to create superficially real-looking text using a Markoff chain. Markoff chains are really interesting and can be used in many different ways. I’m going to use them to transform normal, human-written text into computer-generated text that is different from the original, but sometimes indistinguishable from text produced by humans. Often, it’s completely silly."
+toc:
+  - title: How Does It Work
+    link: /#how-does-it-work
+  - title: Initializing the Struct
+    link: /#initializing-the-struct
+  - title: Generating Fake Text
+    link: /#generating-fake-text
+  - title: Sample Results
+    link: /#sample-results
+
 tags: [Swift, Markoff Chains, Sequence protocol]
+
 ---
-In this post I'm going to show how you can create [superficially real-looking text] using a [Markoff chain]. The idea is that as you read through some body of text, or *corpus*, you record a chain of words called a prefix and the word following the chain called the suffix. The length of the prefix is some arbitrary number, say two or three. If your corpus is large enough, you'll have several one-word suffixes associated with every multiple-word suffix.
+In this post, I'm going to create [superficially real-looking text] using a [Markoff chain]. Markoff chains are really interesting and can be used in many different ways. I'm going to use them to transform normal, human-written text into computer-generated text that is different from the original, but sometimes indistinguishable from text produced by humans. Often, it's completely silly. Here's what I got when I fed in a [recent article](https://www.nytimes.com/2017/02/02/us/politics/trump-johnson-amendment-political-activity-churches.html?ribbon-ad-idx=3&rref=homepage&module=Ribbon&version=origin&region=Header&action=click&contentCollection=Home%20Page&pgtype=article) from the New York Times.
+
+> They say the law on “Pulpit Freedom Sunday,” organized by the Alliance Defending Freedom. Many participating pastors send their sermons to the power of faith. But the proceedings took a show-business turn when Mark Burnett, the Hollywood producer, stepped to the family Bible, which was slow to warm to his announcement with delight.
+
+and
+
+> In a freewheeling speech at the risk of losing their tax-exempt status, Mr. Trump talked tough on immigration at the National Prayer Breakfast and veered off message, blasting the ratings of “The Apprentice.”  
+
+{% include toc.html %}
+
+## How Does It Work
+
+The idea is that as you read through some body of text, or a *corpus*, you record a chain of words called a *prefix* and the word following the chain called the *suffix*. The length of the prefix is some arbitrary number of words, say two or three. As you increment word-by-word through the text, you register the one word suffix with its associated multi-word prefix. Here's an example taking the first several words of *Alice's Adventures in Wonderland*.
+
+<table>
+  <tr>
+    <th></th><th>prefix (length=3)</th><th>suffix</th><th></th>
+  </tr>
+  <tr>
+    <td></td><td>Alice was beginning</td><td>to</td><td>get very tired...</td>
+  </tr>
+  <tr>
+    <td>Alice</td><td>was beginning to</td><td>get</td><td> very tired of...</td>
+  </tr>
+  <tr>
+    <td>Alice was</td><td> beginning to get</td><td>very</td><td>  tired of sitting...</td>
+  </tr>
+  <tr>
+    <td>Alice was beginning</td><td>to get very</td><td>tired</td><td>of sitting by...</td>
+  </tr>
+  <tr>
+    <td>...was beginning to</td><td> get very tired</td><td>of</td><td> sitting by her...</td>
+  </tr>
+</table>
+
+This could go on and on. If your corpus is large enough, you should eventually encounter a prefix that has already been registered. When that happens, you don't make a whole new record, but rather you add the new suffix to the suffix you found for that prefix the first time around, making a list of one-word suffixes for each prefix.
+
+Then you can generate text similar to your corpus by picking a random prefix and appending to it a random prefix. Then you make a new prefix from the old prefix plus the new word. As you build up more suffixes, the result begins to take on a life of its own.
 
 [superficially real-looking text]: https://en.wikipedia.org/wiki/Natural_language_generation
 [Markoff chain]: https://en.wikipedia.org/wiki/Markov_chain
 
-For example, in the course of reading the corpus, you might have come across the the following prefix two times: "he died in". The first time it occurred, it was followed by the word "battle", the second time by the word "vain". The implementation must record the prefix and the two associated suffixes, perhaps in a dictionary where the key is the prefix and the value an array of suffixes.
+## Initializing the Struct
 
-## Initializing the `Chain` struct
-
-Our `Chain` struct will have a single stored property, a private `Dictionary`. I'll call it "store". The keys will be prefixes and the value for each key will be all suffixes associated for that prefix.
+We'll model the Markoff chain with a struct called `Chain`. It only need a single stored property, a private `Dictionary`, called `store`. The keys will be prefixes and the value for each key will be all suffixes associated for that prefix.
 
 {% highlight swift %}
 
@@ -22,9 +68,13 @@ public struct Chain {
 }
 {% endhighlight %}
 
-The initializer takes some text and a prefix length, building the chain by scanning through the text, word by word. The new prefix will be built by taking the previously constructed prefix, appending the newly encountered word, and dropping the oldest word. Think of a window sliding along a line of text. As the left most word disappears from view, a new word enters the frame on the right, and that line of visible words forms the new prefix. The number of words exposed by the window is determined by the `prefixLength` parameter.
+The initializer needs to take some text and a prefix length. But it doesn't store the text: it builds the dictionary by scanning through the text, word by word. Think of a window sliding along a line of text. As the left most word disappears from view, a new word enters the frame on the right, and that line of visible words forms the new prefix. The number of words exposed by the window is determined by the `prefixLength` parameter.
 
-As the constructor builds the prefix, is also determines the suffix of that prefix. Think of a second window adjacent to the prefix window, sliding along with it on the right, exposing only one word. The suffix is appended to the array of suffixes already found for that prefix, or to an empty array if it's the first one.
+As this constructor builds the prefix, is also determines the suffix of that prefix. Think of a second window adjacent to the prefix window, sliding along with it on the right, exposing only one word.
+
+The new prefix will be built by taking the previously constructed prefix, appending the newly encountered word, and dropping the oldest word.
+
+ The suffix is appended to the array of suffixes already found for that prefix, or to an empty array if it's the first one.
 
 {% highlight swift %}
 public init(text: String, prefixLength: Int) {
@@ -114,7 +164,7 @@ public struct Chain {
 }
 {% endhighlight %}
 
-## Generating (Fake) Text
+## Generating Fake Text
 
 Now that we have a `Chain`, we can use to start producing our "superficially real-looking text". Let's start with a public method.
 
@@ -172,7 +222,7 @@ let result = seed + " " + suffixes.prefix(maxWordCount).joined(separator: " ").t
 
 Alright. That should get us off the ground. Now we can test it out.
 
-## Running with the Text
+## Sample Results
 
 First off, we need some text. And what better source text for fake text than [a repository of transcripts] of speeches made by Donald Trump. If you're following along in a playground you can copy the text files to the "resources" directory and they will be accessible to your code.
 

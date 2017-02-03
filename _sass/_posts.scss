@@ -76,3 +76,19 @@ article.post header {
     }
   }
 }
+
+#toc {
+  width: 60%;
+  padding: 1em 2em;
+  font-size: 90%;
+  color: $code-color;
+  background-color: $code-background-color;
+  border: 1px solid $code-border-color;
+  border-radius: 3px;
+
+  ol {
+    list-style-type: decimal;
+    margin: .1em .25em;
+
+  }
+}
