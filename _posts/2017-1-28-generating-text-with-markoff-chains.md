@@ -133,11 +133,9 @@ As for the logic inside, `index` keeps track of the current location in the arra
 The `Chain` struct so far looks like this.
 
 {% highlight swift %}
-///
 public struct Chain {
     private var store: Dictionary<String, [String]> = [:]
 
-    ///
     public init(text: String, prefixLength: Int) {
         var result: Dictionary<String, [String]> = [:]
         func prefixIterator() -> AnyIterator<(String, String)> {
