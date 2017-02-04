@@ -166,15 +166,11 @@ Now that we have a `Chain`, we can use to start producing our "superficially rea
 
 {% highlight swift %}
 public func generateText(maxWordCount: Int) -> String {
-    var result = ""
-    // TODO: Turn `result` into something interesting.
-    return result
+    // TODO: return fake text.
 }
 {% endhighlight %}
 
-There's not much going on with this method yet. It takes an integer which basically limits the amount of text produced. And, predictably, it has a return type `String`. I start with an empty string called `result`, which will get mutated somehow during the course of the function by appending to it one word at a time until we've reached the limit. But, in order to know what words should be added, we need to use the `store` dictionary we created in the initializer.
-
-We need to start with a random prefix. All the subsequent text will grow from this seed. And since we want our text to sound like complete sentences, let's make sure we get a prefix that's suitable for opening a sentence. We'll say it's good enough for now to choose only a prefix that begins with an uppercase letter.
+We start with a random prefix. All the subsequent text will grow from this seed. And since we want our text to sound like complete sentences, let's make sure we get a prefix that's suitable for opening a sentence. We'll say it's good enough for now to choose only a prefix that begins with an uppercase letter.
 
 {% highlight swift %}
 var seed = ""
