@@ -1,28 +1,41 @@
 // Masthead
 
 .masthead {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  margin-top: 0.2rem;
+  padding-top: 1rem;
+  padding-bottom: 1.2rem;
+  margin-top: 0.3rem;
   margin-bottom: 1.5rem;
-  color: #FFFDF1;
+  color: $light-highlight-color;
   background-color: $body-color;
   font-family: $root-sanserif;
-}
 
-.masthead-title {
-  margin-top: 0;
-  margin-bottom: 0;
-  color: #FFFDF1;
-
-  a {
-    color: inherit;
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   small {
-    color: #FFFDF1;
-    font-size: 75%;
-    font-weight: 400;
-    opacity: .75;
+    color: $light-highlight-color;
+    font-size: 90%;
+    font-weight: lighter;
+
+    a {
+      color: inherit;
+      margin-right: 1rem;
+    }
   }
+
+}
+
+.masthead-title {
+  margin-right: 4rem;
+  color: $light-highlight-color;
+  font-family: Audiowide, sans-serif;
+  font-size: 130%;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
 }
