@@ -10,9 +10,7 @@ toc:
     link: /#generating-fake-text
   - title: Sample Results
     link: /#sample-results
-
 tags: [Swift, Markoff Chains, Sequence protocol]
-
 ---
 In this post, I'm going to create [superficially real-looking text] using a [Markoff chain]. Markoff chains are really interesting and can be used in many different ways. I'm going to use them to transform normal, human-written text into computer-generated text that is different from the original, but sometimes indistinguishable from text produced by humans. Often, it's completely silly. Here's what I got when I fed in a [recent article](https://www.nytimes.com/2017/02/02/us/politics/trump-johnson-amendment-political-activity-churches.html?ribbon-ad-idx=3&rref=homepage&module=Ribbon&version=origin&region=Header&action=click&contentCollection=Home%20Page&pgtype=article) from the New York Times.
 

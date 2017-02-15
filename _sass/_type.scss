@@ -36,8 +36,13 @@ p {
   margin-bottom: 1rem;
 }
 
+em {
+  font-style: italic;
+}
+
 strong {
   color: #303030;
+  font-weight: bold;
 }
 
 ul, ol, dl {

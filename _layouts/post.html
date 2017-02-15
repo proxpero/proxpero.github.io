@@ -5,6 +5,14 @@ layout: default
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-meta">
     <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time> by <span class='post-author'>{{ site.author.name }}</span><br />
+    {% if page.series %}
+    <p class="series">Other articles in this series:</p>
+    <ol class="series-list">
+      {% for series-item in page.series %}
+        <li><a href="{{ series-item.link }}">{{ series-item.title }}</a></li>
+      {% endfor %}
+    </ol>
+    {% endif %}
     {% if page.tags %}
     <div class="post-tags">
       Tags:
