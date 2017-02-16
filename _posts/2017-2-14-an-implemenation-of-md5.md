@@ -49,9 +49,9 @@ extension Collection where Iterator.Element == UInt8 {
 }
 {% endhighlight %}
 
-The real logic is contained in the private `md5Digest` computed property of the collection. It takes the bytes in the collection returns the array of bytes bytes that make up the hash. It is this result that is then turned into a `String` in the early property.
+The real logic is contained in the private `md5Digest` computed property of the collection. It takes the bytes in the collection and returns the array of bytes that make up the hash. It is this result that is then turned into a `String` in the `md5` computed property above.
 
-I'm not going to go into point-by-point detail, but the code closely follows the explanation of md5 presented in [RFC 1321](https://tools.ietf.org/html/rfc1321) by [Ronald Rivest](https://www.youtube.com/watch?v=YQw124CtvO0). I've pasted documentation from [Wikipedia](https://en.wikipedia.org/wiki/MD5#Pseudocode) and [RFC 1321](https://tools.ietf.org/html/rfc1321) in the code as signposts for the curious. *Note:* I have **intentionally** leaned away from writing good, idiomatic, designed-for-clarity Swift by retaining the historical names for variables and functions, which are the heritage of a different era. If you want to understand this code, you will probably want to compare it to descriptions of the algorithm, and these will likely use the same names as the original. This code is not necessarily intended to [pass a review](http://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer#comment1668520_109025). 😉
+I'm not going to go into point-by-point detail, but the code closely follows the explanation of md5 presented in [RFC 1321](https://tools.ietf.org/html/rfc1321) by [Ronald Rivest](https://www.youtube.com/watch?v=YQw124CtvO0). Within the code, I've interspersed snippets of documentation from [Wikipedia](https://en.wikipedia.org/wiki/MD5#Pseudocode) and [RFC 1321](https://tools.ietf.org/html/rfc1321) as signposts for the curious to follow. *Note:* I have **intentionally** leaned away from writing good, idiomatic, designed-for-clarity Swift by retaining the historical names for variables and functions, which are the heritage of a different era. If you want to understand this code, you will probably want to compare it to [some](https://www.quora.com/How-does-the-MD5-algorithm-work)  [descriptions](http://www.iusmentis.com/technology/hashfunctions/md5/) of the algorithm, and these will likely use the same names as the original. This code is not necessarily intended to [pass a review](http://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer#comment1668520_109025). 😉
 
 {% highlight Swift %}
 extension Collection where Iterator.Element == UInt8 {
@@ -166,11 +166,14 @@ extension Collection where Iterator.Element == UInt8 {
 Needless to say, this implementation passes the original test suite provided by RFC 1321.
 {% highlight Swift %}
 let tests = [
-    ("The quick brown fox jumps over the lazy dog", "9e107d9d372bb6826bd81d3542a419d6"),
-    ("The quick brown fox jumps over the lazy dog.", "e4d909c290d0fb1ca068ffaddf22cbd0"),
-    ("Here is an implementation of the md5 hash.", "e02786056be39d2610cbd31ee7d34bc2"),
-    ("", "d41d8cd98f00b204e9800998ecf8427e")
-    ]
+    ("", "d41d8cd98f00b204e9800998ecf8427e"),
+    ("a", "0cc175b9c0f1b6a831c399e269772661"),
+    ("abc", "900150983cd24fb0d6963f7d28e17f72"),
+    ("message digest", "f96b697d7cb7938d525a2f31aaf161d0"),
+    ("abcdefghijklmnopqrstuvwxyz", "c3fcd3d76192e4007dfb496cca67e13b"),
+    ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "d174ab98d277d9f5a5611c2c9f419d9f"),
+    ("12345678901234567890123456789012345678901234567890123456789012345678901234567890", "57edf4a22be3c955ac49da2e2107b67a")
+]
 for (text, hash) in tests {
     assert(text.md5 == hash)
     print("test passed.")
