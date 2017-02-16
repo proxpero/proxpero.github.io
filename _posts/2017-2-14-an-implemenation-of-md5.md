@@ -1,6 +1,6 @@
 ---
 title: An Implementaion of the MD5 Hash Algorithm
-summary: "I made two small extensions for <code>String</code> and Collections of <code>UInt8</code> that compute the md5 hash function."
+summary: "I present a small, zero-dependency extension that computes the md5 hash function and does nothing else."
 tags: Swift md5
 ---
 [The MD5 message digest algorithm](https://tools.ietf.org/html/rfc1321) is a [hash function](https://en.wikipedia.org/wiki/Hash_function) that was designed for cryptography but is [no longer considered safe](https://en.wikipedia.org/wiki/MD5#Security) for [that purpose](https://www.quora.com/Cryptography-Why-are-MD5-and-SHA1-called-broken-algorithms/answer/Michael-Hamburg). This is not to say that it isn't still [useful](http://khanlou.com/2015/07/cache-me-if-you-can) for [other things](http://adventofcode.com/2016/day/17). It still can take a chunk of data of arbitrary size (it could be 0x1, or it could be the text of [*Moby Dick*](http://www.clickhole.com/blogpost/time-i-spent-commercial-whaling-ship-totally-chang-768)) and transform it into a fixed 128-bit chunk of data that appears to be random garbage, but in fact the same input to the function will always produce the same output. Often, you just want the hash of some string or some data and you don't need or want to [import](http://stackoverflow.com/questions/25248598/importing-commoncrypto-in-a-swift-framework) a whole [crypto library](https://github.com/krzyzanowskim/cryptoswift) for such a limited, trivial use.
