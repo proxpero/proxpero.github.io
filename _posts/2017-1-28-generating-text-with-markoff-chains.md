@@ -1,5 +1,5 @@
 ---
-title: Generating Text with Markoff Chains
+title: Fun with Sequence Protocols
 summary: "In this post, I’m going to create superficially real-looking text using a Markoff chain. I'll do it in Swift, and explain in particular various ways of using <code>Sequence</code> and <code>IteratorProtocol</code> to solve the problem."
 toc:
   - title: How Does It Work
