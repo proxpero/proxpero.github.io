@@ -1,5 +1,5 @@
 ---
-title: An Implementaion of the MD5 Hash Algorithm
+title: An Implementation of the MD5 Hash Algorithm
 summary: "I present a small, zero-dependency extension that computes the md5 hash function and does nothing else."
 tags: Swift md5
 ---
