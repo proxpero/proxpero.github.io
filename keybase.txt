@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/proxpero
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://proxpero.com
+  * I am proxpero (https://keybase.io/proxpero) on keybase.
+  * I have a public key with fingerprint ABAF 07DE 0D7E EA58 7C60  1131 CB36 31B5 E8CA 11C7
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01018ba2c4284d9449d539f796ed57cf7f24d157ecaa6f45e2227de7d71a1717413c0a",
+            "fingerprint": "abaf07de0d7eea587c601131cb3631b5e8ca11c7",
+            "host": "keybase.io",
+            "key_id": "cb3631b5e8ca11c7",
+            "kid": "01018ba2c4284d9449d539f796ed57cf7f24d157ecaa6f45e2227de7d71a1717413c0a",
+            "uid": "a4c5fd89ed82ce971fce46ca84bced19",
+            "username": "proxpero"
+        },
+        "service": {
+            "hostname": "proxpero.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1488390314,
+    "expire_in": 157680000,
+    "prev": "7e969bcdbf1209c8fdfb982f54f608099648b80d440104b36dd6b0b9fdff60f7",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.64
+Comment: https://keybase.io/crypto
+
+yMIiAnicrZJbSBVBGMePWmaGGJUQ2UNuGlaH087u7O7M6SIklPqkFmQXOe3OzOpy
+dPd0znqyixCJD4FhlpklaT2UJgUFZhcQs4sYGhaRReaDXaiXMOohqAeblXqJHpuX
+4Zv5/f/zzZ/vYVqSLzUBXfX13HiRNpgwMtha4yu7ldJzSDAcekAIHhLCbHZjVZTF
+3FDYokJQEIEIkKFLBEoIUgwhpoqMTQ2rjCoaMTVTghQoGiO6rppQYZIkaZRpVAM6
+0IAGgUxEXfALpmVXsGgkatkut9UN3RQ5J1KNMV1BGlFFAGRADFmVgaEwRHQAiMaF
+lU7MU/DmDD3GApbDz3gRmm3vH/x/7rtm1k6HRDEpwowiiTCsAZMwqBIdQYMwCrAH
+xljU1qsZpyNRpzbCoo5Q5xf4adwizAvW+8lfRIA41VzLS9chThW/qXTdSNATugci
+HrmfGaHfHiHDsimPkQviLBqzHFsIAk4S1/JMAURIxqIMoF9gtRErykKWRyiaikS+
+vGdYnFtqDKvYINQwgSRigkxqGhhJpgJNVUQixipEBhIphDxFyBOmVDVEA3OOA6YX
+coztsx0hyF9y9QpuGbMqbN2tiTKh7v69PXN8Cam+5LmJ3nj5Uucv/DN0a3bPmynu
++WqPPmzYonaWbfq4M+Hswc6ux0s+f9A3lFR//dSW2Nqb/7LxcJIg/bC3+7u72t1v
+kVyrdNu743m4paBxsRUutkr6R04130zu6l2w3hpbmnqQZmWOX18UyP6w/OTHdyv6
+m6az151rvXmpP625/cux11vFlZ3uDrHkSn4AhfETcPpK/ebSrqKfGWVTz7f4rcC1
+2+VP8zoGyh/tOjJZNNZXKJxv7l8G5azJC/FV9onigvScT3Vs7cUzw90P0oevp0/V
+TxzN3Jsb6SufanozkXnZHS18VbomRR6YzJmRvvcelu8ExpLCq5+V2IMNb8uGNoan
+O97vnYq1DOWPt2UMVt6N/wI1b0Bg
+=54Qz
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/proxpero
+
+==================================================================
