@@ -11,9 +11,13 @@ Here is a vague timeline of my personal programming history:
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/unloveable/2388501732/in/photolist-4D4Gmm-a4xs9t-9ExALD-JGiegp-xNBmbc-4ckqTt" title="Atari 400"><img src="https://c2.staticflickr.com/4/3005/2388501732_7819e995d3_z.jpg?zz&#x3D;1" width="640" height="481" alt="Atari 400"></a>
 
-My parents brought home our first computer, [an Atari 400](https://en.wikipedia.org/wiki/Atari_8-bit_family#The_early_machines:_400_and_800), membrane keyboard and everything. (Later, we eventually upgraded to the 800.) It seemed to me at the time that this device existed for my dad and me to play games on. We had [Pac Man](https://en.wikipedia.org/wiki/Pac-Man), [Missile Command](https://en.wikipedia.org/wiki/Missile_Command), [Centipede](https://en.wikipedia.org/wiki/Centipede_(video_game)), [Joust](https://en.wikipedia.org/wiki/Joust_(video_game)), [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders), [Star Raiders](https://en.wikipedia.org/wiki/Star_Raiders), [Q\*bert](https://en.wikipedia.org/wiki/Q*bert), and probably others I can't remember. To play, you hooked up a TV, popped open the hood above the keyboard and inserted the cartridge of the game you wanted to load. We also had a cassette tape peripheral we could use to load software.
+My parents brought home our first computer, [an Atari 400](https://en.wikipedia.org/wiki/Atari_8-bit_family#The_early_machines:_400_and_800), membrane keyboard and everything. (Later, we eventually upgraded to the 800.) It seemed to me at the time that this device existed for my dad and me to play games on. We had [Pac Man](https://en.wikipedia.org/wiki/Pac-Man), [Missile Command](https://en.wikipedia.org/wiki/Missile_Command), [Centipede](https://en.wikipedia.org/wiki/Centipede_(video_game)), [Joust](https://en.wikipedia.org/wiki/Joust_(video_game)), [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders), [Star Raiders](https://en.wikipedia.org/wiki/Star_Raiders), [Q\*bert](https://en.wikipedia.org/wiki/Q*bert), and probably others I can't remember.
 
-<a title="By Bilby (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3AAtari_410.jpg"><img width="200" alt="Atari 410" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Atari_410.jpg/512px-Atari_410.jpg"/></a>
+<a href="http://www.atarimania.com/game-atari-400-800-xl-xe-star-raiders_4992.html"><img width="300" height="394" alt="Star Raiders!" src="http://www.atarimania.com/8bit/boxes/hi_res/StarRaiders_i.jpg"  title="Star Raiders"></a>
+
+To play, you hooked up a TV, popped open the hood above the keyboard and inserted the cartridge of the game you wanted to load. We also had a cassette tape peripheral we could use to load software.
+
+<a title="By Bilby (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3AAtari_410.jpg"><img width="500" alt="Atari 410" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Atari_410.jpg/512px-Atari_410.jpg"/></a>
 
 Reading and writing bits to magnetic tape a few millimeters wide? It was not robust. But I naturally assumed that the computer was listening to music, and that's what allowed it to know what to do.
 
@@ -24,9 +28,13 @@ My dad dominated the high scores on all games, especially Pac Man. He wasn't [pe
 10 PRINT "GOTO CONSIDERED AWESOME!"
 20 GOTO 10
 {% endhighlight %}
-And if you ever went to a Sears in the local mall where they sold personal computers and saw a screen filled with a lewd statement, I may owe you an apology.
+And if you ever went to a Sears in the local mall where they sold personal computers and saw a screen filled with a single, repeated, lewd statement, then I may owe you an apology.
 
-I remember a fat 3-ring binder of information related to BASIC programming with listings in the back that I typed into the computer, but the most important software eduction I received in these early days came from [the Micro Adventure books](https://en.wikipedia.org/wiki/Micro_Adventure), which I drank like water. The premise was that you were this elite hacker and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled, then you fired up your "micro" and typed in the program printed in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I was taught the thrill of getting a program working and the sometimes insuperable frustration involved in debugging.
+I remember a fat 3-ring binder of information related to BASIC programming with listings in the back that I typed into the computer, but the most important software eduction I received in these early days came from [the Micro Adventure books](https://en.wikipedia.org/wiki/Micro_Adventure), which I drank like water.
+
+<a href="https://en.wikipedia.org/wiki/Micro_Adventure"><img src="https://upload.wikimedia.org/wikipedia/en/0/08/Micro_adventure_book_cover.jpg"/></a>
+
+ The premise was that you were this elite hacker and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled, then you fired up your "micro" and typed in the program printed in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I learned two lessons. That you can create program to solve a problem and when you do that and it actually works, it is a tremendous rush. That there is an insuperable frustration involved in debugging programs.
 
 ## IBM Compatible
 
