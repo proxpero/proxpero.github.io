@@ -14,7 +14,7 @@
   blog-post:
   app-store: https://itunes.apple.com/us/app/tap-tac-toe/id1186370089?ls=1&mt=8
   github: https://github.com/proxpero/TapTacToe
-  summary:
+  summary: A very nice Tic Tac Toe app that never loses.
 
 - name: Pseudoku
   blog-post:
@@ -33,3 +33,9 @@
   app-store:
   github: https://github.com/proxpero/Arbor
   summary:
+
+- name: Advent of Code
+  blog-post: /aoc/
+  app-store:
+  github:
+  summary: Solutions to Advent of Code in Swift.
