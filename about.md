@@ -36,15 +36,17 @@ I remember a fat 3-ring binder of information related to BASIC programming with 
 
  The premise was that you were this elite hacker and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled, then you fired up your "micro" and typed in the program printed in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I learned two lessons. That you can create program to solve a problem and when you do that and it actually works, it is a tremendous rush. That there is an insuperable frustration involved in debugging programs.
 
-# IBM Compatible
+# College
 
-My dad, "for work", brought home a great big beige monstrosity. This was [after the Mac](https://youtu.be/2B-XwPjn9YY?t=23) but before Windows became ubiquitous. When you switched it on, a DOS prompt would appear and from there you could launch [Word Perfect](https://en.wikipedia.org/wiki/WordPerfect#WordPerfect_for_DOS) or [Lotus 1-2-3](https://en.wikipedia.org/wiki/Lotus_1-2-3#DOS).
+Later, my dad, "for work", brought home a great big beige monstrosity. This was [after the Mac](https://youtu.be/2B-XwPjn9YY?t=23) but before Windows became ubiquitous. When you switched it on, a DOS prompt would appear and from there you could launch [Word Perfect](https://en.wikipedia.org/wiki/WordPerfect#WordPerfect_for_DOS) or [Lotus 1-2-3](https://en.wikipedia.org/wiki/Lotus_1-2-3#DOS).
 
-and if you typed "win", then Windows would launch. When you switched it off, it would cut the power regardless of what you might have been doing. We had a few versions of this thing, one of which I took with me to college and made "internet friends" on the Tom Waits usenet newsgroup. At one point I took a C class.
+We had a few of these over the course of my childhood. I think the first one just had MS-DOS and a one had Windows installed too, where if you typed "win" at the DOS prompt, then Windows would launch. When you switched it off, it would cut the power regardless of what you might have been doing. I took one of these to college, where I got my first email address and made "internet friends" on the Tom Waits usenet newsgroup, my introduction to what we called the [information superhighway](https://en.wikipedia.org/wiki/Information_superhighway). I started college as a mechanical engineering major, taking advanced calculus classes, physics, and chemistry. I later switched to CS and took classes in C, Fortran(!), and logic circuits. Then I switched again to English.
+
+To explain this, you must know that I was a late-blooming reader. Previously, I read nothing that was not required of me for school. Now I finally came to realize that really smart people had existed in the past and that they had preserved their knowledge in books! You could actually read what they thought! Who knew? Anyway, I was reading so much my grades were suffering. Long story short, I withdrew from college, withdrew my savings, and went on an extended road trip all around the country. I ended up in Olympia, Washington where I formed the obligatory rock band, and when that fizzled, I returned to college, an English major.
 
 # Windows
 
-After I started teaching, I downloaded Microsoft's Visual Studio and began to play. I wrote an desktop app to help me organize and format my teaching material so I wouldn't have to reinvent the wheel for every new student.
+In later years , after I started teaching, I downloaded Microsoft's Visual Studio and began to play. I wrote an desktop app to help me organize and format my teaching material so I wouldn't have to reinvent the wheel for every new student.
 
 # Linux
 
