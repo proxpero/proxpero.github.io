@@ -5,7 +5,7 @@ title: About
 
 Hi! My name is Todd Olsen. I teach reading, writing, and arithmetic to kids (as well as history, science, and Latin). This is where I (rarely) blog about software development (usually Swift on Apple platforms). Thanks for stopping in!
 
-Here is a vague timeline of my personal programming history:
+Here is a vague computer-focused timeline myself (WIP):
 
 # The Atari
 
@@ -54,12 +54,22 @@ During the year of Linux on the Desktop, I assembled a pc from parts and started
 
 Driven to the brink of madness, I set the box on fire and purchased my first Mac. It was wonderful. I learned Cocoa and ported my app.
 
-# Mac
+# Learning
 
-One of the things I read on Joel Spolsky's blog was that I should read SICP. So I did. But I only did the exercises up through chapter two. Funnily enough, the things I best remember are from the first two chapters. Seriously, it is an amazing book. Well-written, well-organized.
+It turns out that getting a computer to do what you want it to do is relatively easy. The hard part is developing a system that can change.
 
-Anyway, I thought my app was amazing. I literally needed to do zero preparation beforehand for any student, but I could still deliver targeted homework assignments on the spot. Automation, for the win!
+One of the things I read on Joel Spolsky's blog was that I should read three books
+
+1. [Code: The Hidden Language of Computer Hardware and Software](https://www.amazon.com/Code-Language-Computer-Hardware-Software/dp/0735611319/ref=sr_1_2?ie=UTF8&qid=1488823221&sr=8-2&keywords=Code%3A): If you're ever thought about working through [NAND to Tetris](http://nand2tetris.org), I bet you would like this book.
+
+2. [The C Programming Language](https://www.amazon.com/Programming-Language-Brian-W-Kernighan/dp/0131103628/ref=sr_1_1?ie=UTF8&qid=1488823494&sr=8-1&keywords=k+and+r+c): A classic.
+
+3. [Structure and Interpretation of Computer Programs](http://sarabander.github.io/sicp/index.xhtml): I read SICP up through chapter 3 and did the exercises up through chapter two. Funnily enough, the things I best remember are from the first two chapters. Seriously, it is an amazing book. Well-written, well-organized. It assumes a certain fluency in math.
 
 Another important book for me was Robert Sedgewick's Algorithms. I also watched the Coursera videos and I highly recommend them.
+
+# Phosphorescent, LLC
+
+Anyway, I thought my app was amazing. I literally needed to do zero preparation beforehand for any student, but I could still deliver targeted homework assignments on the spot. Automation, for the win!
 
 I stopped developing it specifically for my company and started trying to make it a more general purpose tool that perhaps all teachers might find useful. It is still a work in progress. (Shipping is tough!)
