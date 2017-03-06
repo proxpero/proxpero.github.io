@@ -21,20 +21,26 @@ To play, you hooked up a TV, popped open the hood above the keyboard and inserte
 
 Reading and writing bits to magnetic tape a few millimeters wide? It was not robust. But I naturally assumed that the computer was listening to music, and that's what allowed it to know what to do.
 
+Another cool thing about the Atari is that it was really easy to open up and see what was going on inside. I remember opening an unresponsive joystick to see what was wrong and realizing that a contact had broken loose. I figured out a way to stabilize it and was back in action again. That's very rewarding.
+
 # Basic
 
-My dad dominated the high scores on all games, especially Pac Man. He wasn't [perfect](http://www.oxfordamerican.org/magazine/item/622-the-perfect-man), but he was in a different league from me. However, I was the only one in family who played with [BASIC](https://en.wikipedia.org/wiki/Atari_BASIC). My dad showed me this:
+My dad dominated the high scores on all games, especially Pac Man. He wasn't [perfect](http://www.oxfordamerican.org/magazine/item/622-the-perfect-man), but he was always in a different league from me. However, I was the only one in the family who played with [BASIC](https://en.wikipedia.org/wiki/Atari_BASIC). My dad showed me this:
 {% highlight BASIC %}
 10 PRINT "GOTO CONSIDERED AWESOME!"
 20 GOTO 10
 {% endhighlight %}
-And if you ever went to a Sears in the local mall where they sold personal computers and saw a screen filled with a single, repeated, lewd statement, then I may owe you an apology.
+And if you ever went to a Sears in the local mall where they sold personal computers and you saw some lewd statement repeating down the screen, then I may owe you an apology.
 
-I remember a fat 3-ring binder of information related to BASIC programming with listings in the back that I typed into the computer, but the most important software eduction I received in these early days came from [the Micro Adventure books](https://en.wikipedia.org/wiki/Micro_Adventure), which I drank like water.
+I remember a fat 3-ring binder of information related to BASIC programming with listings in the back that I typed into the computer, but the most important software eduction I received in these early days came from [the Micro Adventure book series](https://en.wikipedia.org/wiki/Micro_Adventure), which I drank like water.
 
 <a href="https://en.wikipedia.org/wiki/Micro_Adventure"><img src="https://upload.wikimedia.org/wikipedia/en/0/08/Micro_adventure_book_cover.jpg"/></a>
 
- The premise was that you were this elite hacker and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled, then you fired up your "micro" and typed in the program printed in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I learned two lessons. That you can create program to solve a problem and when you do that and it actually works, it is a tremendous rush. That there is an insuperable frustration involved in debugging programs.
+The premise was that you were this elite hacker, and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled, then you fired up your "micro" and typed in the program printed in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I learned two lessons. That you can create program to solve a problem and when you do that and it actually works, it is a tremendous rush. And that there is an insuperable frustration involved in debugging intractable programs.
+
+Besides these, I don't remember much else. I didn't get magazines with programs in the back and there was no internet. I loved these books but I didn't have the wit to research other similar things.
+
+The biggest original project I remember was basically a calculator that would read a math expression from the keyboard and display it in enormous type across the screen along with the answer. My dad was impressed and said I might be able to sell the program to a school. I couldn't if he was being serious.
 
 # College
 
@@ -44,13 +50,11 @@ We had a few of these over the course of my childhood. I think the first one jus
 
 To explain this, you must know that I was a late-blooming reader. Previously, I read nothing that was not required of me for school. Now I finally came to realize that really smart people had existed in the past and that they had preserved their knowledge in books! You could actually read what they thought! Who knew? Anyway, I was reading so much my grades were suffering. Long story short, I withdrew from college, withdrew my savings, and went on an extended road trip all around the country. I ended up in Olympia, Washington where I formed the obligatory rock band, and when that fizzled, I returned to college, an English major.
 
-# Windows
+# PC
 
-In later years , after I started teaching, I downloaded Microsoft's Visual Studio and began to play. I wrote an desktop app to help me organize and format my teaching material so I wouldn't have to reinvent the wheel for every new student.
+In later years, after I started teaching, I downloaded Microsoft's Visual Studio and began to play. I wrote an desktop app to help me organize and format my teaching material so I wouldn't have to reinvent the wheel for every new student.
 
-# Linux
-
-During the year of Linux on the Desktop, I assembled a pc from parts and started dual booting Windows and Ubuntu. (I needed to maintain my app.)
+During the year of Linux on the Desktop, I assembled a pc from parts and started dual booting Windows and Ubuntu. (I needed to use and maintain my Windows app.)
 
 Driven to the brink of madness, I set the box on fire and purchased my first Mac. It was wonderful. I learned Cocoa and ported my app.
 
@@ -58,15 +62,19 @@ Driven to the brink of madness, I set the box on fire and purchased my first Mac
 
 It turns out that getting a computer to do what you want it to do is relatively easy. The hard part is developing a system that can change.
 
-One of the things I read on Joel Spolsky's blog was that I should read three books
+One of the things I read on [Joel Spolsky](Another important book for me was Robert Sedgewick's Algorithms. I also watched the Coursera videos and I highly recommend them.)'s blog (back when it was active) was that I should read three books:
 
-1. [Code: The Hidden Language of Computer Hardware and Software](https://www.amazon.com/Code-Language-Computer-Hardware-Software/dp/0735611319/ref=sr_1_2?ie=UTF8&qid=1488823221&sr=8-2&keywords=Code%3A): If you're ever thought about working through [NAND to Tetris](http://nand2tetris.org), I bet you would like this book.
+#### [Code: The Hidden Language of Computer Hardware and Software](https://www.amazon.com/Code-Language-Computer-Hardware-Software/dp/0735611319/ref=sr_1_2?ie=UTF8&qid=1488823221&sr=8-2&keywords=Code%3A)
+If you're ever thought about working through [NAND to Tetris](http://nand2tetris.org), I bet you would like this book.
 
-2. [The C Programming Language](https://www.amazon.com/Programming-Language-Brian-W-Kernighan/dp/0131103628/ref=sr_1_1?ie=UTF8&qid=1488823494&sr=8-1&keywords=k+and+r+c): A classic.
+#### [The C Programming Language](https://www.amazon.com/Programming-Language-Brian-W-Kernighan/dp/0131103628/ref=sr_1_1?ie=UTF8&qid=1488823494&sr=8-1&keywords=k+and+r+c)
+A classic.
 
-3. [Structure and Interpretation of Computer Programs](http://sarabander.github.io/sicp/index.xhtml): I read SICP up through chapter 3 and did the exercises up through chapter two. Funnily enough, the things I best remember are from the first two chapters. Seriously, it is an amazing book. Well-written, well-organized. It assumes a certain fluency in math.
+#### [Structure and Interpretation of Computer Programs](http://sarabander.github.io/sicp/index.xhtml)
+This one's very good but alas I still haven't finished it. I read SICP up through chapter 3 and did the exercises up through chapter two. Funnily enough, the things I best remember are from the first two chapters. Seriously, it is an amazing book. Well-written, well-organized. It assumes a certain fluency in math.
 
-Another important book for me was Robert Sedgewick's Algorithms. I also watched the Coursera videos and I highly recommend them.
+#### [Robert Sedgewick's Algorithms](http://algs4.cs.princeton.edu/home/)
+Another important book for me was . I also watched the Coursera videos and I highly recommend them.
 
 # Phosphorescent, LLC
 
