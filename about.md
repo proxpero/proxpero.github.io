@@ -7,7 +7,7 @@ Hi! My name is Todd Olsen. I teach reading, writing, and arithmetic to kids (as 
 
 Here is a vague timeline of my personal programming history:
 
-## The Atari
+# The Atari
 
 <a data-flickr-embed="true"  href="https://www.flickr.com/photos/unloveable/2388501732/in/photolist-4D4Gmm-a4xs9t-9ExALD-JGiegp-xNBmbc-4ckqTt" title="Atari 400"><img src="https://c2.staticflickr.com/4/3005/2388501732_7819e995d3_z.jpg?zz&#x3D;1" width="640" height="481" alt="Atari 400"></a>
 
@@ -21,7 +21,7 @@ To play, you hooked up a TV, popped open the hood above the keyboard and inserte
 
 Reading and writing bits to magnetic tape a few millimeters wide? It was not robust. But I naturally assumed that the computer was listening to music, and that's what allowed it to know what to do.
 
-## Basic
+# Basic
 
 My dad dominated the high scores on all games, especially Pac Man. He wasn't [perfect](http://www.oxfordamerican.org/magazine/item/622-the-perfect-man), but he was in a different league from me. However, I was the only one in family who played with [BASIC](https://en.wikipedia.org/wiki/Atari_BASIC). My dad showed me this:
 {% highlight BASIC %}
@@ -36,17 +36,23 @@ I remember a fat 3-ring binder of information related to BASIC programming with 
 
  The premise was that you were this elite hacker and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled, then you fired up your "micro" and typed in the program printed in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I learned two lessons. That you can create program to solve a problem and when you do that and it actually works, it is a tremendous rush. That there is an insuperable frustration involved in debugging programs.
 
-## IBM Compatible
+# IBM Compatible
 
 My dad, "for work", brought home a great big beige monstrosity. This was [after the Mac](https://youtu.be/2B-XwPjn9YY?t=23) but before Windows became ubiquitous. When you switched it on, a DOS prompt would appear and from there you could launch [Word Perfect](https://en.wikipedia.org/wiki/WordPerfect#WordPerfect_for_DOS) or [Lotus 1-2-3](https://en.wikipedia.org/wiki/Lotus_1-2-3#DOS).
 
 and if you typed "win", then Windows would launch. When you switched it off, it would cut the power regardless of what you might have been doing. We had a few versions of this thing, one of which I took with me to college and made "internet friends" on the Tom Waits usenet newsgroup. At one point I took a C class.
 
+# Windows
+
 After I started teaching, I downloaded Microsoft's Visual Studio and began to play. I wrote an desktop app to help me organize and format my teaching material so I wouldn't have to reinvent the wheel for every new student.
+
+# Linux
 
 During the year of Linux on the Desktop, I assembled a pc from parts and started dual booting Windows and Ubuntu. (I needed to maintain my app.)
 
 Driven to the brink of madness, I set the box on fire and purchased my first Mac. It was wonderful. I learned Cocoa and ported my app.
+
+# Mac
 
 One of the things I read on Joel Spolsky's blog was that I should read SICP. So I did. But I only did the exercises up through chapter two. Funnily enough, the things I best remember are from the first two chapters. Seriously, it is an amazing book. Well-written, well-organized.
 
