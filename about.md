@@ -23,7 +23,7 @@ Reading and writing bits to magnetic tape a few millimeters wide? It was not rob
 
 Another cool thing about the Atari is that it was really easy to open up and see what was going on inside. I remember opening an unresponsive joystick to see what was wrong and realizing that a contact had broken loose. I figured out a way to stabilize it and was back in action again. That's very rewarding.
 
-# Basic
+# BASIC
 
 My dad dominated the high scores on all games, especially Pac Man. He wasn't [perfect](http://www.oxfordamerican.org/magazine/item/622-the-perfect-man), but he was always in a different league from me. However, I was the only one in the family who played with [BASIC](https://en.wikipedia.org/wiki/Atari_BASIC). My dad showed me this:
 {% highlight BASIC %}
@@ -32,15 +32,15 @@ My dad dominated the high scores on all games, especially Pac Man. He wasn't [pe
 {% endhighlight %}
 And if you ever went to a Sears in the local mall where they sold personal computers and you saw some lewd statement repeating down the screen, then I may owe you an apology.
 
-I remember a fat 3-ring binder of information related to BASIC programming with listings in the back that I typed into the computer, but the most important software eduction I received in these early days came from [the Micro Adventure book series](https://en.wikipedia.org/wiki/Micro_Adventure), which I drank like water.
+I remember a fat 3-ring binder of information related to BASIC programming with listings in the back that I typed into the computer, but the most profound early education in software development I received as a kid came from [the Micro Adventure book series](https://en.wikipedia.org/wiki/Micro_Adventure), which I drank like water.
 
 <a href="https://en.wikipedia.org/wiki/Micro_Adventure"><img src="https://upload.wikimedia.org/wikipedia/en/0/08/Micro_adventure_book_cover.jpg"/></a>
 
-The premise was that you were this elite hacker, and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled, then you fired up your "micro" and typed in the program printed in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I learned two lessons. That you can create program to solve a problem and when you do that and it actually works, it is a tremendous rush. And that there is an insuperable frustration involved in debugging intractable programs.
+The premise was that you were this elite hacker, and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled remotely, then you fired up your "micro" and typed in the program printed right there in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I learned big two lessons. That you can create program to solve a problem and when you do that and it actually works, it is a tremendous rush. And that there is an insuperable frustration involved in debugging intractable programs.
 
 Besides these, I don't remember much else. I didn't get magazines with programs in the back and there was no internet. I loved these books but I didn't have the wit to research other similar things.
 
-The biggest original project I remember was basically a calculator that would read a math expression from the keyboard and display it in enormous type across the screen along with the answer. My dad was impressed and said I might be able to sell the program to a school. I couldn't if he was being serious.
+The biggest original project I remember was basically a calculator that would read a math expression from the keyboard and display it in enormous type across the screen along with the answer. My dad was impressed and said I might be able to sell the program to a school. I couldn't tell if he was being serious.
 
 # College
 
