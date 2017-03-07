@@ -52,11 +52,11 @@ To explain this, you must know that I was a late-blooming reader. Previously, I 
 
 # PC
 
-In later years, after I started teaching, I downloaded Microsoft's Visual Studio and began to play. I wrote an desktop app to help me organize and format my teaching material so I wouldn't have to reinvent the wheel for every new student.
+In later years, after I started teaching, I downloaded Microsoft's Visual Studio and began to play. I wrote an desktop app (it began as a suite of tools that all shared the same database) to help me organize and format my teaching material so I wouldn't have to reinvent the wheel for every new student.
 
 During the year of Linux on the Desktop, I assembled a pc from parts and started dual booting Windows and Ubuntu. (I needed to use and maintain my Windows app.)
 
-Driven to the brink of madness, I set the box on fire and purchased my first Mac. It was wonderful. I learned Cocoa and ported my app.
+Driven to the brink of madness, I set the box on fire and purchased [my first Mac](http://www.everymac.com/systems/apple/imac/specs/imac-core-2-extreme-2.8-24-inch-aluminum-specs.html). It was wonderful. I learned [Cocoa](https://en.wikipedia.org/wiki/Cocoa_(API)) and ported my app.
 
 # Learning
 
@@ -74,10 +74,10 @@ A classic.
 This one's very good but alas I still haven't finished it. I read SICP up through chapter 3 and did the exercises up through chapter two. Funnily enough, the things I best remember are from the first two chapters. Seriously, it is an amazing book. Well-written, well-organized. It assumes a certain fluency in math.
 
 #### [Robert Sedgewick's Algorithms](http://algs4.cs.princeton.edu/home/)
-Another important book for me was . I also watched the Coursera videos and I highly recommend them.
+I don't know how people can understand what algorithms are doing without seeing with their eyes how they behave at each step. Explaining a complex process in a way that is technically correct is only half the battle, reducing it to clear English and simple visualizations is hard part. Don't miss the free [Coursera](https://www.coursera.org/learn/algorithms-part1) videos, I highly recommend them.
 
 # Phosphorescent, LLC
 
-Anyway, I thought my app was amazing. I literally needed to do zero preparation beforehand for any student, but I could still deliver targeted homework assignments on the spot. Automation, for the win!
+Anyway, I had made an app and I thought it was amazing. I literally needed to do zero preparation beforehand for any student, but I could still deliver targeted homework assignments on the spot. Automation, for the win!
 
 I stopped developing it specifically for my company and started trying to make it a more general purpose tool that perhaps all teachers might find useful. It is still a work in progress. (Shipping is tough!)
