@@ -2,13 +2,13 @@
   blog-post:
   app-store:
   github: https://github.com/proxpero/Winchester/tree/master/Endgame
-  summary: A chess framework
+  summary: A chess framework written in Swift 3.
 
 - name: Winchester
   blog-post:
   app-store: https://itunes.apple.com/us/app/winchester/id1183395501?ls=1&mt=8
   github: https://github.com/proxpero/Winchester
-  summary: An iMessage chess app.
+  summary: An iMessage chess app that uses my chess framework `Endgame`.
 
 - name: Tap Tac Toe
   blog-post:
@@ -26,16 +26,16 @@
   blog-post:
   app-store:
   github: https://github.com/proxpero/Aurelius
-  summary: A cross-platform CommonMark+MathJax editor
+  summary: A cross-platform CommonMark+MathJax editor.
 
-- name: Arbor
-  blog-post:
-  app-store:
-  github: https://github.com/proxpero/Arbor
-  summary:
+# - name: Arbor
+#   blog-post:
+#   app-store:
+#   github: https://github.com/proxpero/Arbor
+#   summary:
 
-- name: Advent of Code
-  blog-post: /aoc/
-  app-store:
-  github:
-  summary: Solutions to Advent of Code in Swift.
+# - name: Advent of Code
+#   blog-post: /aoc/
+#   app-store:
+#   github:
+#   summary: Solutions to Advent of Code in Swift.
