@@ -1,7 +1,7 @@
 - name: Endgame
   blog-post:
   app-store:
-  github: https://github.com/proxpero/Winchester/tree/master/Endgame
+  github: https://github.com/proxpero/Endgame
   summary: A chess framework written in Swift 3.
 
 - name: Winchester
