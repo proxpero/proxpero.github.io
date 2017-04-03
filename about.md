@@ -75,9 +75,3 @@ This one's very good but alas I still haven't finished it. I read SICP up throug
 
 #### [Robert Sedgewick's Algorithms](http://algs4.cs.princeton.edu/home/)
 I don't know how people can understand what algorithms are doing without seeing with their eyes how they behave at each step. Explaining a complex process in a way that is technically correct is only half the battle, reducing it to clear English and simple visualizations is hard part. Don't miss the free [Coursera](https://www.coursera.org/learn/algorithms-part1) videos, I highly recommend them.
-
-# Phosphorescent, LLC
-
-Anyway, I had made an app and I thought it was amazing. I literally needed to do zero preparation beforehand for any student, but I could still deliver targeted homework assignments on the spot. Automation, for the win!
-
-I stopped developing it specifically for my company and started trying to make it a more general purpose tool that perhaps all teachers might find useful. It is still a work in progress. (Shipping is tough!)
