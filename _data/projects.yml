@@ -40,11 +40,11 @@
   github: https://github.com/proxpero/Pseudoku/tree/master/Engine
   summary: A sudoku solver.
 
-- name: Aurelius/Telescope
-  blog-post:
-  app-store:
-  github: https://github.com/proxpero/Aurelius
-  summary: A cross-platform CommonMark+MathJax editor.
+# - name: Aurelius/Telescope
+#   blog-post:
+#   app-store:
+#   github: https://github.com/proxpero/Aurelius
+#   summary: A cross-platform CommonMark+MathJax editor.
 
 # - name: Arbor
 #   blog-post:
