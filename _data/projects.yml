@@ -16,6 +16,18 @@
   github: https://github.com/proxpero/Hilbert
   summary: A mulit-page playground where a C program to generate a Hilbert curve is successively made more Swifty.
 
+- name: Roman Numerals
+  blog-post:
+  app-store:
+  github: https://github.com/proxpero/RomanNumerals
+  summary: A playground showing how to map Roman numerals to decimals, including adding functionality to perform math on Roman numerals.
+
+- name: MD5
+  blog-post: http://proxpero.com/2017/02/14/an-implementation-of-md5/
+  app-store:
+  github: https://gist.github.com/proxpero/c5aedb64f19f0d4c9ae63b8eee1a1b3e
+  summary: A playground showing how to map Roman numerals to decimals, including adding functionality to perform math on Roman numerals.
+
 - name: Tap Tac Toe
   blog-post:
   app-store: https://itunes.apple.com/us/app/tap-tac-toe/id1186370089?ls=1&mt=8
