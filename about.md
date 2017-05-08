@@ -5,15 +5,20 @@ title: About
 
 Hi! My name is Todd Olsen. I am a software developer at a very small teaching company. I created a suite of internal tools with three goals in mind.
 
-1. Computers are bad at teaching, people learn best from talking to other human beings and trying things out on their own. Our applications help teachers minimize the work they have to do that is not teaching. It helps them create and organize material, track and grade assignments to individual students, and track the progress individual students are making and identify holes and weaknesses.
+##### Teachers
+Computers are bad at teaching, people learn best from talking to other human beings and trying things out on their own. Our applications help teachers minimize the work they have to do that is not teaching. It helps them create and organize material, track and grade assignments to individual students, and track the progress individual students are making and identify holes and weaknesses.
 
-2. Learning is hard enough. Parsing the extraneous details of a homework assignment should not be part of the test. We have tried to bring an Apple-like user experience to homework. This includes beautiful typography, clarity and rationality of organization, and a reduction of ambiguity in the wording of assignments, the drawing of charts and images, and the appearance of equations.
+##### Students
 
-3. Parents worry. Anxiety can be an obstacle to the teaching and learning process. Parents want to know that the right decisions are being made. We give parents high-level feedback that helps them understand the decisions teachers are making and makes it easier for teachers to explain what they can do at home to help their children succeed.
+Learning is hard enough. Parsing the extraneous details of a homework assignment should not be part of the test. We have tried to bring an Apple-like user experience to homework. This includes beautiful typography, clarity and rationality of organization, and a reduction of ambiguity in the wording of assignments, the drawing of charts and images, and the appearance of equations.
+
+##### Parents
+
+Parents worry. Anxiety can be an obstacle to the teaching and learning process. Parents want to know that the right decisions are being made. We give parents high-level feedback that helps them understand the decisions teachers are making and makes it easier for teachers to explain what they can do at home to help their children succeed.
 
 This is where I (rarely) blog about software development (usually Swift on Apple platforms). Thanks for stopping in!
 
-Here is a vague computer-focused timeline myself (WIP):
+<!-- Here is a vague computer-focused timeline myself (WIP):
 
 # The Atari
 
@@ -51,7 +56,7 @@ Besides these, I don't remember much else. I didn't get magazines with programs 
 The biggest original project I remember was basically a calculator that would read a math expression from the keyboard and display it in enormous type across the screen along with the answer. My dad was impressed and said I might be able to sell the program to a school. I couldn't tell if he was being serious.
 
 
-### To be continued...
+### To be continued... -->
 
 <!-- # College
 
