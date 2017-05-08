@@ -3,7 +3,9 @@ layout: page
 title: About
 ---
 
-Hi! My name is Todd Olsen. I teach reading, writing, and arithmetic to kids (as well as history, science, and Latin). This is where I (rarely) blog about software development (usually Swift on Apple platforms). Thanks for stopping in!
+Hi! My name is Todd Olsen. I am a software developer at a very small teaching company, where I write programs to (1) make it easier for teachers to teach, (2) students to learn, and (3) parents to understand what's going on. I was a teacher myself and I built the software that I wanted to have. I taught reading, writing, and arithmetic to kids (as well as history, science, and Latin).
+
+ This is where I (rarely) blog about software development (usually Swift on Apple platforms). Thanks for stopping in!
 
 Here is a vague computer-focused timeline myself (WIP):
 
@@ -32,13 +34,13 @@ My dad dominated the high scores on all games, especially Pac Man. He wasn't [pe
 {% endhighlight %}
 And if you ever went to a Sears in the local mall where they sold personal computers and you saw some lewd statement repeating down the screen, then I may owe you an apology.
 
-I remember a fat 3-ring binder of information related to BASIC programming with listings in the back that I typed into the computer, but the most profound early education in software development I received as a kid came from [the Micro Adventure book series](https://en.wikipedia.org/wiki/Micro_Adventure), which I drank like water.
+I remember a fat 3-ring binder of information related to BASIC programming with listings in the back that I typed into the computer, but the most profound early education in software development I received as a kid came from [the Micro Adventure book series](https://en.wikipedia.org/wiki/Micro_Adventure). I was not yet a great reader of books, but I drank these like water.
 
 <a href="https://en.wikipedia.org/wiki/Micro_Adventure"><img src="https://upload.wikimedia.org/wikipedia/en/0/08/Micro_adventure_book_cover.jpg"/></a>
 
 The premise was that you were this elite hacker, and as part of a small team you stopped evil thugs from destroying the world. When the plot called for a message to be decoded or a robot gun to be controlled remotely, then you fired up your "micro" and typed in the program printed right there in the text, thus saving the day. [Wikipedia](https://en.wikipedia.org/wiki/Micro_Adventure) agrees that the programs were awesome. I learned big two lessons. That you can create program to solve a problem and when you do that and it actually works, it is a tremendous rush. And that there is an insuperable frustration involved in debugging intractable programs.
 
-Besides these, I don't remember much else. I didn't get magazines with programs in the back and there was no internet. I loved these books but I didn't have the wit to research other similar things.
+Besides these, I don't remember much else. I didn't get magazines with programs in the back and there was no internet. I loved these books but I didn't have the wit to research other similar resources.
 
 The biggest original project I remember was basically a calculator that would read a math expression from the keyboard and display it in enormous type across the screen along with the answer. My dad was impressed and said I might be able to sell the program to a school. I couldn't tell if he was being serious.
 
