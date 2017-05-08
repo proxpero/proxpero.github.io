@@ -13,4 +13,6 @@ Like many other fractals, the [Hilbert curve](https://en.wikipedia.org/wiki/Hilb
 - Numberphile: [Space-filling Curves](https://www.youtube.com/watch?v=x-DgL49CFlM)
 - Vi Hart: [Squiggle Inception](https://www.youtube.com/watch?v=ik2CZqsAw28)
 
+On the [wikipedia page](https://en.wikipedia.org/wiki/Hilbert_curve)
+
 ## The Numbers

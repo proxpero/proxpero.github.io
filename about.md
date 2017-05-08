@@ -3,9 +3,12 @@ layout: page
 title: About
 ---
 
-Hi! My name is Todd Olsen. I am a software developer at a very small teaching company, where I write programs to (1) make it easier for teachers to teach, (2) students to learn, and (3) parents to understand what's going on. I was a teacher myself and I built the software that I wanted to have. I taught reading, writing, and arithmetic to kids (as well as history, science, and Latin).
+Hi! My name is Todd Olsen. I am a software developer at a very small teaching company. I created a suite of internal tools with three goals in mind.
+1. Computers are bad at teaching, people learn best from talking to other human beings and trying things out on their own. Our applications help teachers minimize the work they have to do that is not teaching. It helps them create and organize material, track and grade assignments to individual students, and track the progress individual students are making and identify holes and weaknesses.
+2. Learning is hard enough. Parsing the extraneous details of a homework assignment should not be part of the test. We have tried to bring an Apple-like user experience to homework. This includes beautiful typography, clarity and rationality of organization, and a reduction of ambiguity in the wording of assignments, the drawing of charts and images, and the appearance of equations.
+3. Parents worry. Anxiety can be an obstacle to the teaching and learning process. Parents want to know that the right decisions are being made. We give parents high-level feedback that helps them understand the decisions teachers are making and makes it easier for teachers to explain what they can do at home to help their children succeed.
 
- This is where I (rarely) blog about software development (usually Swift on Apple platforms). Thanks for stopping in!
+This is where I (rarely) blog about software development (usually Swift on Apple platforms). Thanks for stopping in!
 
 Here is a vague computer-focused timeline myself (WIP):
 
