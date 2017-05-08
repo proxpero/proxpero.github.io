@@ -42,7 +42,10 @@ Besides these, I don't remember much else. I didn't get magazines with programs 
 
 The biggest original project I remember was basically a calculator that would read a math expression from the keyboard and display it in enormous type across the screen along with the answer. My dad was impressed and said I might be able to sell the program to a school. I couldn't tell if he was being serious.
 
-# College
+
+### To be continued...
+
+<!-- # College
 
 Later, my dad, "for work", brought home a great big beige monstrosity. This was [after the Mac](https://youtu.be/2B-XwPjn9YY?t=23) but before Windows became ubiquitous. When you switched it on, a DOS prompt would appear and from there you could launch [Word Perfect](https://en.wikipedia.org/wiki/WordPerfect#WordPerfect_for_DOS) or [Lotus 1-2-3](https://en.wikipedia.org/wiki/Lotus_1-2-3#DOS).
 
@@ -74,4 +77,4 @@ A classic.
 This one's very good but alas I still haven't finished it. I read SICP up through chapter 3 and did the exercises up through chapter two. Funnily enough, the things I best remember are from the first two chapters. Seriously, it is an amazing book. Well-written, well-organized. It assumes a certain fluency in math.
 
 #### [Robert Sedgewick's Algorithms](http://algs4.cs.princeton.edu/home/)
-I don't know how people can understand what algorithms are doing without seeing with their eyes how they behave at each step. Explaining a complex process in a way that is technically correct is only half the battle, reducing it to clear English and simple visualizations is hard part. Don't miss the free [Coursera](https://www.coursera.org/learn/algorithms-part1) videos, I highly recommend them.
+I don't know how people can understand what algorithms are doing without seeing with their eyes how they behave at each step. Explaining a complex process in a way that is technically correct is only half the battle, reducing it to clear English and simple visualizations is hard part. Don't miss the free [Coursera](https://www.coursera.org/learn/algorithms-part1) videos, I highly recommend them. -->
