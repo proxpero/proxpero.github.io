@@ -19,7 +19,7 @@ To play, you hooked up a TV, popped open the hood above the keyboard and inserte
 
 <a title="By Bilby (Own work) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3AAtari_410.jpg"><img width="500" alt="Atari 410" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Atari_410.jpg/512px-Atari_410.jpg"/></a>
 
-Reading and writing bits to magnetic tape a few millimeters wide? It was not robust. But I naturally assumed that the computer was listening to music, and that's what allowed it to know what to do.
+Reading and writing bits to magnetic tape a few millimeters wide? It was not robust. And if you stick a mixtape of awesome eighties pop songs in there, it does not load a proportionally awesome video game. My young brain was not robust either, but it was worth a try.
 
 Another cool thing about the Atari is that it was really easy to open up and see what was going on inside. I remember opening an unresponsive joystick to see what was wrong and realizing that a contact had broken loose. I figured out a way to stabilize it and was back in action again. That's very rewarding.
 
