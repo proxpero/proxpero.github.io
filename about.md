@@ -23,7 +23,7 @@ If you're here, you might like to read some of these other people as well.
 - [Brent Simmons](http://inessential.com)
 - [Jesse Squires](http://www.jessesquires.com)
 - [Mike Ash](https://www.mikeash.com/pyblog/)
-
+- [Rob Napier](http://robnapier.net)
 <!--
 I am a software developer at a very small teaching company. I created a suite of internal tools with three goals in mind.
 
