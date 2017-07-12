@@ -14,7 +14,7 @@ toc:
     link: /#but-does-it-scale
 tags: Swift Codable
 ---
-One way to allow a custom enumeration with associated values to conform to the `Codable` protocol is to represent it in a struct which *is* `Codable`. I'm going to show how to do this step-by-step, using the `Barcode` example from [the Enumeration section](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145) of the [Swift Programming book](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/). I won't make the joke how you should stop reading this to go read that and I'll wait for you, I'm assuming you've already done it. Surely you've also read about (the `Codable` protocol)[https://developer.apple.com/documentation/swift/encoding_decoding_and_serialization] as well.
+One way to allow a custom enumeration with associated values to conform to the `Codable` protocol is to represent it in a struct which *is* `Codable`. I'm going to show how to do this step-by-step, using the `Barcode` example from [the Enumeration section](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145) of the [Swift Programming book](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/). I won't make the joke how you should stop reading this to go read that and I'll wait for you, I'm assuming you've already done it. Surely you've also read about [the `Codable` protocol](https://developer.apple.com/documentation/swift/encoding_decoding_and_serialization) as well.
 
 Some `enum`s come prepopulated with raw values, like for example this one in which each planet is assigned an `Int` value.
 {% highlight swift %}
@@ -206,4 +206,4 @@ Perhaps future versions of Swift with more robust reflection abilities will make
 
 ## Conclusion
 
-I'm pretty happy with Apple's (solution)[https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md] to the problem of archiving Swift value types. The fact that it doesn't just work in every case is not at reason not to use it. Some assembly is required. This may change. For now, using a lightweight, intermediate type as a way station between here and there helps keep the transition readable and safe.
+I'm pretty happy with Apple's [solution](https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md) to the problem of archiving Swift value types. The fact that it doesn't just work in every case is not at reason not to use it. Some assembly is required. This may change. For now, using a lightweight, intermediate type as a way station between here and there helps keep the transition readable and safe.
