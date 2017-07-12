@@ -60,6 +60,16 @@ h1.post-title {
   color: $body-color;
 }
 
+.post-content ol {
+  margin-left: 2.5rem;
+  list-style: decimal;
+}
+
+.post-content ul {
+  margin-left: 2.5rem;
+  list-style: disc;
+}
+
 .post-title a {
   color: #4C7A99;
 }
