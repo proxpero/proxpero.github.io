@@ -3,7 +3,29 @@ layout: page
 title: About
 ---
 
-Hi! My name is Todd Olsen. I am a software developer at a very small teaching company. I created a suite of internal tools with three goals in mind.
+Hi! My name is Todd Olsen.
+
+This is where I (rarely) blog about software development (usually Swift on Apple platforms).
+
+If you're here, you might like to read some of these other people as well.
+
+- [Swift Talk](https://talk.objc.io)
+- [Soroush Khanlou](https://khanlou.com)
+- [Brandon Williams](http://www.fewbutripe.com)
+- [Ole Begemann](https://oleb.net/blog/)
+- [John Sundell](https://www.swiftbysundell.com)
+- [Matt Gallagher](http://www.cocoawithlove.com)
+- [Erica Sadun](http://ericasadun.com)
+- [Ben Sandofsky](https://sandofsky.com)
+- [Keith Harrison](https://useyourloaf.com)
+- [Russ Bishop](http://www.russbishop.net)
+- [Chris Eidhof](http://chris.eidhof.nl)
+- [Brent Simmons](http://inessential.com)
+- [Jesse Squires](http://www.jessesquires.com)
+- [Mike Ash](https://www.mikeash.com/pyblog/)
+
+<!--
+I am a software developer at a very small teaching company. I created a suite of internal tools with three goals in mind.
 
 ##### Teachers
 Computers are bad at teaching, people learn best from talking to other human beings and trying things out on their own. Our applications help teachers minimize the work they have to do that is not teaching. It helps them create and organize material, track and grade assignments to individual students, and track the progress individual students are making and identify holes and weaknesses.
@@ -16,9 +38,8 @@ Learning is hard enough. Parsing the extraneous details of a homework assignment
 
 Parents worry. Anxiety can be an obstacle to the teaching and learning process. Parents want to know that the right decisions are being made. We give parents high-level feedback that helps them understand the decisions teachers are making and makes it easier for teachers to explain what they can do at home to help their children succeed.
 
-This is where I (rarely) blog about software development (usually Swift on Apple platforms). Thanks for stopping in!
+Here is a vague computer-focused timeline myself (WIP):
 
-<!-- Here is a vague computer-focused timeline myself (WIP):
 
 # The Atari
 

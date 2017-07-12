@@ -198,7 +198,7 @@ assert(json == expectation)
 assert(result == productBarcode)
 {% endhighlight %}
 
-**Protip**: Don't use pretty-printing for testing. Also, since we haven't actually implemented `Equatable` on our `Barcode`, we can't actually use the `==` operator. I'm fine with that, but *you* should [confirm the truth](https://gist.github.com/proxpero/189a723fb96bb88fac5bf9e11d6cf9e2) with your own eyes.
+> **Protip**: We try to be aesthetic and all here on proxpero.com. But seriously, don't use pretty-printing for testing JSON equality. Also, until `Equatable` is actually implemented on `Barcode`, the `==` operator is not going to work. I'm going to leave that as an exercise for you.
 
 ## But Does It Scale?
 
