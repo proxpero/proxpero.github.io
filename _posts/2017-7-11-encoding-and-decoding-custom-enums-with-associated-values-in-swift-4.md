@@ -194,7 +194,7 @@ assert(json == expectation)
 assert(result == productBarcode)
 {% endhighlight %}
 
-Protip: Don't use pretty-printing for testing. Also, since we haven't actually implemented `Equatable` on our `Barcode`, we can't actually use the `==` operator. Rest assured however that they are in fact the same.
+**Protip**: Don't use pretty-printing for testing. Also, since we haven't actually implemented `Equatable` on our `Barcode`, we can't actually use the `==` operator. I'm fine with that, but *you* should confirm the truth with your own eyes.
 
 ## But Does It Scale?
 
@@ -206,4 +206,4 @@ Perhaps future versions of Swift with more robust reflection abilities will make
 
 ## Conclusion
 
-I'm pretty happy with Apple's [solution](https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md) to the problem of archiving Swift value types. The fact that it doesn't just work in every case is not at reason not to use it. Some assembly is required. This may change. For now, using a lightweight, intermediate type as a way station between here and there helps keep the transition readable and safe.
+I'm pretty happy with Apple's [solution](https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md) to the problem of archiving Swift value types. The fact that it doesn't just work in every case is not at reason not to use it. Some assembly is required. This may change. For now, using a lightweight, private **intermediate type** as a way station between a pristine Swift type and its stringly-typed JSON counterpart helps keep the transition readable and safe.
