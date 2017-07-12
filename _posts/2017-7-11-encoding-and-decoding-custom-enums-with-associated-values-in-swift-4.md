@@ -58,7 +58,7 @@ extension Barcode {
 {% endhighlight %}
 But this doesn't quite work. The point of the intermediate type is to create a representation of `Barcode` which is `Codable`, but the type of `upc` is `(Int, Int, Int, Int)` which is a tuple and tuples are not `Codable`.
 
-One workaround for this is to represent the tuple as an `Array<Int>` since collections of `Codable` types are themselves `Codable` ([tuples are not collections](https://stackoverflow.com/questions/34847699/why-isnt-a-swift-tuple-considered-a-collection-type#34848318), nor should they be), but I'm going to create another, separate intermediate type for `(Int, Int, Int, Int)`: a struct with four `Int` properties to represent each `Int` of the `upc` value, and *then* we'll be back in business.
+One workaround for this is to represent the tuple as an `Array<Int>` since collections of `Codable` types are themselves `Codable` ([tuples are not collections](https://stackoverflow.com/questions/34847699/why-isnt-a-swift-tuple-considered-a-collection-type#34848318), nor should they be), but I'm going to create another, separate intermediate type to represent `(Int, Int, Int, Int)`: a struct with four `Int` properties to represent each `Int` of the `upc` value, and *then* we'll be back in business.
 {% highlight swift %}
 extension Barcode {
     fileprivate struct Coding: Codable {
@@ -76,9 +76,9 @@ extension Barcode {
 
 At this point, our intermediate `Barcode.Coding` type is officially `Codable`, since its properties are all `Codable`. But we're not quite done. We have a `Codable` representation of our original type, now we need methods to convert one into the other: a function to *encode* a `Barcode` instance into a `Barcode.Coding` instance and a function to *decode* a `Barcode.Coding` instance into a `Barcode`.
 
-To do this requires one more tweak to our intermediate type. If there's one thing an enumeration is good at, it's this: An instance is one case *or* another, but *never* both. We ought to include this feature, insofar as we can, in our `Barcode.Coding` type, since we're trying to represent an enum. The natural way to do this is to have its properties be optional so that when a `Barcode` instance is a `.upc`, then the `qrCode` property of its `Barcode.Coding` struct can be `nil`, and vice versa.
+To do this requires one more tweak to our intermediate type. If there's one thing an enumeration is good at, it's this: An instance is one case *or* another, but *never* both, guaranteed. We ought to include this feature, insofar as we can, in our `Barcode.Coding` type, since we're trying to represent an enum. The natural way to do this is to have its properties be optional so that when a `Barcode` instance is a `.upc`, then the `qrCode` property of its `Barcode.Coding` struct can be `nil`, and vice versa.
 
-We'll write an explicit `init` method in the body of the struct (not in an extension because we want to replace the memberwise initializer in order to narrow the ways this struct can be created) and this `init` method will guarantee that exactly one of the properties can ever receive a value and all other properties will remain `nil`. This guarantee will provided by switching on an enum.
+We'll write an explicit `init` method in the body of the struct (not in an extension because we want to replace the memberwise initializer in order to narrow the ways this struct can be created) and this `init` method will guarantee that exactly one of the properties can ever receive a value and all other properties will remain `nil`. This guarantee will be provided by switching on the original enum.
 
 {% highlight swift %}
 extension Barcode {
@@ -103,7 +103,7 @@ extension Barcode {
 }
 {% endhighlight %}
 
-We now have the ability to convert a `Barcode` to a `Barcode.Coding` type which is `Codabe`, we now need implement the conversion in the other direction. We just need a method on `Barcode.Coding` that returns a `Barcode`. We'll make it `throw` for reasons that will become clear in a moment.
+We now have the ability to convert a `Barcode` to a `Barcode.Coding` type which is `Codable`, we now need implement the conversion in the other direction. We just need a method on `Barcode.Coding` that returns a `Barcode`. We'll make it `throw` for reasons that will become clear in a moment.
 {% highlight swift %}
 fileprivate func barcode() throws -> Barcode {
     /// TODO: provide logic.
@@ -125,7 +125,7 @@ fileprivate func barcode() throws -> Barcode {
 
 ## <code>Barcode: Codable</code>
 
-After all that work, we're finally ready to write the code that will conform our `Barcode` type to `Codable`. One, we need to implement two methods, one each for `Encodable` and `Decodable`, and two, we need to explicitly declare conformance.
+After all that work, we're finally ready to write the code that will conform our `Barcode` type to `Codable`. First, we only need to implement two methods, one each for `Encodable` and `Decodable`, and second, we need to explicitly declare conformance.
 {% highlight swift %}
 extension Barcode: Codable {
     init(from decoder: Decoder) throws {
@@ -202,7 +202,7 @@ assert(result == productBarcode)
 
 ## But Does It Scale?
 
-Even with only two cases, this was not a trivial amount of code. It's not difficult; in fact, it's very like boilerplate. With larger numbers of cases, writing all the tedious code required to get an enumeration with associated values to be `Codable` will cause you to ask the question: What am I getting for this work?
+Even with only two cases, this was not a trivial amount of code. It's not difficult; in fact, it's very like boilerplate. With larger numbers of cases, writing all the tedious code required to get an enumeration with associated values to be `Codable` will make you ask yourself: What am I getting for this work?
 
 For one thing, it is likely that not all of your project's types are enums with associated values. Many will easily conform to `Codable` and you will want all your types to conform if you want any of them to. And you probably do want them to, since (1) it is in your long term interest to adopt fundamental Apple technologies in your Apple platform projects. And (2) I think Apple has  done a good job with this protocol and it is worthy to become widely adopted.
 
@@ -210,7 +210,7 @@ Perhaps future versions of Swift with more robust reflection abilities will make
 
 ## Conclusion
 
-I'm pretty happy with Apple's solution to the problem of archiving Swift value types. The fact that it doesn't just work in every case is not at reason not to use it. Some assembly is required. This may change. For now, using a lightweight, private **intermediate type** as a way station between a pristine Swift type and its stringly-typed JSON counterpart helps keep the transition readable and safe.
+I'm pretty happy with Apple's solution to the problem of archiving Swift value types. The fact that it doesn't just work in every case is not a reason not to use it. Some assembly is required. This may change. For now, using a lightweight, private **intermediate type** as a way station between a pristine Swift type and its stringly-typed JSON counterpart helps keep the transition readable and safe.
 
 ## References
 
