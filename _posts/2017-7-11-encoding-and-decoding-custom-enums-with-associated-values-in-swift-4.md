@@ -26,7 +26,7 @@ enum Planet: Int {
     case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, neptune
 }
 {% endhighlight %}
-In this case, archiving the enum instance is as easy as archiving an integer. But what about those enum types which have associated values?
+In this case, archiving the enum instance is as easy as archiving an integer. But what about those enum types with associated values?
 
 {% include toc.html %}
 
@@ -41,13 +41,13 @@ enum Barcode {
 }
 {% endhighlight %}
 
-This enum however contains more information than can be represented by a simple raw value like a `String` or an `Int` and so it cannot conform to `Codable` without additional instructions as to how each case is to be coded. One way to provide this information is to create an intermediate type that knows how to do just that.
+This enum however contains more information than can be represented by a simple raw value type like a `String` or an `Int` and so it cannot conform to `Codable` without additional instructions as to how each case is to be coded. One way to provide this information is to create an intermediate type that knows how to do just that.
 
 (By the way, these instructions, however they are provided, are not something we ought to expose to the wider world. Ideally, all that users need to know is that `Barcode` is `Codable`, so let's keep those implementation details private, ok?)
 
 ## The Intermediate Type
 
-I'm going to start by declaring a fileprivate struct called `Coding`, nested inside an extension of `Barcode` and conforming to `Codable`. It's not `Codable` yet, but we'll get it there. This type needs to be able to represent all the information that is possible to represent in the original `Barcode` enum, and so presumably it will need a different property for each case, where the type of the property matches the type of its case's associated value.
+I'm going to start by declaring a struct called `Coding`, nested inside an extension of `Barcode` and conforming to `Codable`. It's not `Codable` yet, but we'll get it there. This type needs to be able to represent all the information that is possible to represent in the original `Barcode` enum, and so presumably it will need a different property for each case, where the type of the property matches the type of its case's associated value.
 {% highlight swift %}
 extension Barcode {
     fileprivate struct Coding: Codable {
