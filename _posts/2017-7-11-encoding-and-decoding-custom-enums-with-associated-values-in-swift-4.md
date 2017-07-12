@@ -7,7 +7,7 @@ toc:
   - title: The Intermediate Type
     link: /#the-intermediate-type
   - title: Making Barcode Codable
-    link: /#codebarcode-codablecode
+    link: /#barcode-codable
   - title: Informal Testing
     link: /#informal-testing
   - title: But Does It Scale?
