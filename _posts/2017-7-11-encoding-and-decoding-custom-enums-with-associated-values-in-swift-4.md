@@ -20,13 +20,13 @@ tags: Swift Codable
 ---
 One way to allow an enumeration with associated values to conform to the `Codable` protocol is to represent it in a struct which *is* `Codable`. I'm going to show how to do this step-by-step, using the `Barcode` example from [the Enumeration section](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145) of the [Swift Programming book](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/). (I won't make the joke that you should stop reading this to go read that while I wait for you, I'm just assuming you've already done it. Surely you've also read about [the `Codable` protocol](https://developer.apple.com/documentation/swift/encoding_decoding_and_serialization) as well.)
 
-Some `enum`s come prepopulated with raw values, like for example this one in which each planet is assigned an `Int` value.
+Some `enum`s come prepopulated with raw values, like for example this one in which each planet case is assigned an `Int` value.
 {% highlight swift %}
 enum Planet: Int {
     case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, neptune
 }
 {% endhighlight %}
-In this case, archiving the `enum` is as easy as archiving an integer. But what about those enum types which have associated values?
+In this case, archiving the enum instance is as easy as archiving an integer. But what about those enum types which have associated values?
 
 {% include toc.html %}
 
