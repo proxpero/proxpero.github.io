@@ -215,7 +215,7 @@ I'm pretty happy with Apple's solution to the problem of archiving Swift value t
 ## References
 
 - This code is available as a [gist](https://gist.github.com/proxpero/189a723fb96bb88fac5bf9e11d6cf9e2) you can paste it into a playground.
-- Apple has a [good article](https://developer.apple.com/documentation/swift/encoding_decoding_and_serialization) documenting `Codable`s behavior.
+- Apple has a [good article](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types) documenting `Codable`s behavior.
 - The [proposal](https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md) on Swift Evolution.
 - The [actual implementation of `Codable`](https://github.com/apple/swift/blob/master/stdlib/public/core/Codable.swift) in the Swift repo.
 - The [actual implementation of `JSONEncoder`](https://github.com/apple/swift/blob/master/stdlib/public/SDK/Foundation/JSONEncoder.swift) in the Swift repo.
