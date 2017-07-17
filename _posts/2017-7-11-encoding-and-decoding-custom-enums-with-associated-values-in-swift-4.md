@@ -205,15 +205,7 @@ assert(json == expectation)
 assert(result == productBarcode)
 {% endhighlight %}
 
-> **Protip**: We try to be aesthetic and all here on proxpero.com. But seriously, don't use pretty-printing for testing JSON equality. Also, until `Equatable` is actually implemented on `Barcode`, the `==` operator is not going to work. I'm going to leave that as an exercise for you.
-
-## But Does It Scale?
-
-Even with only two cases, this was not a trivial amount of code. It's not difficult; in fact, it's very like boilerplate. With larger numbers of cases, writing all the tedious code required to get an enumeration with associated values to be `Codable` will make you ask yourself: What am I getting for this work?
-
-For one thing, it is likely that not all of your project's types are enums with associated values. Many will easily conform to `Codable` and you will want all your types to conform if you want any of them to. And you probably do want them to, since (1) it is in your long term interest to adopt fundamental Apple technologies in your Apple platform projects. And (2) I think Apple has  done a good job with this protocol and it is worthy to become widely adopted.
-
-Perhaps future versions of Swift with more robust reflection abilities will make archiving workarounds like this one obsolete. I certainly would welcome that day. But until that version lands, it was right Apple to provide the limited implementation that it did now, rather than wait until it could do it "the right way". Real artists ship.
+> **Protip**: We try to be aesthetic and all here on proxpero.com. But seriously, don't use pretty-printing for testing JSON equality. Also, until `Equatable` is actually implemented on `Barcode`, the `==` operator is not going to work. I'm going to leave that as an exercise for you 😉.
 
 ## Improvements
 
