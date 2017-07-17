@@ -358,7 +358,7 @@ expectation = """
 """
 print(json)
 result = try decoder.decode(Barcode.self, from: data)
-//assert(result == productBarcode)
+// assert(result == productBarcode)
 
 
 productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
@@ -371,7 +371,7 @@ expectation = """
 """
 result = try decoder.decode(Barcode.self, from: data)
 assert(json == expectation)
-////assert(result == productBarcode)
+// assert(result == productBarcode)
 {% endhighlight %}
 
 ## Conclusion
