@@ -302,13 +302,93 @@ init(from decoder: Decoder) throws {
 
 Again, we get the container first and then try to extract the appropriate values from it. If we can assign to `codes` an array of integers using the key `Barcode.CodingKeys.upc` (actually, the `rawValue` of it), then we will initialize a `Barcode.upc` whose associated values map to the four elements of the `Array<Int>` that we extracted. If that doesn't work, we try to assign to `code` a `String` using as the key `Barcode.CodingKeys.qrCode` (again it is really `rawValue` of the `.qrCode` coding key) and use that `String` to create the corresponding `Barcode.qrCode` and assign it to `self`. If neither of those works then we'll throw a custom error.
 
+Here's the full solution:
+
+{% highlight swift %}
+enum Barcode {
+    case upc(Int, Int, Int, Int)
+    case qrCode(String)
+}
+extension Barcode: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case upc
+        case qrCode
+    }
+    enum CodingError: Error {
+        case decoding(String)
+    }
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        if let codes = try? values.decode(Array<Int>.self, forKey: .upc), codes.count == 4 {
+            self = .upc(codes[0], codes[1], codes[2], codes[3])
+            return
+        }
+        if let code = try? values.decode(String.self, forKey: .qrCode) {
+            self = .qrCode(code)
+            return
+        }
+        throw CodingError.decoding("Decoding Error: \(dump(values))")
+    }
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .upc(let numberSystem, let manufacturer, let product, let check):
+            try container.encode([numberSystem, manufacturer, product, check], forKey: .upc)
+        case .qrCode(let productCode):
+            try container.encode(productCode, forKey: .qrCode)
+        }
+    }
+}
+
+import Foundation
+
+let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
+let decoder = JSONDecoder()
+var productBarcode: Barcode
+var data: Data
+var json: String
+var expectation: String
+var result: Barcode
+
+productBarcode = .upc(8, 85909, 51226, 3)
+data = try encoder.encode(productBarcode)
+json = String.init(data: data, encoding: .utf8)!
+expectation = """
+{
+  "upc" : [
+    8,
+    85909,
+    51226,
+    3
+  ]
+}
+"""
+print(json)
+result = try decoder.decode(Barcode.self, from: data)
+//assert(result == productBarcode)
+
+
+productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
+data = try encoder.encode(productBarcode)
+json = String.init(data: data, encoding: .utf8)!
+expectation = """
+{
+  "qrCode" : "ABCDEFGHIJKLMNOP"
+}
+"""
+result = try decoder.decode(Barcode.self, from: data)
+assert(json == expectation)
+////assert(result == productBarcode)
+{% endhighlight %}
+
 ## Conclusion
 
 I'm pretty happy with Apple's solution to the problem of archiving Swift value types. The fact that it doesn't just work in every case is not a reason not to use it. Some assembly is required. Using Apple's `KeyedDecoderContainer` and `KeyedEncoderContainer` types helps minimize the burden on developers who need to serialize enums with associated values.
 
 ## References
 
-- This full final code is available as a [gist](https://gist.github.com/proxpero/189a723fb96bb88fac5bf9e11d6cf9e2) you can paste it into a playground.
+- This code is available as a [gist](https://gist.github.com/proxpero/189a723fb96bb88fac5bf9e11d6cf9e2). You can paste it into a playground.
 - Apple has a [good article](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types) documenting `Codable`s behavior.
 - The [proposal](https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md) on Swift Evolution.
 - The [actual implementation of `Codable`](https://github.com/apple/swift/blob/master/stdlib/public/core/Codable.swift) in the Swift repo.
