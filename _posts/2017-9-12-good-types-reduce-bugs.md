@@ -75,3 +75,9 @@ struct ConnectionInfo {
 ## Summary
 
 Now that the invariants are part of the types themselves, the compiler can detect and reject code that violates these invariants. This is less work and more reliable than trying to maintain these invariants by hand. Both examples are valid Swift, but the second is superior because it shifts more overhead from the developer to the language.
+
+## Further Reading
+
+  - [Enumerations](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145) See the part especially about Associated Values.
+  - [OCaml for the Masses](https://cacm.acm.org/magazines/2011/11/138203-ocaml-for-the-masses/fulltext) (...where I stole my example. There is much other insightful information here too. It is about OCaml but is nevertheless relevant to Swift.)
+  - [Serializing Enums with Associated Values](http://proxpero.com/2017/07/11/encoding-and-decoding-custom-enums-with-associated-values-in-swift-4/) (Shameless!)
