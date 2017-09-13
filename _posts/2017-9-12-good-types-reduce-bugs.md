@@ -1,6 +1,6 @@
 ---
 title: "Good Types Reduce Bugs"
-summary: "The benefits of working in a type-safe language extend beyond the compiler complaining that it received an Double but expected an Int. Developers can use the Swift type system to enforce complex invariants rather than relying on conventions or other means to maintain them, but they need to design their code to take full advantage. I use an example modeling a network connection to illustrate this idea."
+summary: "The advantages of working in a type-safe language extend beyond the compiler complaining that it received an <code>Double</code> but expected an <code>Int</code>. Developers can use the Swift type system to enforce complex invariants rather than relying on mere conventions or other fragile means, but reaping the benefits requires some forethought and of bit careful design. I use an example modeling a network connection to illustrate this idea."
 tags: [Swift, Type Safety]
 toc:
   - title: A Naive Approach
