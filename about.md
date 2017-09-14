@@ -24,6 +24,7 @@ If you're here, you might like to read some of these other people as well.
 - [Jesse Squires](http://www.jessesquires.com)
 - [Mike Ash](https://www.mikeash.com/pyblog/)
 - [Rob Napier](http://robnapier.net)
+- [Stephen Celis](http://www.stephencelis.com)
 
 <!--
 I am a software developer at a very small teaching company. I created a suite of internal tools with three goals in mind.
