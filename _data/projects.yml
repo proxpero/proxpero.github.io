@@ -1,3 +1,15 @@
+- name: Geodesy
+  blog-post:
+  app-store:
+  github: https://github.com/proxpero/Geodesy
+  summary: A pure-Swift implementation of the Geohash function, including useful extension methods for CLLocation.
+
+- name: Papercut
+  blog-post:
+  app-store:
+  github: https://github.com/proxpero/Papercut
+  summary: A Logo playround that you can embed in a webpage.
+
 - name: Endgame
   blog-post:
   app-store:
